@@ -6,444 +6,941 @@
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Mentor Moments with Amey</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Free animated courses on YouTube by Amey Hegde: managing people, wellbeing, communication, productivity, money and chip design. About three minutes a lesson.">
+<meta name="description" content="Free animated courses on YouTube by Corporate Trainer Amey Hegde: leading a team, wellbeing, communication, productivity, AI, money and chip design. About three minutes a lesson.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600&family=Poppins:wght@500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Mukta:wght@400;500;600;700&display=swap">
 <style>
-/* Layout: a navy masthead band with the catalogue mosaic, then a card grid of courses; each course opens its own page in the course's colour, with the player and lesson list side by side. */
+/* Layout: a navy "situation finder" opens the page (a real work situation, the lesson that answers it, and search across every lesson),
+   then the nine courses as tiles in their own colours; a course page is a theatre in the course colour, player and lesson list side by side. */
 :root {
-  --bg: #FFF7EC; --surface: #FFFFFF; --sunk: #FBEFDD; --ink: #1F2A44; --mute: #5B6382; --line: #EADCC4;
-  --accent: #F4A024; --accent-ink: #9E5800; --on-accent: #1F2A44;
-  --band: #1F2A44; --band-ink: #FFF7EC; --band-mute: #B9C0D6; --band-line: rgba(255,247,236,.16);
-  --shadow: 0 1px 2px rgba(31,42,68,.06), 0 12px 32px rgba(31,42,68,.10);
-  --display: "Poppins", "Segoe UI", system-ui, sans-serif;
-  --body: "Hind", "Segoe UI", system-ui, sans-serif;
-  --r: 16px; --max: 1180px;
+  --paper: #F1F2F6; --surface: #FFFFFF; --sunk: #E7E9F0; --ink: #151C33; --mute: #586079; --line: #DADEE8;
+  --navy: #151C33; --navy-2: #1D2645; --on-navy: #FFF7EC; --navy-mute: #AAB2CC; --navy-line: rgba(255,247,236,.14);
+  --saffron: #F4A024; --saffron-ink: #9A5600; --ok: #17945A; --on-ok: #FFFFFF; --field: #FFFFFF; --field-line: transparent;
+  --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body: "Mukta", "Segoe UI", system-ui, sans-serif;
+  --max: 1240px; --ease: cubic-bezier(.2, .8, .2, 1);
+  --lift: 0 1px 2px rgba(21,28,51,.06), 0 18px 40px -18px rgba(21,28,51,.28);
 }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
-  --bg: #0E1424; --surface: #161F36; --sunk: #121A2E; --ink: #F3ECE0; --mute: #A3ABC4; --line: #26314F;
-  --accent-ink: #FFC164; --band: #131B30; --band-ink: #F3ECE0; --band-mute: #9FA8C2; --band-line: rgba(243,236,224,.12);
-  --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 32px rgba(0,0,0,.35); color-scheme: dark;
+  --paper: #0B1020; --surface: #141B30; --sunk: #1B233B; --ink: #EEF0F7; --mute: #9CA4BE; --line: #262F4A;
+  --navy: #10172C; --navy-2: #18213D; --navy-line: rgba(255,247,236,.11);
+  --saffron-ink: #FFC266; --ok: #33C27F; --on-ok: #0B1020; --field: #222C4E; --field-line: rgba(255,247,236,.2);
+  --lift: 0 1px 2px rgba(0,0,0,.4), 0 18px 40px -18px rgba(0,0,0,.7); color-scheme: dark;
 } }
 :root[data-theme="dark"] {
-  --bg: #0E1424; --surface: #161F36; --sunk: #121A2E; --ink: #F3ECE0; --mute: #A3ABC4; --line: #26314F;
-  --accent-ink: #FFC164; --band: #131B30; --band-ink: #F3ECE0; --band-mute: #9FA8C2; --band-line: rgba(243,236,224,.12);
-  --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 32px rgba(0,0,0,.35); color-scheme: dark;
+  --paper: #0B1020; --surface: #141B30; --sunk: #1B233B; --ink: #EEF0F7; --mute: #9CA4BE; --line: #262F4A;
+  --navy: #10172C; --navy-2: #18213D; --navy-line: rgba(255,247,236,.11);
+  --saffron-ink: #FFC266; --ok: #33C27F; --on-ok: #0B1020; --field: #222C4E; --field-line: rgba(255,247,236,.2);
+  --lift: 0 1px 2px rgba(0,0,0,.4), 0 18px 40px -18px rgba(0,0,0,.7); color-scheme: dark;
 }
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
-body { margin: 0; background: var(--bg); color: var(--ink); font: 17px/1.6 var(--body); }
-body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--band); }
+[hidden] { display: none !important; }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: 84px; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 400 17px/1.55 var(--body); -webkit-font-smoothing: antialiased; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 50; background: var(--navy); }
 a { color: inherit; }
 img, svg { max-width: 100%; }
-h1, h2, h3 { font-family: var(--display); line-height: 1.12; margin: 0; text-wrap: balance; letter-spacing: -.015em; }
+button { font: inherit; color: inherit; }
+h1, h2, h3 { font-family: var(--display); margin: 0; text-wrap: balance; }
 p { margin: 0; }
+.sr { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .wrap { max-width: var(--max); margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
-@media (min-width: 720px) { .wrap { padding-left: max(32px, env(safe-area-inset-left, 0px)); padding-right: max(32px, env(safe-area-inset-right, 0px)); } }
-:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
-.btn { display: inline-flex; align-items: center; gap: 10px; font: 600 16px/1 var(--display); padding: 15px 22px; border-radius: 999px; text-decoration: none; border: 0; cursor: pointer; transition: transform .15s ease, background .15s ease; }
-.btn:hover { transform: translateY(-1px); }
-.btn.primary { background: var(--accent); color: var(--on-accent); }
-.btn.ghost { background: transparent; color: inherit; box-shadow: inset 0 0 0 1.5px currentColor; }
-.btn svg { width: 18px; height: 18px; flex: none; }
-.eyebrow { font: 600 13px/1.3 var(--display); letter-spacing: .12em; text-transform: uppercase; }
+@media (min-width: 760px) { .wrap { padding-left: max(32px, env(safe-area-inset-left, 0px)); padding-right: max(32px, env(safe-area-inset-right, 0px)); } }
+:focus-visible { outline: 3px solid var(--saffron); outline-offset: 3px; border-radius: 8px; }
+kbd { font: 600 12px/1 var(--display); padding: 5px 7px; border-radius: 6px; border: 1px solid var(--line); color: var(--mute); background: var(--paper); }
 
-/* masthead */
-.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: var(--band); color: var(--band-ink); border-bottom: 1px solid var(--band-line); }
-.top .wrap { display: flex; align-items: center; gap: 24px; padding-block: 14px; }
+/* ---------- art motion: still until something asks it to move */
+.mv { transform-box: view-box; animation-play-state: paused; }
+.tile:hover .mv, .tile:focus-visible .mv, .lc[data-pos="0"] .mv, .poster:hover .mv, .poster:focus-visible .mv, .cc:hover .mv, .live .mv { animation-play-state: running; }
+.mv-spin { animation: mvSpin 22s linear infinite; }
+.mv-spin-fast { animation: mvSpin 6s linear infinite; }
+.mv-spin-slow { animation: mvSpin 72s linear infinite; }
+.mv-hop { animation: mvHop .9s ease-in-out infinite alternate; }
+.mv-bob { animation: mvBob 2.2s ease-in-out infinite alternate; }
+.mv-bob2 { animation: mvBob 2.2s ease-in-out -1.1s infinite alternate; }
+.mv-dash { animation: mvDash 2.4s linear infinite; }
+.mv-glow { animation: mvGlow 1.6s ease-in-out infinite alternate; }
+.mv-pulse { animation: mvPulse 2s ease-out infinite; }
+.mv-blink { animation: mvBlink 1.4s ease-in-out infinite; }
+.mv-dot { animation: mvDot 1.1s ease-in-out infinite; }
+.mv-rise { animation: mvRise 1.6s ease-in-out infinite alternate; }
+@keyframes mvSpin { to { transform: rotate(1turn); } }
+@keyframes mvHop { to { transform: translateY(-9px); } }
+@keyframes mvBob { to { transform: translateY(-6px); } }
+@keyframes mvDash { to { stroke-dashoffset: -44; } }
+@keyframes mvGlow { to { opacity: .5; } }
+@keyframes mvPulse { from { transform: scale(.85); opacity: .5; } to { transform: scale(1.9); opacity: 0; } }
+@keyframes mvBlink { 50% { opacity: .2; } }
+@keyframes mvDot { 50% { transform: translateY(-6px); } }
+@keyframes mvRise { to { transform: translateY(-7px); } }
+
+/* ---------- header */
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 40; background: var(--navy); color: var(--on-navy); border-bottom: 1px solid var(--navy-line); }
+.top .wrap { display: flex; align-items: center; gap: 18px; padding-block: 12px; }
 .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; margin-right: auto; min-width: 0; }
-.brand .mark { width: 36px; height: 36px; border-radius: 10px; background: var(--accent); display: grid; place-items: center; flex: none; }
-.brand .mark svg { width: 16px; height: 16px; margin-left: 2px; }
-.brand b { font: 700 17px/1.1 var(--display); display: block; letter-spacing: -.01em; }
-.brand small { font: 500 12px/1.2 var(--display); color: var(--band-mute); letter-spacing: .04em; }
-.top nav { display: flex; gap: 22px; font: 500 15px/1 var(--display); }
-.top nav a { text-decoration: none; color: var(--band-mute); }
-.top nav a:hover { color: var(--band-ink); }
-.top .site { font: 600 14px/1 var(--display); text-decoration: none; padding: 10px 14px; border-radius: 999px; box-shadow: inset 0 0 0 1px var(--band-line); white-space: nowrap; }
-@media (max-width: 860px) { .top nav { display: none; } }
-@media (max-width: 420px) { .top .site { display: none; } }
+.mark { width: 38px; height: 38px; border-radius: 11px; background: var(--saffron); display: grid; place-items: center; flex: none; }
+.mark svg { width: 16px; height: 16px; margin-left: 2px; }
+.brand b { display: block; font: 700 18px/1.05 var(--display); letter-spacing: -.02em; }
+.brand small { display: block; font: 500 13px/1.2 var(--body); color: var(--navy-mute); }
+.top nav { display: flex; gap: 4px; }
+.top nav a { font: 500 15px/1 var(--display); text-decoration: none; color: var(--navy-mute); padding: 10px 12px; border-radius: 10px; }
+.top nav a:hover { color: var(--on-navy); background: rgba(255,247,236,.07); }
+.sbtn { display: flex; align-items: center; gap: 10px; height: 42px; padding: 0 8px 0 13px; min-width: 230px; border-radius: 12px; border: 1px solid var(--navy-line); background: rgba(255,247,236,.06); color: var(--navy-mute); cursor: pointer; font: 500 15px/1 var(--body); }
+.sbtn:hover { color: var(--on-navy); border-color: rgba(255,247,236,.3); }
+.sbtn svg { width: 18px; height: 18px; flex: none; }
+.sbtn span { margin-right: auto; }
+.sbtn kbd { background: transparent; border-color: var(--navy-line); color: var(--navy-mute); }
+.site { font: 600 14px/1 var(--display); text-decoration: none; padding: 12px 14px; border-radius: 12px; white-space: nowrap; box-shadow: inset 0 0 0 1px var(--navy-line); }
+.site:hover { box-shadow: inset 0 0 0 1px rgba(255,247,236,.35); }
+@media (max-width: 1060px) { .top nav { display: none; } }
+@media (max-width: 700px) { .field kbd { display: none; } .sbtn { min-width: 0; width: 42px; padding: 0; justify-content: center; } .sbtn span, .sbtn kbd { display: none; } }
+@media (max-width: 440px) { .site { display: none; } .brand small { display: none; } }
 
-/* home hero */
-.hero { background: var(--band); color: var(--band-ink); overflow: hidden; }
-.hero .wrap { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: 56px; align-items: center; padding-block: 64px 72px; }
-.hero h1 { font-size: clamp(36px, 5.2vw, 62px); font-weight: 800; letter-spacing: -.03em; line-height: 1.04; margin: 18px 0 22px; }
-.hero h1 em { font-style: normal; color: var(--accent); }
-.hero .lede { color: var(--band-mute); font-size: 19px; max-width: 34em; }
-.hero .eyebrow { color: var(--accent); }
-.hero .cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
-.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; margin-top: 44px; border-top: 1px solid var(--band-line); padding-top: 22px; max-width: 560px; }
-.stats div { padding-right: 12px; }
-.stats b { display: block; font: 700 28px/1 var(--display); letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
-.stats span { display: block; margin-top: 8px; font-size: 14px; line-height: 1.3; color: var(--band-mute); }
-.continue { display: inline-flex; align-items: center; gap: 12px; margin-top: 18px; padding: 10px 16px 10px 10px; border-radius: 999px; background: rgba(244,160,36,.14); color: var(--band-ink); text-decoration: none; font: 500 15px/1.3 var(--display); }
-.continue i { width: 30px; height: 30px; border-radius: 50%; background: var(--accent); display: grid; place-items: center; flex: none; }
-.continue i svg { width: 12px; height: 12px; margin-left: 2px; }
-.mosaic { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; transform: rotate(-4deg) translateX(4%); }
-.mosaic a { display: block; aspect-ratio: 16/9; border-radius: 12px; overflow: hidden; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,.35); transition: transform .25s ease; }
-.mosaic a:nth-child(3n+2) { transform: translateY(18px); }
-.mosaic a:hover { transform: translateY(-4px) scale(1.03); z-index: 2; }
-.mosaic a:nth-child(3n+2):hover { transform: translateY(14px) scale(1.03); }
-.mosaic svg { display: block; width: 100%; height: 100%; }
-.mosaic span { position: absolute; left: 8px; bottom: 8px; right: 8px; font: 600 11px/1.2 var(--display); color: #FFF7EC; background: rgba(15,20,36,.72); padding: 5px 8px; border-radius: 6px; width: fit-content; max-width: calc(100% - 16px); }
-@media (max-width: 960px) { .hero .wrap { grid-template-columns: minmax(0, 1fr); gap: 40px; padding-block: 44px 56px; } .mosaic { transform: none; } .mosaic a:nth-child(3n+2) { transform: none; } }
-@media (max-width: 560px) { .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 20px; } .mosaic span { display: none; } .mosaic { gap: 8px; } }
+/* ---------- hero: situation finder */
+.hero { position: relative; z-index: 5; background: var(--navy); color: var(--on-navy); overflow-x: clip; }
+.hero-bg { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.glow { position: absolute; width: 720px; height: 720px; right: -160px; top: -260px; border-radius: 50%; background-color: var(--glow, #F4A024); opacity: .28; filter: blur(110px); transition: background-color 1.4s ease; }
+.glow.b { width: 520px; height: 520px; left: -220px; right: auto; top: auto; bottom: -320px; background-color: #3D5BD9; opacity: .22; }
+.hero-bg::after { content: ""; position: absolute; inset: 0; opacity: .07; background-image: radial-gradient(rgba(255,247,236,.9) 1px, transparent 1.2px); background-size: 22px 22px; mask-image: linear-gradient(180deg, #000, transparent 85%); }
+.hero .wrap { position: relative; display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(0, .88fr); grid-template-areas: "copy stack" "find stack" "more stack"; column-gap: clamp(32px, 6vw, 88px); align-items: start; padding-block: clamp(44px, 6vw, 84px) clamp(52px, 6vw, 92px); }
+.h-copy { grid-area: copy; }
+.h-find { grid-area: find; }
+.h-more { grid-area: more; }
+.h-stack { grid-area: stack; align-self: center; }
+.sit { font: 800 clamp(40px, 5.4vw, 74px)/1.0 var(--display); letter-spacing: -.035em; min-height: 3.05em; display: flex; flex-direction: column; justify-content: flex-end; }
+.rot { display: block; }
+.rot .w { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .1em; margin-bottom: -.1em; }
+.rot .w > span { display: inline-block; animation: wIn .7s var(--ease) both; animation-delay: calc(var(--k) * 40ms); }
+.rot.out .w > span { animation: wOut .32s ease-in both; animation-delay: calc(var(--k) * 18ms); }
+@keyframes wIn { from { transform: translateY(105%); } }
+@keyframes wOut { to { transform: translateY(-105%); } }
+.answer { margin-top: 18px; font: 600 clamp(20px, 2.1vw, 26px)/1.3 var(--display); letter-spacing: -.01em; color: var(--saffron); }
+.h-find { position: relative; margin-top: 30px; max-width: 620px; }
+.field { display: flex; align-items: center; gap: 12px; height: 62px; padding: 0 12px 0 18px; border-radius: 18px; background: var(--field); color: var(--ink); box-shadow: inset 0 0 0 1px var(--field-line), 0 24px 60px -20px rgba(0,0,0,.6); transition: box-shadow .2s ease; }
+.field:focus-within { box-shadow: 0 0 0 3px var(--saffron), 0 24px 60px -20px rgba(0,0,0,.6); }
+.field > svg { width: 22px; height: 22px; flex: none; color: var(--mute); }
+.field input { flex: 1; min-width: 0; height: 100%; border: 0; outline: 0; background: none; color: var(--ink); font: 500 18px/1 var(--body); }
+.field input::placeholder { color: var(--mute); opacity: 1; }
+.field input::-webkit-search-cancel-button { display: none; }
+.clear { width: 34px; height: 34px; border-radius: 10px; border: 0; background: var(--sunk); color: var(--mute); cursor: pointer; display: grid; place-items: center; flex: none; }
+.clear svg { width: 16px; height: 16px; }
+.try { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 14px; color: var(--navy-mute); font-size: 15px; }
+.try button { font: 500 14px/1 var(--display); color: var(--on-navy); background: rgba(255,247,236,.07); border: 1px solid var(--navy-line); border-radius: 999px; padding: 9px 13px; cursor: pointer; }
+.try button:hover { background: rgba(255,247,236,.14); }
+.lede { margin-top: 28px; max-width: 36em; color: var(--navy-mute); font-size: 17px; line-height: 1.6; }
+.lede b { color: var(--on-navy); font-weight: 600; }
 
-/* sections */
-section { padding-block: 72px; }
-.sechead { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 18px 28px; margin-bottom: 30px; }
-.sechead h2 { font-size: clamp(28px, 3.4vw, 40px); font-weight: 800; letter-spacing: -.025em; }
-.sechead p { color: var(--mute); max-width: 36em; margin-top: 10px; }
+/* results list, used under the hero field and in the search dialog */
+.pop { position: absolute; left: 0; right: 0; top: calc(100% + 10px); z-index: 30; background: var(--surface); color: var(--ink); border-radius: 18px; box-shadow: 0 30px 70px -20px rgba(0,0,0,.55), 0 0 0 1px var(--line); max-height: min(470px, 62vh); overflow-y: auto; padding: 8px; overscroll-behavior: contain; }
+.res-h { font: 600 13px/1.3 var(--display); color: var(--mute); padding: 10px 12px 6px; }
+.hit { display: grid; grid-template-columns: 42px minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 9px 10px; border-radius: 12px; text-decoration: none; color: inherit; }
+.hit:hover, .hit.act { background: var(--sunk); }
+.hit .sw svg { width: 14px; height: 14px; margin-left: 2px; }
+.hit .sw { width: 42px; height: 42px; border-radius: 12px; background: var(--c); color: var(--ci); display: grid; place-items: center; font: 700 14px/1 var(--display); font-variant-numeric: tabular-nums; }
+.hit b { display: block; font: 600 16px/1.3 var(--display); letter-spacing: -.005em; }
+.hit small { display: block; margin-top: 2px; color: var(--mute); font-size: 14px; line-height: 1.35; }
+.hit .d { font: 500 13px/1 var(--display); color: var(--mute); font-variant-numeric: tabular-nums; }
+.hit mark { background: color-mix(in srgb, var(--saffron) 38%, transparent); color: inherit; border-radius: 4px; padding: 0 2px; }
+.hit[lang="hi"] b { font-family: var(--body); font-size: 17px; }
+.none { padding: 18px 14px; color: var(--mute); }
+.none b { color: var(--ink); }
+
+/* lesson card stack */
+.stack { position: relative; width: min(100%, 470px); margin: 26px 0 0 auto; aspect-ratio: 10 / 10.6; }
+.lc { position: absolute; left: 0; bottom: 0; width: 84%; display: block; border-radius: 24px; overflow: hidden; background: var(--c); color: var(--ci); text-decoration: none; box-shadow: 0 40px 80px -30px rgba(0,0,0,.75); transform-origin: 50% 100%; transition: transform .8s var(--ease), opacity .6s ease, filter .6s ease; will-change: transform; }
+.lc[data-pos="0"] { z-index: 3; }
+.lc[data-pos="1"] { z-index: 2; transform: translate(9%, -9%) rotate(5deg) scale(.95); filter: brightness(.82); pointer-events: none; }
+.lc[data-pos="2"] { z-index: 1; transform: translate(16%, -18%) rotate(10deg) scale(.9); filter: brightness(.66); pointer-events: none; }
+.lc[data-pos="in"] { z-index: 0; transform: translate(22%, -26%) rotate(14deg) scale(.86); opacity: 0; pointer-events: none; }
+.lc[data-pos="out"] { z-index: 4; transform: translate(-42%, 8%) rotate(-14deg); opacity: 0; pointer-events: none; }
+.lc-art { position: relative; aspect-ratio: 16 / 9; overflow: hidden; }
+.lc-art > svg, .lc-art > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.lc-play { position: absolute; left: 18px; bottom: 16px; width: 54px; height: 54px; border-radius: 50%; background: #FFF7EC; display: grid; place-items: center; box-shadow: 0 10px 24px rgba(0,0,0,.35); transition: transform .25s var(--ease); }
+.lc-play svg { width: 20px; height: 20px; margin-left: 3px; }
+.lc:hover .lc-play { transform: scale(1.08); }
+.lc-dur { position: absolute; right: 14px; bottom: 16px; font: 600 13px/1 var(--display); color: #fff; background: rgba(8,12,24,.72); padding: 6px 9px; border-radius: 8px; font-variant-numeric: tabular-nums; }
+.lc-body { padding: 18px 22px 22px; display: flex; flex-direction: column; gap: 6px; }
+.lc-course { font: 500 14px/1.3 var(--display); opacity: .8; }
+.lc-title { font: 700 clamp(19px, 1.8vw, 23px)/1.18 var(--display); letter-spacing: -.015em; }
+.lc-meta { font-size: 15px; opacity: .78; }
+.stack-ctl { display: flex; align-items: center; justify-content: flex-end; gap: 6px; margin-top: 18px; color: var(--navy-mute); font: 500 14px/1 var(--display); font-variant-numeric: tabular-nums; }
+.stack-ctl button { width: 40px; height: 40px; border-radius: 12px; border: 1px solid var(--navy-line); background: rgba(255,247,236,.05); color: var(--on-navy); cursor: pointer; display: grid; place-items: center; }
+.stack-ctl button:hover { background: rgba(255,247,236,.12); }
+.stack-ctl svg { width: 18px; height: 18px; }
+.stack-ctl span { min-width: 64px; text-align: center; }
+@media (max-width: 980px) {
+  .hero .wrap { grid-template-columns: minmax(0, 1fr); grid-template-areas: "copy" "find" "stack" "more"; }
+  .stack { margin: 34px auto 0; width: min(100%, 440px); }
+  .stack-ctl { justify-content: center; }
+}
+
+/* ---------- sections */
+.sec { padding-block: clamp(56px, 7vw, 96px); }
+.sechead { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 18px 32px; margin-bottom: 30px; }
+.big { font: 800 clamp(30px, 3.6vw, 46px)/1.04 var(--display); letter-spacing: -.035em; }
+.sechead p { margin-top: 10px; color: var(--mute); max-width: 36em; }
 .chips { display: flex; flex-wrap: wrap; gap: 8px; }
-.chip { font: 500 14px/1 var(--display); padding: 10px 15px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; }
-.chip[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
-.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 28px 24px; }
-.card { display: flex; flex-direction: column; text-decoration: none; color: inherit; background: var(--surface); border-radius: var(--r); overflow: hidden; box-shadow: var(--shadow); transition: transform .2s ease, box-shadow .2s ease; }
-.card:hover { transform: translateY(-4px); }
-.card .cv { aspect-ratio: 16/9; overflow: hidden; }
-.card .cv svg { display: block; width: 100%; height: 100%; transition: transform .5s ease; }
-.card:hover .cv svg { transform: scale(1.05); }
-.card .bd { padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
-.tag { display: flex; align-items: center; gap: 8px; color: var(--mute); }
-.tag i { width: 8px; height: 8px; border-radius: 50%; background: var(--c); flex: none; box-shadow: 0 0 0 1.5px var(--surface), 0 0 0 2.5px var(--line); }
-.card h3 { font-size: 20px; font-weight: 700; margin-top: 4px; }
-.card .sub { color: var(--mute); font-size: 16px; line-height: 1.4; }
-.meta { margin-top: auto; padding-top: 14px; display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center; font: 500 14px/1.2 var(--display); color: var(--mute); font-variant-numeric: tabular-nums; }
-.meta .who { margin-left: auto; color: var(--ink); background: var(--sunk); padding: 6px 10px; border-radius: 999px; font-size: 13px; }
+.chips button { display: inline-flex; align-items: center; gap: 8px; font: 500 15px/1 var(--display); padding: 10px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; }
+.chips button span { color: var(--mute); font-variant-numeric: tabular-nums; }
+.chips button:hover { border-color: var(--mute); }
+.chips button[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.chips button[aria-pressed="true"] span { color: inherit; opacity: .7; }
+
+/* continue watching */
+.cont { padding-block: 40px 0; }
+.cont h2 { font: 700 22px/1.2 var(--display); letter-spacing: -.02em; margin-bottom: 16px; }
+.rail { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(280px, 380px); gap: 14px; overflow-x: auto; padding-bottom: 6px; scroll-snap-type: x mandatory; }
+.cc { display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 14px; align-items: center; padding: 12px; border-radius: 18px; background: var(--surface); border: 1px solid var(--line); text-decoration: none; color: inherit; scroll-snap-align: start; transition: border-color .2s ease; }
+.cc:hover { border-color: var(--mute); }
+.cc .ca { aspect-ratio: 1; border-radius: 12px; overflow: hidden; }
+.cc .ca svg { display: block; width: 100%; height: 100%; }
+.cc small { display: block; color: var(--mute); font-size: 14px; line-height: 1.3; }
+.cc b { display: block; font: 600 16px/1.25 var(--display); margin: 3px 0 9px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.bar { height: 6px; border-radius: 99px; background: var(--sunk); overflow: hidden; }
+.bar i { display: block; height: 100%; width: var(--p); background: var(--ok); border-radius: inherit; }
+
+/* course tiles */
+.tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.tile { position: relative; display: flex; flex-direction: column; border-radius: 26px; overflow: hidden; background: var(--c); color: var(--ci); text-decoration: none; transition: transform .4s var(--ease), box-shadow .4s var(--ease); }
+.tile:hover { transform: translateY(-6px); box-shadow: 0 28px 50px -24px color-mix(in srgb, var(--c) 80%, #000); }
+.tile-art { aspect-ratio: 16 / 10; overflow: hidden; }
+.tile-art svg { display: block; width: 100%; height: 100%; transition: transform .8s var(--ease); }
+.tile:hover .tile-art svg { transform: scale(1.04); }
+.tile-body { flex: 1; display: flex; flex-direction: column; gap: 6px; padding: 18px 22px 24px; }
+.tile-topic { font: 500 14px/1.2 var(--display); opacity: .72; }
+.tile h3 { font: 700 25px/1.08 var(--display); letter-spacing: -.025em; }
+.tile p { font-size: 16px; line-height: 1.4; opacity: .82; }
+.tile-meta { margin-top: auto; padding-top: 14px; display: flex; flex-wrap: wrap; gap: 6px; font: 500 14px/1 var(--display); font-variant-numeric: tabular-nums; }
+.tile-meta span { padding: 7px 10px; border-radius: 999px; background: color-mix(in srgb, var(--ci) 13%, transparent); }
+.tile-meta .who { margin-left: auto; display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px 4px 4px; }
+.tile-meta .who i { width: 22px; height: 22px; border-radius: 50%; background: var(--ci); color: var(--c); display: grid; place-items: center; font: 800 12px/1 var(--display); font-style: normal; }
+.tile-prog { position: absolute; left: 0; right: 0; bottom: 0; height: 6px; background: color-mix(in srgb, var(--ci) 20%, transparent); }
+.tile-prog i { display: block; height: 100%; width: var(--p); background: var(--ci); }
 .empty { color: var(--mute); }
+@media (max-width: 1040px) { .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) {
+  .tiles { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .tile { flex-direction: row; border-radius: 20px; min-height: 132px; }
+  .tile:hover { transform: none; }
+  .tile-art { width: 36%; flex: none; aspect-ratio: auto; }
+  .tile-body { padding: 14px 14px 16px; gap: 4px; min-width: 0; }
+  .tile h3 { font-size: 19px; }
+  .tile p { font-size: 15px; }
+  .tile-topic { font-size: 13px; }
+  .tile-meta { padding-top: 10px; font-size: 13px; }
+  .tile-meta span { padding: 6px 8px; }
+  .tile-meta .who { display: none; }
+}
 
 /* how it works */
-.how { background: var(--sunk); }
-.how ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
+.how { background: var(--surface); border-block: 1px solid var(--line); }
+.how ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
 .how li { display: flex; flex-direction: column; gap: 10px; }
-.how .ic { width: 48px; height: 48px; border-radius: 14px; background: var(--surface); display: grid; place-items: center; box-shadow: var(--shadow); color: var(--accent-ink); }
-.how .ic svg { width: 24px; height: 24px; }
-.how h3 { font-size: 20px; font-weight: 700; margin-top: 8px; }
+.how .ic { width: 52px; height: 52px; border-radius: 16px; background: color-mix(in srgb, var(--saffron) 18%, transparent); color: var(--saffron-ink); display: grid; place-items: center; }
+.how .ic svg { width: 26px; height: 26px; }
+.how h3 { font: 700 21px/1.2 var(--display); letter-spacing: -.015em; margin-top: 6px; }
 .how p { color: var(--mute); max-width: 30em; }
-@media (max-width: 760px) { .how ul { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 760px) { .how ul { grid-template-columns: minmax(0, 1fr); gap: 26px; } }
 
-/* people */
-.people { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr)); gap: 16px; }
-.person { display: flex; flex-direction: column; gap: 6px; padding: 20px; border-radius: var(--r); border: 1px solid var(--line); text-decoration: none; transition: border-color .2s ease, transform .2s ease; }
-.person:hover { border-color: var(--c); transform: translateY(-2px); }
-.person .av { width: 52px; height: 52px; border-radius: 50%; background: var(--c); color: var(--ci); display: grid; place-items: center; font: 800 22px/1 var(--display); margin-bottom: 8px; }
-.person b { font: 700 18px/1.2 var(--display); }
+/* the people in the stories */
+.cast { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; }
+.person { display: flex; flex-direction: column; gap: 6px; padding: 20px; border-radius: 22px; background: var(--surface); border: 1px solid var(--line); text-decoration: none; color: inherit; transition: border-color .2s ease, transform .3s var(--ease); scroll-snap-align: start; }
+.person:hover { border-color: var(--c); transform: translateY(-3px); }
+.person .av { width: 60px; height: 60px; border-radius: 18px; background: var(--c); color: var(--ci); display: grid; place-items: center; font: 800 28px/1 var(--display); margin-bottom: 10px; }
+.person b { font: 700 20px/1.15 var(--display); letter-spacing: -.015em; }
 .person span { color: var(--mute); font-size: 15px; line-height: 1.4; }
-.person small { margin-top: auto; padding-top: 10px; font: 600 13px/1.3 var(--display); color: var(--accent-ink); }
+.person small { margin-top: auto; padding-top: 12px; font: 600 14px/1.3 var(--display); color: var(--saffron-ink); }
+@media (max-width: 1040px) { .cast { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: minmax(220px, 1fr); overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 6px; } }
 
 /* about */
 .about { border-top: 1px solid var(--line); }
 .about .wrap { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 48px; align-items: start; }
-.about p { color: var(--mute); max-width: 36em; }
+.about p { color: var(--mute); max-width: 38em; font-size: 18px; }
 .about p + p { margin-top: 14px; }
-.about .btn { margin-top: 24px; }
+.btn { display: inline-flex; align-items: center; gap: 10px; height: 50px; padding: 0 20px; border-radius: 14px; font: 600 16px/1 var(--display); text-decoration: none; border: 0; cursor: pointer; transition: transform .2s var(--ease), background .2s ease; }
+.btn:hover { transform: translateY(-1px); }
+.btn svg { width: 18px; height: 18px; flex: none; }
+.btn.line { box-shadow: inset 0 0 0 1.5px currentColor; background: none; }
+.btn.solid { background: var(--ink); color: var(--paper); }
+.about .btn { margin-top: 26px; }
 @media (max-width: 760px) { .about .wrap { grid-template-columns: minmax(0, 1fr); gap: 16px; } }
-footer { background: var(--band); color: var(--band-mute); font-size: 15px; }
-footer .wrap { display: flex; flex-wrap: wrap; gap: 10px 24px; justify-content: space-between; padding-block: 28px; }
-footer a { color: var(--band-ink); }
+footer { background: var(--navy); color: var(--navy-mute); font-size: 15px; }
+footer .wrap { display: flex; flex-wrap: wrap; gap: 10px 24px; justify-content: space-between; padding-block: 28px calc(28px + env(safe-area-inset-bottom, 0px)); }
+footer a { color: var(--on-navy); }
 
-/* course page */
-.chero { background: var(--c); color: var(--ci); overflow: hidden; }
-.chero .wrap { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 48px; align-items: center; padding-block: 36px 56px; }
-.back { display: inline-flex; align-items: center; gap: 8px; font: 500 15px/1 var(--display); text-decoration: none; opacity: .85; margin-bottom: 26px; }
+/* ---------- course page: theatre in the course colour */
+.theatre { background: var(--c); color: var(--ci); padding-block: 26px 40px; }
+.back { display: inline-flex; align-items: center; gap: 8px; font: 500 15px/1 var(--display); text-decoration: none; opacity: .8; padding: 8px 0; }
 .back:hover { opacity: 1; }
-.back svg { width: 16px; height: 16px; }
-.chero .eyebrow { opacity: .8; }
-.chero h1 { font-size: clamp(32px, 4.6vw, 56px); font-weight: 800; letter-spacing: -.03em; line-height: 1.05; margin: 14px 0 12px; }
-.chero .sub { font: 500 clamp(18px, 2vw, 22px)/1.35 var(--display); opacity: .85; }
-.facts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
-.facts span { font: 500 14px/1 var(--display); padding: 9px 13px; border-radius: 999px; box-shadow: inset 0 0 0 1px currentColor; opacity: .9; font-variant-numeric: tabular-nums; }
-.chero .cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
-.chero .btn.primary { background: var(--ci); color: var(--c); }
-.chero .bigcv { border-radius: 18px; overflow: hidden; aspect-ratio: 16/9; box-shadow: 0 24px 60px rgba(0,0,0,.35); transform: rotate(2deg); }
-.chero .bigcv svg { display: block; width: 100%; height: 100%; }
-@media (max-width: 900px) { .chero .wrap { grid-template-columns: minmax(0, 1fr); gap: 28px; } .chero .bigcv { display: none; } }
-.watch { padding-block: 40px 24px; }
-.stage { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 360px); gap: 24px; align-items: start; }
-@media (max-width: 960px) { .stage { grid-template-columns: minmax(0, 1fr); } }
-.player { position: relative; aspect-ratio: 16/9; border-radius: var(--r); overflow: hidden; background: #0B101D; box-shadow: var(--shadow); }
-.player iframe, .player #yt, .player #yt > div { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
-.poster { position: absolute; inset: 0; display: block; border: 0; padding: 0; margin: 0; background: none; cursor: pointer; color: #FFF7EC; text-decoration: none; text-align: left; }
-.poster svg.art { position: absolute; inset: 0; width: 100%; height: 100%; display: block; filter: saturate(.9) brightness(.62); transition: filter .3s ease; }
-.poster:hover svg.art { filter: saturate(1) brightness(.7); }
-.poster .pl { position: absolute; left: 50%; top: 50%; width: 88px; height: 88px; margin: -44px 0 0 -44px; border-radius: 50%; background: var(--accent); display: grid; place-items: center; box-shadow: 0 10px 30px rgba(0,0,0,.4); transition: transform .2s ease; }
-.poster:hover .pl { transform: scale(1.06); }
-.poster .pl svg { width: 30px; height: 30px; margin-left: 5px; }
-.poster .cap { position: absolute; left: 22px; right: 22px; bottom: 20px; font: 600 16px/1.3 var(--display); text-shadow: 0 2px 12px rgba(0,0,0,.6); }
-.poster .cap small { display: block; font: 500 13px/1.3 var(--display); opacity: .8; margin-bottom: 4px; letter-spacing: .06em; text-transform: uppercase; }
-@media (max-width: 600px) {
-  .poster .pl { width: 60px; height: 60px; margin: -30px 0 0 -30px; top: 36%; }
-  .poster .pl svg { width: 22px; height: 22px; margin-left: 4px; }
-  .poster .cap { left: 16px; right: 16px; bottom: 14px; font-size: 14px; }
-  .poster .cap br, .poster .cap br + small { display: none; }
+.back svg { width: 18px; height: 18px; }
+.th-head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 22px 40px; margin: 14px 0 26px; }
+.th-head > div:first-child { min-width: 0; max-width: 760px; }
+.th-topic { font: 500 15px/1.3 var(--display); opacity: .75; }
+.theatre h1 { margin-top: 8px; font: 800 clamp(34px, 4.8vw, 64px)/1.0 var(--display); letter-spacing: -.04em; }
+.theatre .sub { margin-top: 12px; font: 500 clamp(18px, 1.9vw, 22px)/1.3 var(--display); opacity: .85; }
+.th-side { display: flex; flex-direction: column; gap: 12px; width: min(100%, 340px); }
+.facts { display: flex; flex-wrap: wrap; gap: 6px; }
+.facts span { font: 500 14px/1 var(--display); padding: 8px 11px; border-radius: 999px; box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--ci) 35%, transparent); font-variant-numeric: tabular-nums; }
+.meter { height: 8px; border-radius: 99px; background: color-mix(in srgb, var(--ci) 20%, transparent); overflow: hidden; }
+.meter i { display: block; height: 100%; width: var(--p); background: var(--ci); border-radius: inherit; transition: width .6s var(--ease); }
+.meter-l { font: 500 14px/1.2 var(--display); opacity: .85; font-variant-numeric: tabular-nums; }
+.stage { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 390px); gap: 18px; align-items: stretch; }
+.stage-main { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.player { position: relative; aspect-ratio: 16 / 9; border-radius: 22px; overflow: hidden; background: #070B16; box-shadow: 0 40px 80px -36px rgba(0,0,0,.7); }
+.player #yt, .player #yt > *, .player iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.poster { position: absolute; inset: 0; z-index: 2; display: block; border: 0; padding: 0; margin: 0; background: #070B16; cursor: pointer; color: #FFF7EC; text-decoration: none; text-align: left; }
+.poster > svg, .poster > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1s var(--ease), filter .4s ease; }
+.poster > svg { filter: brightness(.62) saturate(.95); }
+.poster > img { filter: brightness(.78); }
+.poster::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, rgba(5,8,18,.82)); }
+.poster:hover > svg, .poster:hover > img { transform: scale(1.03); }
+.pl { position: absolute; left: 50%; top: 46%; z-index: 1; width: 92px; height: 92px; margin: -46px 0 0 -46px; border-radius: 50%; background: var(--plc, var(--saffron)); display: grid; place-items: center; box-shadow: 0 0 0 10px rgba(244,160,36,.22), 0 16px 40px rgba(0,0,0,.45); transition: transform .3s var(--ease), box-shadow .3s ease; }
+.pl svg { width: 32px; height: 32px; margin-left: 5px; }
+.poster:hover .pl { transform: scale(1.07); box-shadow: 0 0 0 16px rgba(244,160,36,.18), 0 16px 40px rgba(0,0,0,.45); }
+.cap { position: absolute; left: 26px; right: 26px; bottom: 22px; z-index: 1; display: flex; flex-direction: column; gap: 4px; }
+.cap small { font: 500 15px/1.2 var(--display); opacity: .82; }
+.cap b { font: 700 clamp(18px, 2.1vw, 26px)/1.15 var(--display); letter-spacing: -.015em; max-width: 30em; }
+.cap em { font: 500 14px/1.2 var(--body); font-style: normal; opacity: .75; display: inline-flex; align-items: center; gap: 6px; }
+.cap em svg { width: 14px; height: 14px; }
+.nowbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 18px; padding: 14px 16px 14px 20px; border-radius: 18px; background: color-mix(in srgb, var(--ci) 10%, transparent); }
+.now { min-width: 0; flex: 1 1 260px; }
+.now small { display: block; font: 500 14px/1.2 var(--display); opacity: .78; font-variant-numeric: tabular-nums; }
+.now b { display: block; margin-top: 4px; font: 700 18px/1.25 var(--display); letter-spacing: -.01em; }
+.now[lang="hi"] b { font-family: var(--body); font-size: 19px; }
+.nb { display: flex; flex-wrap: wrap; gap: 8px; }
+.nbtn { display: inline-flex; align-items: center; gap: 7px; height: 42px; padding: 0 14px; border-radius: 12px; border: 1px solid color-mix(in srgb, var(--ci) 32%, transparent); background: none; color: inherit; font: 600 14px/1 var(--display); cursor: pointer; text-decoration: none; }
+.nbtn:hover { background: color-mix(in srgb, var(--ci) 10%, transparent); }
+.nbtn svg { width: 17px; height: 17px; flex: none; }
+.nbtn[aria-pressed="true"] { background: var(--ci); color: var(--c); border-color: var(--ci); }
+.nbtn:disabled { opacity: .38; cursor: default; background: none; }
+.panel { position: relative; min-height: 0; background: var(--surface); color: var(--ink); border-radius: 22px; box-shadow: 0 40px 80px -36px rgba(0,0,0,.6); }
+.panel-in { position: absolute; inset: 0; display: flex; flex-direction: column; }
+.ph { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 18px 12px; border-bottom: 1px solid var(--line); }
+.ph h2 { font: 700 18px/1.2 var(--display); letter-spacing: -.01em; }
+.ph h2 span { display: block; margin-top: 3px; font: 500 14px/1.2 var(--display); color: var(--mute); font-variant-numeric: tabular-nums; }
+.lang { display: flex; gap: 3px; padding: 3px; border-radius: 12px; background: var(--sunk); }
+.lang button { font: 600 13px/1 var(--display); border: 0; background: none; color: var(--mute); padding: 9px 12px; border-radius: 9px; cursor: pointer; }
+.lang button[lang="hi"] { font-family: var(--body); font-size: 14px; }
+.lang button[aria-pressed="true"] { background: var(--surface); color: var(--ink); box-shadow: 0 1px 3px rgba(0,0,0,.15); }
+.lessons { list-style: none; margin: 0; padding: 8px; overflow-y: auto; flex: 1; min-height: 0; overscroll-behavior: contain; }
+.row { display: grid; grid-template-columns: 38px minmax(0, 1fr) auto; gap: 12px; align-items: center; width: 100%; padding: 10px; border-radius: 14px; border: 0; background: none; color: inherit; text-align: left; text-decoration: none; cursor: pointer; }
+.row:hover { background: var(--sunk); }
+.n { min-width: 36px; height: 36px; padding: 0 6px; border-radius: 11px; display: grid; place-items: center; font: 700 13px/1 var(--display); background: var(--sunk); color: var(--mute); font-variant-numeric: tabular-nums; }
+.n svg { width: 16px; height: 16px; }
+.t { font: 500 15px/1.35 var(--display); }
+.t small { display: block; font: 500 13px/1.2 var(--display); color: var(--mute); margin-bottom: 3px; }
+.row .d { font: 500 13px/1 var(--display); color: var(--mute); font-variant-numeric: tabular-nums; }
+li.done .n { background: var(--ok); color: var(--on-ok); }
+li.done .t { color: var(--mute); }
+li.on .row { background: color-mix(in srgb, var(--c) 15%, var(--surface)); }
+li.on .t { color: var(--ink); font-weight: 600; }
+li.on .n { background: var(--c); color: var(--ci); }
+.lessons[lang="hi"] .t { font-family: var(--body); font-size: 16px; }
+.thumbs .row { grid-template-columns: 124px minmax(0, 1fr); }
+.th { position: relative; aspect-ratio: 16 / 9; border-radius: 10px; overflow: hidden; background: var(--sunk); }
+.th img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.th .d { position: absolute; right: 5px; bottom: 5px; padding: 3px 6px; border-radius: 6px; background: rgba(5,8,18,.78); color: #fff; font: 600 12px/1 var(--display); font-variant-numeric: tabular-nums; }
+.th .ck { position: absolute; inset: 0; display: grid; place-items: center; background: rgba(5,8,18,.5); color: #fff; }
+.th .ck svg { width: 26px; height: 26px; padding: 4px; border-radius: 50%; background: var(--ok); color: var(--on-ok); }
+li.on .th { box-shadow: 0 0 0 3px var(--c); }
+@media (max-width: 1000px) {
+  .stage { grid-template-columns: minmax(0, 1fr); }
+  .panel-in { position: static; }
+  .lessons { max-height: none; overflow: visible; }
 }
-.panel { background: var(--surface); border-radius: var(--r); box-shadow: var(--shadow); display: flex; flex-direction: column; max-height: min(640px, 80vh); }
-.panel .ph { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 18px 20px 14px; border-bottom: 1px solid var(--line); }
-.panel .ph h2 { font-size: 18px; font-weight: 700; letter-spacing: -.01em; }
-.panel .ph span { font: 500 14px/1 var(--display); color: var(--mute); }
-.lang { display: flex; gap: 4px; padding: 3px; border-radius: 999px; background: var(--sunk); }
-.lang button { font: 600 13px/1 var(--display); border: 0; background: none; color: var(--mute); padding: 8px 12px; border-radius: 999px; cursor: pointer; }
-.lang button[aria-pressed="true"] { background: var(--surface); color: var(--ink); box-shadow: var(--shadow); }
-.lessons { list-style: none; margin: 0; padding: 8px; overflow-y: auto; }
-.lessons li > * { display: grid; grid-template-columns: 40px minmax(0, 1fr) auto; gap: 12px; align-items: center; width: 100%; padding: 11px 12px; border-radius: 12px; border: 0; background: none; color: inherit; text-align: left; text-decoration: none; font: inherit; cursor: pointer; }
-.lessons li > *:hover { background: var(--sunk); }
-.lessons .n { width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; font: 600 13px/1 var(--display); background: var(--sunk); color: var(--mute); font-variant-numeric: tabular-nums; }
-.lessons .t { font: 500 15px/1.35 var(--display); }
-.lessons .t small { display: block; margin-top: 3px; font: 400 13px/1.4 var(--body); color: var(--mute); }
-.lessons .d { font: 500 13px/1 var(--display); color: var(--mute); font-variant-numeric: tabular-nums; }
-.lessons li.on > * { background: var(--sunk); }
-.lessons li.on .n { background: var(--accent); color: var(--on-accent); }
-.lessons [lang="hi"] .t { font-family: var(--body); font-size: 16px; }
-.inside { margin: 0; padding: 8px 20px 20px; }
-.inside div { display: flex; justify-content: space-between; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--line); }
-.inside dt { color: var(--mute); }
-.inside dd { margin: 0; font: 500 15px/1.4 var(--display); text-align: right; }
-.inside + p { padding: 0 20px 20px; color: var(--mute); font-size: 15px; line-height: 1.5; }
-.note { margin-top: 12px; font-size: 14px; color: var(--mute); }
-.story { padding-block: 40px 72px; }
-.story .wrap { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 48px; }
-.story p { font-size: 19px; line-height: 1.6; max-width: 36em; }
-.story p + p { margin-top: 16px; color: var(--mute); font-size: 18px; }
-@media (max-width: 760px) { .story .wrap { grid-template-columns: minmax(0, 1fr); gap: 14px; } }
+@media (max-width: 600px) {
+  .theatre { padding-block: 14px 28px; }
+  .th-head { margin: 8px 0 20px; }
+  .th-side { width: 100%; }
+  .player { border-radius: 16px; margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px)) + 8px); }
+  .pl { width: 66px; height: 66px; margin: -33px 0 0 -33px; top: 40%; box-shadow: 0 0 0 7px rgba(244,160,36,.22), 0 12px 30px rgba(0,0,0,.45); }
+  .pl svg { width: 24px; height: 24px; }
+  .cap { left: 16px; right: 16px; bottom: 14px; }
+  .cap small, .cap em { display: none; }
+  .cap b { font-size: 16px; }
+  .nowbar { padding: 14px; }
+  .nb { width: 100%; }
+  .nb .nbtn { flex: 1 1 auto; justify-content: center; }
+  .thumbs .row { grid-template-columns: 104px minmax(0, 1fr); }
+}
+.cabout .wrap { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, .75fr); gap: 48px; align-items: start; }
+.story p { font-size: 19px; line-height: 1.6; max-width: 36em; margin-top: 18px; }
+.story p + p { margin-top: 14px; color: var(--mute); font-size: 18px; }
+.follow { padding: 24px; border-radius: 24px; background: var(--surface); border: 1px solid var(--line); display: flex; flex-direction: column; gap: 8px; }
+.follow .av { width: 64px; height: 64px; border-radius: 20px; background: var(--c); color: var(--ci); display: grid; place-items: center; font: 800 30px/1 var(--display); margin-bottom: 8px; }
+.follow small { color: var(--mute); font: 500 14px/1.2 var(--display); }
+.follow b { font: 700 22px/1.15 var(--display); letter-spacing: -.015em; }
+.follow span { color: var(--mute); }
+.follow .btn { margin-top: 14px; align-self: flex-start; }
+@media (max-width: 860px) { .cabout .wrap { grid-template-columns: minmax(0, 1fr); gap: 28px; } }
 .more { border-top: 1px solid var(--line); }
-@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; } html { scroll-behavior: auto; } }
+
+/* ---------- search dialog + toast */
+.modal { position: fixed; inset: 0; z-index: 60; display: flex; justify-content: center; align-items: flex-start; background: rgba(6,9,20,.62); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); padding: calc(env(safe-area-inset-top, 0px) + min(12vh, 110px)) max(16px, env(safe-area-inset-right, 0px)) 16px max(16px, env(safe-area-inset-left, 0px)); }
+.box { width: min(660px, 100%); max-height: calc(100% - 20px); display: flex; flex-direction: column; background: var(--surface); color: var(--ink); border-radius: 22px; overflow: hidden; box-shadow: 0 40px 90px -20px rgba(0,0,0,.7); animation: boxIn .28s var(--ease) both; }
+@keyframes boxIn { from { transform: translateY(10px) scale(.98); opacity: 0; } }
+.box .field { background: none; box-shadow: none; border-radius: 0; border-bottom: 1px solid var(--line); height: 64px; }
+.box .field:focus-within { box-shadow: none; }
+.box .list { overflow-y: auto; padding: 8px; overscroll-behavior: contain; }
+.box .foot { display: flex; gap: 16px; padding: 10px 16px; border-top: 1px solid var(--line); color: var(--mute); font-size: 13px; }
+@media (max-width: 600px) { .box .foot { display: none; } }
+.toast { position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); z-index: 70; transform: translateX(-50%); padding: 12px 18px; border-radius: 14px; background: var(--ink); color: var(--paper); font: 600 15px/1.2 var(--display); box-shadow: 0 20px 40px -10px rgba(0,0,0,.5); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .lc[data-pos="in"], .lc[data-pos="out"] { display: none; }
+}
 </style>
 </head>
 <body>
 <header class="top"><div class="wrap">
-  <a class="brand" href="#"><span class="mark"><svg viewBox="0 0 16 16"><path d="M3 1.8v12.4c0 .6.7 1 1.2.7l10-6.2a.8.8 0 0 0 0-1.4l-10-6.2C3.7.8 3 1.2 3 1.8z" fill="#1F2A44"/></svg></span><span><b>Mentor Moments</b><small>with Amey Hegde</small></span></a>
-  <nav aria-label="Sections"><a href="#courses">Courses</a><a href="#how-it-works">How it works</a><a href="#people">The stories</a><a href="#about">About</a></nav>
-  <a class="site" href="https://ameyhegde.in" target="_blank" rel="noopener">ameyhegde.in ↗</a>
+  <a class="brand" href="#"><span class="mark"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 1.8v12.4c0 .6.7 1 1.2.7l10-6.2a.8.8 0 0 0 0-1.4l-10-6.2C3.7.8 3 1.2 3 1.8z" fill="#151C33"/></svg></span><span><b>Mentor Moments</b><small>with Amey Hegde</small></span></a>
+  <nav aria-label="Sections"><a href="#courses">Courses</a><a href="#stories">Stories</a><a href="#about">About Amey</a></nav>
+  <button class="sbtn" type="button" id="openSearch" aria-label="Search lessons"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><span>Search lessons</span><kbd>/</kbd></button>
+  <a class="site" href="https://ameyhegde.in" target="_blank" rel="noopener">ameyhegde.in</a>
 </div></header>
 <main id="app"></main>
-<footer><div class="wrap"><span>© 2026 Amey Hegde · Every course is free to watch on YouTube.</span><a href="https://ameyhegde.in" target="_blank" rel="noopener">ameyhegde.in</a></div></footer>
+<footer><div class="wrap"><span>© 2026 Amey Hegde. Every course is free to watch on YouTube.</span><a href="https://ameyhegde.in" target="_blank" rel="noopener">ameyhegde.in</a></div></footer>
+<div class="modal" id="modal" hidden>
+  <div class="box" role="dialog" aria-modal="true" aria-label="Search lessons">
+    <div class="field"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+      <input id="mq" type="search" autocomplete="off" spellcheck="false" placeholder="Search every lesson" aria-label="Search every lesson" role="combobox" aria-expanded="true" aria-controls="mlist" aria-autocomplete="list">
+      <kbd>Esc</kbd></div>
+    <div class="list" id="mlist" role="listbox" aria-label="Lessons"></div>
+    <div class="foot"><span><kbd>↑</kbd> <kbd>↓</kbd> to move</span><span><kbd>Enter</kbd> to open</span><span><kbd>Esc</kbd> to close</span></div>
+  </div>
+</div>
+<div class="toast" id="toast" role="status" hidden></div>
 <script>
-const DATA = {"courses": [{"slug": "first-time-manager", "theme": "lead", "label": "Managerial Skills", "title": "First-Time Manager", "sub": "From doer to leader", "list": "PLD66ZjFg3Z0U", "color": "#1F2A44", "ink": "#FFF7EC", "art": "stairs", "who": "Nikhil", "whoLine": "29, a new team lead in Pune", "story": ["Just promoted to manager? Follow Nikhil, 29, a new team lead in Pune, through his first six months.", "Lesson by lesson he learns to say what good looks like, delegate without dumping, run one-on-ones that matter, give feedback that helps, have the conversation he's been avoiding, coach instead of rescue and manage up while protecting his team. It ends with a 90-day plan you can use."], "cover": "<svg viewBox=\"0 0 320 180\" xmlns=\"http://www.w3.org/2000/svg\" preserveAspectRatio=\"xMidYMid slice\" aria-hidden=\"true\"><rect width=\"320\" height=\"180\" fill=\"#1F2A44\"/><rect x=\"70\" y=\"140\" width=\"46\" height=\"40\" fill=\"#F4A024\" opacity=\"0.35\"/><rect x=\"116\" y=\"114\" width=\"46\" height=\"66\" fill=\"#F4A024\" opacity=\"0.55\"/><rect x=\"162\" y=\"88\" width=\"46\" height=\"92\" fill=\"#F4A024\" opacity=\"0.75\"/><rect x=\"208\" y=\"62\" width=\"46\" height=\"118\" fill=\"#F4A024\" opacity=\"0.95\"/><circle cx=\"230\" cy=\"44\" r=\"9\" fill=\"#FFF7EC\"/><path d=\"M230 53 v22 M230 60 l-10 9 M230 60 l10 9 M230 75 l-8 13 M230 75 l8 13\" stroke=\"#FFF7EC\" stroke-width=\"5\" stroke-linecap=\"round\" fill=\"none\"/><path d=\"M40 160 Q 120 150 160 110 T 260 40\" stroke=\"#FFF7EC\" stroke-width=\"2\" stroke-dasharray=\"3 7\" fill=\"none\" opacity=\".45\"/></svg>", "playlist": "https://www.youtube.com/playlist?list=PLD66ZjFg3Z0U", "lessons": [{"t": "Just Promoted to Manager? Start Here", "d": "1:28", "w": 1}, {"t": "Promoted to Manager? Stop Doing Your Old Job", "d": "4:23"}, {"t": "How to Manage Friends After a Promotion", "d": "4:09"}, {"t": "Why Your Team's Work Keeps Coming Back Wrong", "d": "3:40"}, {"t": "How to Delegate Without Dumping or Hovering", "d": "3:47"}, {"t": "One-on-Ones That Stop Good People Leaving", "d": "3:39"}, {"t": "Feedback That Actually Changes Behaviour", "d": "4:02"}, {"t": "The Hard Conversation You Keep Putting Off", "d": "4:23"}, {"t": "Stop Being Your Team's Answer Machine (GROW)", "d": "3:43"}, {"t": "How to Say No to Your Boss Without Saying No", "d": "3:37"}, {"t": "Your First 90 Days as a New Manager: A Plan", "d": "3:17"}], "count": 11, "minutes": 40}, {"slug": "happiness-at-work", "theme": "well", "label": "Happiness and Positivity at Work", "title": "Happiness and Positivity at Work", "sub": "Science-backed habits", "list": "PLDEjdwKus4ws", "color": "#F4A024", "ink": "#1F2A44", "art": "sun", "who": "Meera", "whoLine": "A business analyst in Bengaluru, feeling flat and tired", "story": ["Ten short animated lessons, about three minutes each, with one science-backed habit for each week.", "Follow Meera, a business analyst in Bengaluru who feels flat and tired at work, and try each habit alongside her."], "count": 10, "minutes": 30, "cover": "<svg viewBox=\"0 0 320 180\" xmlns=\"http://www.w3.org/2000/svg\" preserveAspectRatio=\"xMidYMid slice\" aria-hidden=\"true\"><rect width=\"320\" height=\"180\" fill=\"#F4A024\"/><line x1=\"305.0\" y1=\"70.0\" x2=\"339.0\" y2=\"70.0\" stroke=\"#1F2A44\" stroke-width=\"7\" stroke-linecap=\"round\"/><line x1=\"295.62173541080574\" y1=\"105.0000742253822\" x2=\"325.06657832462565\" y2=\"122.00011027771069\" stroke=\"#1F2A44\" stroke-width=\"7\" stroke-linecap=\"round\"/><line x1=\"269.9998515490782\" y1=\"130.62186397284802\" x2=\"286.99977944434477\" y2=\"160.0667693310885\" stroke=\"#1F2A44\" stroke-width=\"7\" stroke-linecap=\"round\"/><line x1=\"234.9997428756428\" y1=\"139.99999999952774\" x2=\"234.99961798666928\" y2=\"173.99999999929838\" stroke=\"#1F2A44\" stroke-width=\"7\" stroke-linecap=\"round\"/><line x1=\"199.99970309878606\" y1=\"130.6216068479455\" x2=\"182.99955888962498\" y2=\"160.0663873169476\" stroke=\"#1F2A44\" stroke-width=\"7\" stroke-linecap=\"round\"/><line x1=\"174.37800746592762\" y1=\"104.99962887230197\" x2=\"144.9330396636639\" y2=\"121.9994486102772\" stroke=\"#1F2A44\" stroke-width=\"7\" stroke-linecap=\"round\"/><line x1=\"165.00000000188894\" y1=\"69.99948575128556\" x2=\"131.00000000280642\" y2=\"69.99923597333856\" stroke=\"#1F2A44\" stroke-width=\"7\" stroke-linecap=\"round\"/><line x1=\"174.37852171573266\" y1=\"34.99948042342653\" x2=\"144.93380369194566\" y2=\"17.99922805766228\" stroke=\"#1F2A44\" stroke-width=\"7\" stroke-linecap=\"round\"/><line x1=\"200.0005938049465\" y1=\"9.377878905521214\" x2=\"183.00088222449193\" y2=\"-20.067151340368483\" stroke=\"#1F2A44\" stroke-width=\"7\" stroke-linecap=\"round\"/><line x1=\"235.00077137307167\" y1=\"4.2501255848037545e-09\" x2=\"235.0011460399922\" y2=\"-33.999999993685535\" stroke=\"#1F2A44\" stroke-width=\"7\" stroke-linecap=\"round\"/><line x1=\"270.0007422514608\" y1=\"9.378650280228761\" x2=\"287.00110277359886\" y2=\"-20.06600529794585\" stroke=\"#1F2A44\" stroke-width=\"7\" stroke-linecap=\"round\"/><line x1=\"295.6222496540673\" y1=\"35.0008164826672\" x2=\"325.06734234318566\" y2=\"18.001213059962694\" stroke=\"#1F2A44\" stroke-width=\"7\" stroke-linecap=\"round\"/><circle cx=\"235\" cy=\"70\" r=\"52\" fill=\"#1F2A44\"/><circle cx=\"235\" cy=\"70\" r=\"30\" fill=\"#FFF7EC\" opacity=\".9\"/><path d=\"M30 150 Q 90 120 150 150 T 270 150\" stroke=\"#1F2A44\" stroke-width=\"5\" fill=\"none\" opacity=\".35\"/><circle cx=\"60\" cy=\"52\" r=\"6\" fill=\"#FFF7EC\"/><circle cx=\"96\" cy=\"34\" r=\"4\" fill=\"#FFF7EC\" opacity=\".7\"/></svg>", "playlist": "https://www.youtube.com/playlist?list=PLDEjdwKus4ws", "lessons": [{"t": "Feeling Flat at Work? Name It, Don't Fight It", "d": "3:40", "id": "n24UXd4SeiU"}, {"t": "Why Bad Sleep Makes You Snap at Work", "d": "3:10", "id": "GyaNpocbtjg"}, {"t": "A 10-Minute Walk for a Clearer Head at Work", "d": "2:57", "id": "D9aLsq8heV4"}, {"t": "Waiting to Feel Like It? Do This Instead", "d": "3:08", "id": "tdT4QSZLcNQ"}, {"t": "Spiralling After Feedback? Check the Evidence", "d": "2:44", "id": "FvJQyrFZPFQ"}, {"t": "Stop Beating Yourself Up After a Mistake", "d": "2:50", "id": "IdWlgFqhEAQ"}, {"t": "Enjoy the Good Moments Before They Pass", "d": "2:43", "id": "OpJGPfgHslc"}, {"t": "Gratitude Feels Fake? Try This Instead", "d": "3:08", "id": "NVY38_NllK0"}, {"t": "Lonely at Work? Try a 15-Minute Catch-Up", "d": "2:45", "id": "liEHehW2dZ8"}, {"t": "Make Your Job Fit You, One Tweak at a Time", "d": "3:10", "id": "ZKjDiAp4xYE"}]}, {"slug": "resilience-at-work", "theme": "well", "label": "Resilience at Work", "title": "Resilience at Work", "sub": "Handle pressure, setbacks and change", "list": "PLaRQK1ob6gTY", "color": "#16A394", "ink": "#FFF7EC", "art": "bounce", "who": "Varun", "whoLine": "A young product analyst at a Bengaluru fintech", "story": ["Ten short animated lessons, about three minutes each, on handling pressure, setbacks and change at work.", "Follow Varun, a young product analyst at a Bengaluru fintech, as the pressure builds and he learns to bounce back."], "count": 10, "minutes": 30, "cover": "<svg viewBox=\"0 0 320 180\" xmlns=\"http://www.w3.org/2000/svg\" preserveAspectRatio=\"xMidYMid slice\" aria-hidden=\"true\"><rect width=\"320\" height=\"180\" fill=\"#16A394\"/><line x1=\"20\" y1=\"150\" x2=\"300\" y2=\"150\" stroke=\"#FFF7EC\" stroke-width=\"3\" opacity=\".6\"/><path d=\"M30 40 Q 60 150 90 150 Q 115 70 140 150 Q 160 100 180 150 Q 205 60 235 150 Q 260 20 290 30\" stroke=\"#FFF7EC\" stroke-width=\"3\" stroke-dasharray=\"2 8\" stroke-linecap=\"round\" fill=\"none\"/><circle cx=\"290\" cy=\"30\" r=\"14\" fill=\"#F4A024\"/><path d=\"M60 150 l8 -6 l8 6\" stroke=\"#1F2A44\" stroke-width=\"0\"/><circle cx=\"90\" cy=\"150\" r=\"5\" fill=\"#FFF7EC\" opacity=\".8\"/><circle cx=\"140\" cy=\"150\" r=\"5\" fill=\"#FFF7EC\" opacity=\".8\"/><circle cx=\"180\" cy=\"150\" r=\"5\" fill=\"#FFF7EC\" opacity=\".8\"/><circle cx=\"235\" cy=\"150\" r=\"5\" fill=\"#FFF7EC\" opacity=\".8\"/></svg>", "playlist": "https://www.youtube.com/playlist?list=PLaRQK1ob6gTY", "lessons": [{"t": "How to Handle Pressure at Work (Read the Signal)", "d": "3:16", "id": "UsqZcfL0O3A"}, {"t": "Project Failed at Work? How to Recover and Learn", "d": "2:51", "id": "UQvMhctC3sY"}, {"t": "Harsh Feedback in Front of Everyone? Name It, Pause, Ask", "d": "2:49", "id": "YH4gLFMu_wM"}, {"t": "Missed a Promotion? Change the Story in Your Head", "d": "2:59", "id": "WAGCaA4gAtE"}, {"t": "Layoff Rumours at Work? Act, Influence, Accept", "d": "2:54", "id": "k9Qqmyod994"}, {"t": "New Manager at Work? Take the First Move", "d": "3:03", "id": "5UHx_ejWIyk"}, {"t": "AI Changing Your Job? Try the 20-Minute Experiment", "d": "3:03", "id": "Fu79e4G9b9Y"}, {"t": "Crunch Week at Work? Recover on Purpose", "d": "2:45", "id": "AhLNuk4itZM"}, {"t": "Family Pressure Spilling Into Work? How to Ask for Help", "d": "2:58", "id": "QXhpqo2HcJI"}, {"t": "Burnout at Work: When Resilience Is Not the Answer", "d": "3:42", "id": "QnaXSt6vpJI"}]}, {"slug": "emotional-intelligence", "theme": "lead", "label": "Emotional Intelligence and Conflict Management at Work", "title": "Emotional Intelligence and Conflict Management", "sub": "Understand emotions, handle conflict", "list": "PLWSDoQI_TXk4", "color": "#7B5CD6", "ink": "#FFF7EC", "art": "venn", "story": ["Ten short animated lessons, about 41 minutes in all, on emotional intelligence and conflict management at work.", "Made for working professionals and team leads in India who want to read emotions better, their own and other people's, and handle disagreements before they turn into conflict."], "count": 10, "minutes": 41, "cover": "<svg viewBox=\"0 0 320 180\" xmlns=\"http://www.w3.org/2000/svg\" preserveAspectRatio=\"xMidYMid slice\" aria-hidden=\"true\"><rect width=\"320\" height=\"180\" fill=\"#7B5CD6\"/><circle cx=\"130\" cy=\"90\" r=\"58\" fill=\"none\" stroke=\"#FFF7EC\" stroke-width=\"5\"/><circle cx=\"190\" cy=\"90\" r=\"58\" fill=\"none\" stroke=\"#FFF7EC\" stroke-width=\"5\"/><path d=\"M160 40.3 A58 58 0 0 1 160 139.7 A58 58 0 0 1 160 40.3 Z\" fill=\"#F4A024\"/><circle cx=\"112\" cy=\"80\" r=\"5\" fill=\"#FFF7EC\"/><circle cx=\"208\" cy=\"80\" r=\"5\" fill=\"#FFF7EC\"/><path d=\"M100 104 q12 10 24 0\" stroke=\"#FFF7EC\" stroke-width=\"4\" fill=\"none\" stroke-linecap=\"round\"/><path d=\"M196 108 q12 -10 24 0\" stroke=\"#FFF7EC\" stroke-width=\"4\" fill=\"none\" stroke-linecap=\"round\"/></svg>", "playlist": "https://www.youtube.com/playlist?list=PLWSDoQI_TXk4", "lessons": [{"t": "Stop Saying “I’m Fine”: How to Name What You Feel", "d": "4:29", "id": "As-UATF5mJg"}, {"t": "Stay Calm in a Heated Meeting Without Bottling Up", "d": "3:54", "id": "_qwNNgLYTQ8"}, {"t": "How to Listen So Colleagues Feel Heard at Work", "d": "3:36", "id": "EyDOCh53JQM"}, {"t": "Task vs Relationship Conflict: What's the Fight?", "d": "3:40", "id": "VxGVQDOfXx0"}, {"t": "Your Default Conflict Style (and When to Change It)", "d": "3:44", "id": "3uaXAmkfDhM"}, {"t": "Solve Team Deadline Clashes: Positions vs Interests", "d": "3:50", "id": "uJcfM5gH0v8"}, {"t": "Boss Taking Credit for Your Work? What to Say", "d": "5:05", "id": "UUXQwM8kC_E"}, {"t": "A Silent Colleague? How to Make It Safe to Speak", "d": "4:00", "id": "rHM7-nO0Ar8"}, {"t": "How to De-escalate an Angry Client or Colleague", "d": "4:05", "id": "XGJyxdvk4Vs"}, {"t": "Repair After Conflict: Apology + 90-Day Plan", "d": "4:46", "id": "DXLsUBeOQRw"}]}, {"slug": "communication-at-work", "theme": "lead", "label": "Communication at Work", "title": "Communication at Work", "sub": "Learn to be heard", "list": "PLO6asRKMnIvw", "color": "#3D8BD9", "ink": "#FFF7EC", "art": "bubbles", "story": ["Learn to be heard at work in ten short animated lessons of about three minutes each.", "Made for professionals in India: the meetings, emails, updates and conversations that fill a working day."], "count": 10, "minutes": 31, "cover": "<svg viewBox=\"0 0 320 180\" xmlns=\"http://www.w3.org/2000/svg\" preserveAspectRatio=\"xMidYMid slice\" aria-hidden=\"true\"><rect width=\"320\" height=\"180\" fill=\"#3D8BD9\"/><path d=\"M50 40 h120 a16 16 0 0 1 16 16 v44 a16 16 0 0 1 -16 16 h-74 l-24 20 v-20 h-22 a16 16 0 0 1 -16 -16 v-44 a16 16 0 0 1 16 -16 z\" fill=\"#FFF7EC\"/><path d=\"M150 76 h120 a16 16 0 0 1 16 16 v40 a16 16 0 0 1 -16 16 h-22 v20 l-24 -20 h-74 a16 16 0 0 1 -16 -16 v-40 a16 16 0 0 1 16 -16 z\" fill=\"#1F2A44\"/><circle cx=\"86\" cy=\"78\" r=\"7\" fill=\"#3D8BD9\"/><circle cx=\"110\" cy=\"78\" r=\"7\" fill=\"#3D8BD9\"/><circle cx=\"134\" cy=\"78\" r=\"7\" fill=\"#3D8BD9\"/><rect x=\"174\" y=\"102\" width=\"88\" height=\"8\" rx=\"4\" fill=\"#F4A024\"/><rect x=\"174\" y=\"120\" width=\"56\" height=\"8\" rx=\"4\" fill=\"#FFF7EC\" opacity=\".6\"/></svg>", "playlist": "https://www.youtube.com/playlist?list=PLO6asRKMnIvw", "lessons": [{"t": "How to Give a Clear Update at Work", "d": "3:06", "id": "l6fw3scGZUY"}, {"t": "Why People Don't Get What You Mean", "d": "3:11", "id": "NVceUdv0vnI"}, {"t": "How to Ask Better Questions at Work", "d": "3:00", "id": "3Gc55xUnRtg"}, {"t": "How to Say No to Your Boss Politely", "d": "2:49", "id": "PF-hCzC_Eco"}, {"t": "How to Disagree With Your Boss", "d": "3:08", "id": "9J4Itnmq6wM"}, {"t": "When “Yes” Means “Maybe” at Work", "d": "2:51", "id": "tJ3jjl88ty4"}, {"t": "Why Your Work Messages Sound Cold", "d": "2:49", "id": "Bh7rNehZwv0"}, {"t": "Is 93% of Communication Body Language?", "d": "2:55", "id": "ZnLlxHOPMGg"}, {"t": "How to Be Heard in Meetings", "d": "2:50", "id": "GZ8Xt7K4awE"}, {"t": "How to Escalate and Persuade Upward", "d": "3:52", "id": "Bt6yK4Z7_hM"}]}, {"slug": "time-focus-prioritisation", "theme": "work", "label": "Time, Focus and Prioritisation at Work", "title": "Time, Focus and Prioritisation", "sub": "Plan the week, protect your focus", "list": "PLPQLXP8nwlVo", "color": "#E5533D", "ink": "#FFF7EC", "art": "clock", "story": ["A ten-lesson animated course on time, focus and prioritisation, built for working professionals and team leads in Indian companies.", "Each lesson is about three minutes, short enough to watch between meetings."], "count": 10, "minutes": 33, "cover": "<svg viewBox=\"0 0 320 180\" xmlns=\"http://www.w3.org/2000/svg\" preserveAspectRatio=\"xMidYMid slice\" aria-hidden=\"true\"><rect width=\"320\" height=\"180\" fill=\"#E5533D\"/><circle cx=\"160\" cy=\"90\" r=\"64\" fill=\"#FFF7EC\"/><path d=\"M160 90 L160 26 A64 64 0 0 1 215.4 58 Z\" fill=\"#F4A024\"/><line x1=\"160.0\" y1=\"36.0\" x2=\"160.0\" y2=\"30.0\" stroke=\"#1F2A44\" stroke-width=\"4\" stroke-linecap=\"round\"/><line x1=\"187.00005725958056\" y1=\"43.23466125452129\" x2=\"190.00006362175617\" y2=\"38.03851250502366\" stroke=\"#1F2A44\" stroke-width=\"4\" stroke-linecap=\"round\"/><line x1=\"206.7654379219113\" y1=\"63.00011451928253\" x2=\"211.96159769101257\" y2=\"60.000127243647256\" stroke=\"#1F2A44\" stroke-width=\"4\" stroke-linecap=\"round\"/><line x1=\"213.9999999996357\" y1=\"90.00019835307558\" x2=\"219.99999999959522\" y2=\"90.00022039230619\" stroke=\"#1F2A44\" stroke-width=\"4\" stroke-linecap=\"round\"/><line x1=\"206.7652395684151\" y1=\"117.00022903807934\" x2=\"211.961377298239\" y2=\"120.00025448675481\" stroke=\"#1F2A44\" stroke-width=\"4\" stroke-linecap=\"round\"/><line x1=\"186.9997137014901\" y1=\"136.76553709771298\" x2=\"189.99968189054454\" y2=\"141.96170788634777\" stroke=\"#1F2A44\" stroke-width=\"4\" stroke-linecap=\"round\"/><line x1=\"159.99960329384888\" y1=\"143.99999999854282\" x2=\"159.99955921538762\" y2=\"149.9999999983809\" stroke=\"#1F2A44\" stroke-width=\"4\" stroke-linecap=\"round\"/><line x1=\"132.9995991837862\" y1=\"136.76514039072052\" x2=\"129.99955464865133\" y2=\"141.96126710080057\" stroke=\"#1F2A44\" stroke-width=\"4\" stroke-linecap=\"round\"/><line x1=\"113.23436372711637\" y1=\"116.99954192189841\" x2=\"108.03818191901819\" y2=\"119.99949102433158\" stroke=\"#1F2A44\" stroke-width=\"4\" stroke-linecap=\"round\"/><line x1=\"106.00000000327867\" y1=\"89.99940494077327\" x2=\"100.00000000364295\" y2=\"89.99933882308142\" stroke=\"#1F2A44\" stroke-width=\"4\" stroke-linecap=\"round\"/><line x1=\"113.23495878760505\" y1=\"62.99942740601598\" x2=\"108.03884309733894\" y2=\"59.999363784462204\" stroke=\"#1F2A44\" stroke-width=\"4\" stroke-linecap=\"round\"/><line x1=\"133.00062985805755\" y1=\"43.234264552576676\" x2=\"130.00069984228617\" y2=\"38.03807172508519\" stroke=\"#1F2A44\" stroke-width=\"4\" stroke-linecap=\"round\"/><line x1=\"160\" y1=\"90\" x2=\"160\" y2=\"46\" stroke=\"#1F2A44\" stroke-width=\"6\" stroke-linecap=\"round\"/><line x1=\"160\" y1=\"90\" x2=\"192\" y2=\"104\" stroke=\"#1F2A44\" stroke-width=\"6\" stroke-linecap=\"round\"/><circle cx=\"160\" cy=\"90\" r=\"7\" fill=\"#1F2A44\"/><rect x=\"40\" y=\"40\" width=\"40\" height=\"10\" rx=\"5\" fill=\"#FFF7EC\" opacity=\".5\"/><rect x=\"40\" y=\"60\" width=\"26\" height=\"10\" rx=\"5\" fill=\"#FFF7EC\" opacity=\".35\"/><rect x=\"250\" y=\"120\" width=\"34\" height=\"10\" rx=\"5\" fill=\"#FFF7EC\" opacity=\".45\"/></svg>", "playlist": "https://www.youtube.com/playlist?list=PLPQLXP8nwlVo", "lessons": [{"t": "Busy Is Not the Same as Done", "d": "3:40", "id": "HuLcGxssrcM"}, {"t": "47 Unread Messages? How to Stop Replying Instantly", "d": "3:17", "id": "Nu-Xljea7ls"}, {"t": "Why Your Estimates Are Always Too Short", "d": "3:16", "id": "087uQ9_0GpQ"}, {"t": "The 6 PM “Urgent” Ask: 3 Questions Before You Reply", "d": "3:14", "id": "Qz3dPVPaKos"}, {"t": "Back-to-Back Meetings? Protect Your Focus Time", "d": "3:18", "id": "9QlX8lFmS2g"}, {"t": "The Report You Keep Delaying: Start in 5 Minutes", "d": "3:06", "id": "a_w0SrBVUy0"}, {"t": "Plans That Survive the Day: If-Then Planning and WOOP", "d": "3:04", "id": "xc7QeKVkJ0A"}, {"t": "Habits Take Longer Than 21 Days (What Research Says)", "d": "3:10", "id": "sPRf4z1Ugrk"}, {"t": "Working Late Isn't the Answer: Hours and Energy", "d": "3:18", "id": "vQz1WSd1jGo"}, {"t": "Back from Leave to a Full Inbox: The Friday Reset", "d": "3:17", "id": "2wkNCRAHwPM"}]}, {"slug": "ai-at-the-workplace", "theme": "work", "label": "AI at the Workplace", "title": "AI at the Workplace", "sub": "Working well with AI tools", "list": "PLSY57xLhu2jM", "color": "#2A3657", "ink": "#FFF7EC", "art": "network", "story": ["Ten short animated lessons on using AI at work.", "Learn to brief it like a smart colleague, check its answers in proportion, protect your data, and put it to work on meetings, long documents and spreadsheets. The later lessons cover agents, working with people, using AI in your own language and voice, and staying relevant."], "count": 10, "minutes": 32, "cover": "<svg viewBox=\"0 0 320 180\" xmlns=\"http://www.w3.org/2000/svg\" preserveAspectRatio=\"xMidYMid slice\" aria-hidden=\"true\"><rect width=\"320\" height=\"180\" fill=\"#2A3657\"/><line x1=\"60\" y1=\"50\" x2=\"160\" y2=\"70\" stroke=\"#FFF7EC\" stroke-width=\"2\" opacity=\".45\"/><line x1=\"110\" y1=\"130\" x2=\"160\" y2=\"70\" stroke=\"#FFF7EC\" stroke-width=\"2\" opacity=\".45\"/><line x1=\"160\" y1=\"70\" x2=\"215\" y2=\"125\" stroke=\"#FFF7EC\" stroke-width=\"2\" opacity=\".45\"/><line x1=\"160\" y1=\"70\" x2=\"260\" y2=\"55\" stroke=\"#FFF7EC\" stroke-width=\"2\" opacity=\".45\"/><line x1=\"90\" y1=\"90\" x2=\"160\" y2=\"70\" stroke=\"#FFF7EC\" stroke-width=\"2\" opacity=\".45\"/><line x1=\"90\" y1=\"90\" x2=\"110\" y2=\"130\" stroke=\"#FFF7EC\" stroke-width=\"2\" opacity=\".45\"/><line x1=\"160\" y1=\"70\" x2=\"200\" y2=\"30\" stroke=\"#FFF7EC\" stroke-width=\"2\" opacity=\".45\"/><line x1=\"215\" y1=\"125\" x2=\"285\" y2=\"140\" stroke=\"#FFF7EC\" stroke-width=\"2\" opacity=\".45\"/><line x1=\"260\" y1=\"55\" x2=\"285\" y2=\"140\" stroke=\"#FFF7EC\" stroke-width=\"2\" opacity=\".45\"/><line x1=\"60\" y1=\"50\" x2=\"90\" y2=\"90\" stroke=\"#FFF7EC\" stroke-width=\"2\" opacity=\".45\"/><circle cx=\"60\" cy=\"50\" r=\"6\" fill=\"#FFF7EC\"/><circle cx=\"110\" cy=\"130\" r=\"6\" fill=\"#FFF7EC\"/><circle cx=\"160\" cy=\"70\" r=\"0\" fill=\"#FFF7EC\"/><circle cx=\"215\" cy=\"125\" r=\"6\" fill=\"#FFF7EC\"/><circle cx=\"260\" cy=\"55\" r=\"6\" fill=\"#FFF7EC\"/><circle cx=\"90\" cy=\"90\" r=\"6\" fill=\"#FFF7EC\"/><circle cx=\"200\" cy=\"30\" r=\"6\" fill=\"#FFF7EC\"/><circle cx=\"285\" cy=\"140\" r=\"6\" fill=\"#FFF7EC\"/><circle cx=\"160\" cy=\"70\" r=\"26\" fill=\"#F4A024\" opacity=\".25\"/><circle cx=\"160\" cy=\"70\" r=\"15\" fill=\"#F4A024\"/><path d=\"M160 58 l3 9 l9 3 l-9 3 l-3 9 l-3 -9 l-9 -3 l9 -3 z\" fill=\"#1F2A44\"/></svg>", "playlist": "https://www.youtube.com/playlist?list=PLSY57xLhu2jM", "lessons": [{"t": "Replaced? Start with the real question", "d": "3:51", "id": "qcMVN2UKXvc"}, {"t": "Brief it like a smart colleague", "d": "3:19", "id": "7suM_JLCFBU"}, {"t": "Trust but verify in proportion", "d": "2:58", "id": "mmOIoBAcgqQ"}, {"t": "Whose data is it?", "d": "3:12", "id": "kNbl2vxCMI4"}, {"t": "Meetings and long documents", "d": "2:49", "id": "1O0BSEDAilo"}, {"t": "Numbers and spreadsheets", "d": "2:59", "id": "2TKAuOyq1po"}, {"t": "Agents delegate the steps", "d": "3:06", "id": "nzfmej62NkI"}, {"t": "Working with people", "d": "2:55", "id": "2SuTu6XL3Os"}, {"t": "Your language, your voice", "d": "3:00", "id": "bcR5sDjWGgo"}, {"t": "Staying relevant", "d": "3:23", "id": "XZcl8vcefb4"}]}, {"slug": "money-basics", "theme": "money", "label": "Basics of Personal Finance", "title": "Money Basics with Arjun", "sub": "Personal finance for beginners", "list": "PLDUc9mnnQRFw", "color": "#2FA866", "ink": "#FFF7EC", "art": "coins", "who": "Arjun", "whoLine": "34, in sales in Bengaluru, broke by the 22nd", "story": ["Learn the basics of personal finance in ten short lessons, one money habit per video.", "Meet Arjun. He's 34, works in sales in Bengaluru and takes home ₹90,000 a month, yet he's broke by the 22nd. Follow him as he tracks every rupee, builds a budget, pays himself first, clears his credit card and starts investing for his goals."], "cover": "<svg viewBox=\"0 0 320 180\" xmlns=\"http://www.w3.org/2000/svg\" preserveAspectRatio=\"xMidYMid slice\" aria-hidden=\"true\"><rect width=\"320\" height=\"180\" fill=\"#2FA866\"/><ellipse cx=\"70\" cy=\"155\" rx=\"30\" ry=\"9\" fill=\"#1F7A49\"/><rect x=\"40\" y=\"145\" width=\"60\" height=\"10\" fill=\"#F4A024\"/><ellipse cx=\"70\" cy=\"145\" rx=\"30\" ry=\"9\" fill=\"#FFD27A\"/><ellipse cx=\"70\" cy=\"142\" rx=\"30\" ry=\"9\" fill=\"#1F7A49\"/><rect x=\"40\" y=\"132\" width=\"60\" height=\"10\" fill=\"#F4A024\"/><ellipse cx=\"70\" cy=\"132\" rx=\"30\" ry=\"9\" fill=\"#FFD27A\"/><ellipse cx=\"70\" cy=\"129\" rx=\"30\" ry=\"9\" fill=\"#1F7A49\"/><rect x=\"40\" y=\"119\" width=\"60\" height=\"10\" fill=\"#F4A024\"/><ellipse cx=\"70\" cy=\"119\" rx=\"30\" ry=\"9\" fill=\"#FFD27A\"/><ellipse cx=\"140\" cy=\"155\" rx=\"30\" ry=\"9\" fill=\"#1F7A49\"/><rect x=\"110\" y=\"145\" width=\"60\" height=\"10\" fill=\"#F4A024\"/><ellipse cx=\"140\" cy=\"145\" rx=\"30\" ry=\"9\" fill=\"#FFD27A\"/><ellipse cx=\"140\" cy=\"142\" rx=\"30\" ry=\"9\" fill=\"#1F7A49\"/><rect x=\"110\" y=\"132\" width=\"60\" height=\"10\" fill=\"#F4A024\"/><ellipse cx=\"140\" cy=\"132\" rx=\"30\" ry=\"9\" fill=\"#FFD27A\"/><ellipse cx=\"140\" cy=\"129\" rx=\"30\" ry=\"9\" fill=\"#1F7A49\"/><rect x=\"110\" y=\"119\" width=\"60\" height=\"10\" fill=\"#F4A024\"/><ellipse cx=\"140\" cy=\"119\" rx=\"30\" ry=\"9\" fill=\"#FFD27A\"/><ellipse cx=\"140\" cy=\"116\" rx=\"30\" ry=\"9\" fill=\"#1F7A49\"/><rect x=\"110\" y=\"106\" width=\"60\" height=\"10\" fill=\"#F4A024\"/><ellipse cx=\"140\" cy=\"106\" rx=\"30\" ry=\"9\" fill=\"#FFD27A\"/><ellipse cx=\"140\" cy=\"103\" rx=\"30\" ry=\"9\" fill=\"#1F7A49\"/><rect x=\"110\" y=\"93\" width=\"60\" height=\"10\" fill=\"#F4A024\"/><ellipse cx=\"140\" cy=\"93\" rx=\"30\" ry=\"9\" fill=\"#FFD27A\"/><ellipse cx=\"210\" cy=\"155\" rx=\"30\" ry=\"9\" fill=\"#1F7A49\"/><rect x=\"180\" y=\"145\" width=\"60\" height=\"10\" fill=\"#F4A024\"/><ellipse cx=\"210\" cy=\"145\" rx=\"30\" ry=\"9\" fill=\"#FFD27A\"/><ellipse cx=\"210\" cy=\"142\" rx=\"30\" ry=\"9\" fill=\"#1F7A49\"/><rect x=\"180\" y=\"132\" width=\"60\" height=\"10\" fill=\"#F4A024\"/><ellipse cx=\"210\" cy=\"132\" rx=\"30\" ry=\"9\" fill=\"#FFD27A\"/><ellipse cx=\"210\" cy=\"129\" rx=\"30\" ry=\"9\" fill=\"#1F7A49\"/><rect x=\"180\" y=\"119\" width=\"60\" height=\"10\" fill=\"#F4A024\"/><ellipse cx=\"210\" cy=\"119\" rx=\"30\" ry=\"9\" fill=\"#FFD27A\"/><ellipse cx=\"210\" cy=\"116\" rx=\"30\" ry=\"9\" fill=\"#1F7A49\"/><rect x=\"180\" y=\"106\" width=\"60\" height=\"10\" fill=\"#F4A024\"/><ellipse cx=\"210\" cy=\"106\" rx=\"30\" ry=\"9\" fill=\"#FFD27A\"/><ellipse cx=\"210\" cy=\"103\" rx=\"30\" ry=\"9\" fill=\"#1F7A49\"/><rect x=\"180\" y=\"93\" width=\"60\" height=\"10\" fill=\"#F4A024\"/><ellipse cx=\"210\" cy=\"93\" rx=\"30\" ry=\"9\" fill=\"#FFD27A\"/><ellipse cx=\"210\" cy=\"90\" rx=\"30\" ry=\"9\" fill=\"#1F7A49\"/><rect x=\"180\" y=\"80\" width=\"60\" height=\"10\" fill=\"#F4A024\"/><ellipse cx=\"210\" cy=\"80\" rx=\"30\" ry=\"9\" fill=\"#FFD27A\"/><ellipse cx=\"210\" cy=\"77\" rx=\"30\" ry=\"9\" fill=\"#1F7A49\"/><rect x=\"180\" y=\"67\" width=\"60\" height=\"10\" fill=\"#F4A024\"/><ellipse cx=\"210\" cy=\"67\" rx=\"30\" ry=\"9\" fill=\"#FFD27A\"/><circle cx=\"272\" cy=\"52\" r=\"26\" fill=\"#FFF7EC\"/><text x=\"272\" y=\"62\" text-anchor=\"middle\" font-family=\"Poppins,sans-serif\" font-weight=\"800\" font-size=\"30\" fill=\"#2FA866\">₹</text><path d=\"M40 60 L120 40 L170 50 L230 22\" stroke=\"#FFF7EC\" stroke-width=\"4\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\" opacity=\".7\"/></svg>", "playlist": "https://www.youtube.com/playlist?list=PLDUc9mnnQRFw", "lessons": [{"t": "Personal Finance for Beginners in India", "d": "1:17", "id": "pJeDl1qXSlg", "w": 1}, {"t": "Meet Arjun", "d": "2:58", "id": "W3BTncwVoGg"}, {"t": "Track every rupee", "d": "3:18", "id": "hEeX3rhPmxA"}, {"t": "The 50-30-20 budget", "d": "3:23", "id": "8ann4DtuScE"}, {"t": "Pay yourself first", "d": "2:57", "id": "s_k5Y3Aw9MY"}, {"t": "Build an emergency fund", "d": "3:06", "id": "EHxRVqZz_gk"}, {"t": "Kill credit card debt", "d": "3:43", "id": "l9_flPzsMxo"}, {"t": "Insure before you invest", "d": "3:47", "id": "mchoyYJvP1o"}, {"t": "Invest for your goals", "d": "3:54", "id": "NA2UzBBLvjk"}, {"t": "Protect what you build", "d": "3:00", "id": "wTe6vAcTtNc"}, {"t": "18 months later, and your 30-day plan", "d": "2:26", "id": "PW4P4igXq2o"}], "count": 11, "minutes": 34, "hindi": [{"t": "मिलिए अर्जुन से", "d": "3:34", "id": "earJczw1-XU"}, {"t": "हर रुपये का हिसाब", "d": "3:41", "id": "XB8sGIdCDqM"}, {"t": "50-30-20 बजट", "d": "3:44", "id": "tQ1Oamlvlsw"}, {"t": "पहले ख़ुद को भुगतान", "d": "3:17", "id": "tHxJckz42ro"}, {"t": "इमरजेंसी फ़ंड बनाइए", "d": "3:24", "id": "DTryhZ4Z4bc"}, {"t": "क्रेडिट कार्ड का क़र्ज़ ख़त्म करें", "d": "4:06", "id": "ZKtDT9UzLv8"}, {"t": "निवेश से पहले बीमा", "d": "4:16", "id": "BM2zYun_Yd8"}, {"t": "लक्ष्यों के लिए निवेश", "d": "4:12", "id": "8RX4VVq48Fw"}, {"t": "जो बनाया, उसे बचाइए", "d": "3:30", "id": "NIb4phSCO9Y"}, {"t": "18 महीने बाद, और आपका 30 दिन का प्लान", "d": "2:40", "id": "5QddcKdeum4"}]}, {"slug": "rtl-to-gdsii", "theme": "eng", "label": "RTL to GDSII", "title": "RTL to GDSII", "sub": "The chip design flow, explained", "list": "PLaPLMF1_U8Wo", "color": "#151E35", "ink": "#FFF7EC", "art": "chip", "who": "Rohan", "whoLine": "A fresher taking an 8-bit counter from RTL to silicon", "story": ["How does an idea become a chip? Follow Rohan, a fresher, as he takes an 8-bit counter through the whole design flow.", "From RTL and verification through synthesis, design for test, floorplanning, placement, clock tree, routing and timing closure, to signoff and GDSII. A bonus lesson follows the design to the fab, from mask to packaged chip."], "cover": "<svg viewBox=\"0 0 320 180\" xmlns=\"http://www.w3.org/2000/svg\" preserveAspectRatio=\"xMidYMid slice\" aria-hidden=\"true\"><rect width=\"320\" height=\"180\" fill=\"#151E35\"/><rect x=\"102\" y=\"18\" width=\"8\" height=\"18\" rx=\"2\" fill=\"#F4A024\" opacity=\".85\"/><rect x=\"102\" y=\"144\" width=\"8\" height=\"18\" rx=\"2\" fill=\"#F4A024\" opacity=\".85\"/><rect x=\"122\" y=\"18\" width=\"8\" height=\"18\" rx=\"2\" fill=\"#F4A024\" opacity=\".85\"/><rect x=\"122\" y=\"144\" width=\"8\" height=\"18\" rx=\"2\" fill=\"#F4A024\" opacity=\".85\"/><rect x=\"142\" y=\"18\" width=\"8\" height=\"18\" rx=\"2\" fill=\"#F4A024\" opacity=\".85\"/><rect x=\"142\" y=\"144\" width=\"8\" height=\"18\" rx=\"2\" fill=\"#F4A024\" opacity=\".85\"/><rect x=\"162\" y=\"18\" width=\"8\" height=\"18\" rx=\"2\" fill=\"#F4A024\" opacity=\".85\"/><rect x=\"162\" y=\"144\" width=\"8\" height=\"18\" rx=\"2\" fill=\"#F4A024\" opacity=\".85\"/><rect x=\"182\" y=\"18\" width=\"8\" height=\"18\" rx=\"2\" fill=\"#F4A024\" opacity=\".85\"/><rect x=\"182\" y=\"144\" width=\"8\" height=\"18\" rx=\"2\" fill=\"#F4A024\" opacity=\".85\"/><rect x=\"202\" y=\"18\" width=\"8\" height=\"18\" rx=\"2\" fill=\"#F4A024\" opacity=\".85\"/><rect x=\"202\" y=\"144\" width=\"8\" height=\"18\" rx=\"2\" fill=\"#F4A024\" opacity=\".85\"/><rect x=\"74\" y=\"50\" width=\"18\" height=\"8\" rx=\"2\" fill=\"#F4A024\" opacity=\".85\"/><rect x=\"228\" y=\"50\" width=\"18\" height=\"8\" rx=\"2\" fill=\"#F4A024\" opacity=\".85\"/><rect x=\"74\" y=\"70\" width=\"18\" height=\"8\" rx=\"2\" fill=\"#F4A024\" opacity=\".85\"/><rect x=\"228\" y=\"70\" width=\"18\" height=\"8\" rx=\"2\" fill=\"#F4A024\" opacity=\".85\"/><rect x=\"74\" y=\"90\" width=\"18\" height=\"8\" rx=\"2\" fill=\"#F4A024\" opacity=\".85\"/><rect x=\"228\" y=\"90\" width=\"18\" height=\"8\" rx=\"2\" fill=\"#F4A024\" opacity=\".85\"/><rect x=\"74\" y=\"110\" width=\"18\" height=\"8\" rx=\"2\" fill=\"#F4A024\" opacity=\".85\"/><rect x=\"228\" y=\"110\" width=\"18\" height=\"8\" rx=\"2\" fill=\"#F4A024\" opacity=\".85\"/><rect x=\"74\" y=\"130\" width=\"18\" height=\"8\" rx=\"2\" fill=\"#F4A024\" opacity=\".85\"/><rect x=\"228\" y=\"130\" width=\"18\" height=\"8\" rx=\"2\" fill=\"#F4A024\" opacity=\".85\"/><rect x=\"92\" y=\"36\" width=\"136\" height=\"108\" rx=\"12\" fill=\"#232E4D\" stroke=\"#F4A024\" stroke-width=\"2\"/><line x1=\"110\" y1=\"44\" x2=\"110\" y2=\"136\" stroke=\"#F4A024\" stroke-width=\"1\" opacity=\".35\"/><line x1=\"130\" y1=\"44\" x2=\"130\" y2=\"136\" stroke=\"#F4A024\" stroke-width=\"1\" opacity=\".35\"/><line x1=\"150\" y1=\"44\" x2=\"150\" y2=\"136\" stroke=\"#F4A024\" stroke-width=\"1\" opacity=\".35\"/><line x1=\"170\" y1=\"44\" x2=\"170\" y2=\"136\" stroke=\"#F4A024\" stroke-width=\"1\" opacity=\".35\"/><line x1=\"190\" y1=\"44\" x2=\"190\" y2=\"136\" stroke=\"#F4A024\" stroke-width=\"1\" opacity=\".35\"/><line x1=\"210\" y1=\"44\" x2=\"210\" y2=\"136\" stroke=\"#F4A024\" stroke-width=\"1\" opacity=\".35\"/><line x1=\"98\" y1=\"56\" x2=\"222\" y2=\"56\" stroke=\"#F4A024\" stroke-width=\"1\" opacity=\".35\"/><line x1=\"98\" y1=\"76\" x2=\"222\" y2=\"76\" stroke=\"#F4A024\" stroke-width=\"1\" opacity=\".35\"/><line x1=\"98\" y1=\"96\" x2=\"222\" y2=\"96\" stroke=\"#F4A024\" stroke-width=\"1\" opacity=\".35\"/><line x1=\"98\" y1=\"116\" x2=\"222\" y2=\"116\" stroke=\"#F4A024\" stroke-width=\"1\" opacity=\".35\"/><line x1=\"98\" y1=\"136\" x2=\"222\" y2=\"136\" stroke=\"#F4A024\" stroke-width=\"1\" opacity=\".35\"/><rect x=\"138\" y=\"68\" width=\"44\" height=\"44\" rx=\"6\" fill=\"#F4A024\"/><path d=\"M150 96 h8 v-12 h8 v12 h8\" stroke=\"#1F2A44\" stroke-width=\"3\" fill=\"none\"/></svg>", "playlist": "https://www.youtube.com/playlist?list=PLaPLMF1_U8Wo", "lessons": [{"t": "The Chip Design Flow in 10 Steps, Explained", "d": "4:04", "id": "Fy3Zw2cPpp4"}, {"t": "Verilog for Beginners: RTL Is Not a Program", "d": "3:27", "id": "9WMH1iE4ovI"}, {"t": "How Chip Verification Works (Testbench Basics)", "d": "3:26", "id": "46IyDiukMug"}, {"t": "Logic Synthesis Explained: From RTL to Gates", "d": "3:18", "id": "LyH7ALWEoHg"}, {"t": "Design for Test (DFT) and Scan Chains Explained", "d": "3:29", "id": "gBpLy_2ryWs"}, {"t": "Floorplanning and Power Planning Explained", "d": "3:30", "id": "dnll2BHmgJE"}, {"t": "Placement and Clock Tree Synthesis (CTS) Explained", "d": "3:27", "id": "7VysvW7edCo"}, {"t": "Chip Routing Explained: Metal Layers, Vias and DRC", "d": "3:44", "id": "_v8FIk5dveY"}, {"t": "Static Timing Analysis: Setup, Hold and Slack", "d": "3:29", "id": "wvFe0tZNmGw"}, {"t": "Signoff and Tapeout: DRC, LVS and GDSII Explained", "d": "3:57", "id": "vwL28kFFC9g"}, {"t": "After GDSII: Masks, Wafers and Chip Packaging", "d": "3:47", "id": "qAew66VIZOk", "b": 1}], "count": 11, "minutes": 40}], "themes": [["all", "All"], ["lead", "People skills"], ["well", "Wellbeing"], ["work", "Productivity"], ["money", "Money"], ["eng", "Engineering"]], "total": 93};
+const DATA = {"courses": [{"slug": "first-time-manager", "theme": "lead", "label": "Managerial Skills", "title": "First-Time Manager", "sub": "From doer to leader", "list": "PLD66ZjFg3Z0U", "color": "#1F2A44", "ink": "#FFF7EC", "art": "stairs", "who": "Nikhil", "whoLine": "29, a new team lead in Pune", "story": ["Just promoted to manager? Follow Nikhil, 29, a new team lead in Pune, through his first six months.", "Lesson by lesson he learns to say what good looks like, delegate without dumping, run one-on-ones that matter, give feedback that helps, have the conversation he's been avoiding, coach instead of rescue and manage up while protecting his team. It ends with a 90-day plan you can use."], "cover": "<svg viewBox=\"0 0 320 180\" xmlns=\"http://www.w3.org/2000/svg\" preserveAspectRatio=\"xMidYMid slice\" aria-hidden=\"true\" focusable=\"false\"><rect width=\"320\" height=\"180\" fill=\"#1F2A44\"/><rect x=\"70\" y=\"150\" width=\"46\" height=\"30\" fill=\"#F4A024\" opacity=\"0.35\"/><rect x=\"116\" y=\"126\" width=\"46\" height=\"54\" fill=\"#F4A024\" opacity=\"0.55\"/><rect x=\"162\" y=\"102\" width=\"46\" height=\"78\" fill=\"#F4A024\" opacity=\"0.75\"/><rect x=\"208\" y=\"78\" width=\"46\" height=\"102\" fill=\"#F4A024\" opacity=\"0.95\"/><path class=\"mv mv-dash\" d=\"M36 166 Q 110 162 148 134 T 204 82\" stroke=\"#FFF7EC\" stroke-width=\"2\" stroke-dasharray=\"3 7\" fill=\"none\" opacity=\".5\"/><g class=\"mv mv-hop\" style=\"transform-origin:231px 76px;animation-delay:0s\"><circle cx=\"231\" cy=\"32\" r=\"9\" fill=\"#FFF7EC\"/><path d=\"M231 41 v21 M231 47 l-10 9 M231 47 l10 9 M231 62 l-7 13.5 M231 62 l7 13.5\" stroke=\"#FFF7EC\" stroke-width=\"5\" stroke-linecap=\"round\" fill=\"none\"/></g></svg>", "playlist": "https://www.youtube.com/playlist?list=PLD66ZjFg3Z0U", "lessons": [{"t": "Just Promoted to Manager? Start Here", "d": "1:28", "w": 1}, {"t": "Promoted to Manager? Stop Doing Your Old Job", "d": "4:23"}, {"t": "How to Manage Friends After a Promotion", "d": "4:09"}, {"t": "Why Your Team's Work Keeps Coming Back Wrong", "d": "3:40"}, {"t": "How to Delegate Without Dumping or Hovering", "d": "3:47"}, {"t": "One-on-Ones That Stop Good People Leaving", "d": "3:39"}, {"t": "Feedback That Actually Changes Behaviour", "d": "4:02"}, {"t": "The Hard Conversation You Keep Putting Off", "d": "4:23"}, {"t": "Stop Being Your Team's Answer Machine (GROW)", "d": "3:43"}, {"t": "How to Say No to Your Boss Without Saying No", "d": "3:37"}, {"t": "Your First 90 Days as a New Manager: A Plan", "d": "3:17"}], "count": 11, "minutes": 40}, {"slug": "happiness-at-work", "theme": "well", "label": "Happiness and Positivity at Work", "title": "Happiness and Positivity at Work", "sub": "Science-backed habits", "list": "PLDEjdwKus4ws", "color": "#F4A024", "ink": "#1F2A44", "art": "sun", "who": "Meera", "whoLine": "A business analyst in Bengaluru, feeling flat and tired", "story": ["Ten short animated lessons, about three minutes each, with one science-backed habit for each week.", "Follow Meera, a business analyst in Bengaluru who feels flat and tired at work, and try each habit alongside her."], "count": 10, "minutes": 30, "cover": "<svg viewBox=\"0 0 320 180\" xmlns=\"http://www.w3.org/2000/svg\" preserveAspectRatio=\"xMidYMid slice\" aria-hidden=\"true\" focusable=\"false\"><rect width=\"320\" height=\"180\" fill=\"#F4A024\"/><g class=\"mv mv-spin\" style=\"transform-origin:235px 70px;animation-delay:0s\"><line x1=\"305.0\" y1=\"70.0\" x2=\"339.0\" y2=\"70.0\" stroke=\"#1F2A44\" stroke-width=\"7\" stroke-linecap=\"round\"/><line x1=\"295.6\" y1=\"105.0\" x2=\"325.1\" y2=\"122.0\" stroke=\"#1F2A44\" stroke-width=\"7\" stroke-linecap=\"round\"/><line x1=\"270.0\" y1=\"130.6\" x2=\"287.0\" y2=\"160.1\" stroke=\"#1F2A44\" stroke-width=\"7\" stroke-linecap=\"round\"/><line x1=\"235.0\" y1=\"140.0\" x2=\"235.0\" y2=\"174.0\" stroke=\"#1F2A44\" stroke-width=\"7\" stroke-linecap=\"round\"/><line x1=\"200.0\" y1=\"130.6\" x2=\"183.0\" y2=\"160.1\" stroke=\"#1F2A44\" stroke-width=\"7\" stroke-linecap=\"round\"/><line x1=\"174.4\" y1=\"105.0\" x2=\"144.9\" y2=\"122.0\" stroke=\"#1F2A44\" stroke-width=\"7\" stroke-linecap=\"round\"/><line x1=\"165.0\" y1=\"70.0\" x2=\"131.0\" y2=\"70.0\" stroke=\"#1F2A44\" stroke-width=\"7\" stroke-linecap=\"round\"/><line x1=\"174.4\" y1=\"35.0\" x2=\"144.9\" y2=\"18.0\" stroke=\"#1F2A44\" stroke-width=\"7\" stroke-linecap=\"round\"/><line x1=\"200.0\" y1=\"9.4\" x2=\"183.0\" y2=\"-20.1\" stroke=\"#1F2A44\" stroke-width=\"7\" stroke-linecap=\"round\"/><line x1=\"235.0\" y1=\"0.0\" x2=\"235.0\" y2=\"-34.0\" stroke=\"#1F2A44\" stroke-width=\"7\" stroke-linecap=\"round\"/><line x1=\"270.0\" y1=\"9.4\" x2=\"287.0\" y2=\"-20.1\" stroke=\"#1F2A44\" stroke-width=\"7\" stroke-linecap=\"round\"/><line x1=\"295.6\" y1=\"35.0\" x2=\"325.1\" y2=\"18.0\" stroke=\"#1F2A44\" stroke-width=\"7\" stroke-linecap=\"round\"/></g><circle cx=\"235\" cy=\"70\" r=\"52\" fill=\"#1F2A44\"/><circle class=\"mv mv-glow\" cx=\"235\" cy=\"70\" r=\"30\" fill=\"#FFF7EC\" opacity=\".9\"/><path d=\"M30 150 Q 90 120 150 150 T 270 150\" stroke=\"#1F2A44\" stroke-width=\"5\" fill=\"none\" opacity=\".35\"/><circle class=\"mv mv-bob\" cx=\"60\" cy=\"52\" r=\"6\" fill=\"#FFF7EC\"/><circle class=\"mv mv-bob2\" cx=\"96\" cy=\"34\" r=\"4\" fill=\"#FFF7EC\" opacity=\".7\"/></svg>", "playlist": "https://www.youtube.com/playlist?list=PLDEjdwKus4ws", "lessons": [{"t": "Feeling Flat at Work? Name It, Don't Fight It", "d": "3:40", "id": "n24UXd4SeiU"}, {"t": "Why Bad Sleep Makes You Snap at Work", "d": "3:10", "id": "GyaNpocbtjg"}, {"t": "A 10-Minute Walk for a Clearer Head at Work", "d": "2:57", "id": "D9aLsq8heV4"}, {"t": "Waiting to Feel Like It? Do This Instead", "d": "3:08", "id": "tdT4QSZLcNQ"}, {"t": "Spiralling After Feedback? Check the Evidence", "d": "2:44", "id": "FvJQyrFZPFQ"}, {"t": "Stop Beating Yourself Up After a Mistake", "d": "2:50", "id": "IdWlgFqhEAQ"}, {"t": "Enjoy the Good Moments Before They Pass", "d": "2:43", "id": "OpJGPfgHslc"}, {"t": "Gratitude Feels Fake? Try This Instead", "d": "3:08", "id": "NVY38_NllK0"}, {"t": "Lonely at Work? Try a 15-Minute Catch-Up", "d": "2:45", "id": "liEHehW2dZ8"}, {"t": "Make Your Job Fit You, One Tweak at a Time", "d": "3:10", "id": "ZKjDiAp4xYE"}]}, {"slug": "resilience-at-work", "theme": "well", "label": "Resilience at Work", "title": "Resilience at Work", "sub": "Handle pressure, setbacks and change", "list": "PLaRQK1ob6gTY", "color": "#16A394", "ink": "#FFF7EC", "art": "bounce", "who": "Varun", "whoLine": "A young product analyst at a Bengaluru fintech", "story": ["Ten short animated lessons, about three minutes each, on handling pressure, setbacks and change at work.", "Follow Varun, a young product analyst at a Bengaluru fintech, as the pressure builds and he learns to bounce back."], "count": 10, "minutes": 30, "cover": "<svg viewBox=\"0 0 320 180\" xmlns=\"http://www.w3.org/2000/svg\" preserveAspectRatio=\"xMidYMid slice\" aria-hidden=\"true\" focusable=\"false\"><rect width=\"320\" height=\"180\" fill=\"#16A394\"/><line x1=\"20\" y1=\"150\" x2=\"300\" y2=\"150\" stroke=\"#FFF7EC\" stroke-width=\"3\" opacity=\".6\"/><path class=\"mv mv-dash\" d=\"M30 40 Q 60 150 90 150 Q 115 70 140 150 Q 160 100 180 150 Q 205 60 235 150 Q 260 20 290 30\" stroke=\"#FFF7EC\" stroke-width=\"3\" stroke-dasharray=\"2 8\" stroke-linecap=\"round\" fill=\"none\"/><circle class=\"mv mv-hop\" style=\"transform-origin:290px 30px;animation-delay:0s\" cx=\"290\" cy=\"30\" r=\"14\" fill=\"#F4A024\"/><circle cx=\"90\" cy=\"150\" r=\"5\" fill=\"#FFF7EC\" opacity=\".8\"/><circle cx=\"140\" cy=\"150\" r=\"5\" fill=\"#FFF7EC\" opacity=\".8\"/><circle cx=\"180\" cy=\"150\" r=\"5\" fill=\"#FFF7EC\" opacity=\".8\"/><circle cx=\"235\" cy=\"150\" r=\"5\" fill=\"#FFF7EC\" opacity=\".8\"/></svg>", "playlist": "https://www.youtube.com/playlist?list=PLaRQK1ob6gTY", "lessons": [{"t": "How to Handle Pressure at Work (Read the Signal)", "d": "3:16", "id": "UsqZcfL0O3A"}, {"t": "Project Failed at Work? How to Recover and Learn", "d": "2:51", "id": "UQvMhctC3sY"}, {"t": "Harsh Feedback in Front of Everyone? Name It, Pause, Ask", "d": "2:49", "id": "YH4gLFMu_wM"}, {"t": "Missed a Promotion? Change the Story in Your Head", "d": "2:59", "id": "WAGCaA4gAtE"}, {"t": "Layoff Rumours at Work? Act, Influence, Accept", "d": "2:54", "id": "k9Qqmyod994"}, {"t": "New Manager at Work? Take the First Move", "d": "3:03", "id": "5UHx_ejWIyk"}, {"t": "AI Changing Your Job? Try the 20-Minute Experiment", "d": "3:03", "id": "Fu79e4G9b9Y"}, {"t": "Crunch Week at Work? Recover on Purpose", "d": "2:45", "id": "AhLNuk4itZM"}, {"t": "Family Pressure Spilling Into Work? How to Ask for Help", "d": "2:58", "id": "QXhpqo2HcJI"}, {"t": "Burnout at Work: When Resilience Is Not the Answer", "d": "3:42", "id": "QnaXSt6vpJI"}]}, {"slug": "emotional-intelligence", "theme": "lead", "label": "Emotional Intelligence and Conflict Management at Work", "title": "Emotional Intelligence and Conflict Management", "sub": "Understand emotions, handle conflict", "list": "PLWSDoQI_TXk4", "color": "#7B5CD6", "ink": "#FFF7EC", "art": "venn", "story": ["Ten short animated lessons, about 41 minutes in all, on emotional intelligence and conflict management at work.", "Made for working professionals and team leads in India who want to read emotions better, their own and other people's, and handle disagreements before they turn into conflict."], "count": 10, "minutes": 41, "cover": "<svg viewBox=\"0 0 320 180\" xmlns=\"http://www.w3.org/2000/svg\" preserveAspectRatio=\"xMidYMid slice\" aria-hidden=\"true\" focusable=\"false\"><rect width=\"320\" height=\"180\" fill=\"#7B5CD6\"/><g class=\"mv mv-bob\"><circle cx=\"130\" cy=\"90\" r=\"58\" fill=\"none\" stroke=\"#FFF7EC\" stroke-width=\"5\"/><circle cx=\"112\" cy=\"80\" r=\"5\" fill=\"#FFF7EC\"/><path d=\"M100 104 q12 10 24 0\" stroke=\"#FFF7EC\" stroke-width=\"4\" fill=\"none\" stroke-linecap=\"round\"/></g><g class=\"mv mv-bob2\"><circle cx=\"190\" cy=\"90\" r=\"58\" fill=\"none\" stroke=\"#FFF7EC\" stroke-width=\"5\"/><circle cx=\"208\" cy=\"80\" r=\"5\" fill=\"#FFF7EC\"/><path d=\"M196 108 q12 -10 24 0\" stroke=\"#FFF7EC\" stroke-width=\"4\" fill=\"none\" stroke-linecap=\"round\"/></g><path class=\"mv mv-glow\" d=\"M160 40.3 A58 58 0 0 1 160 139.7 A58 58 0 0 1 160 40.3 Z\" fill=\"#F4A024\"/></svg>", "playlist": "https://www.youtube.com/playlist?list=PLWSDoQI_TXk4", "lessons": [{"t": "Stop Saying “I’m Fine”: How to Name What You Feel", "d": "4:29", "id": "As-UATF5mJg"}, {"t": "Stay Calm in a Heated Meeting Without Bottling Up", "d": "3:54", "id": "_qwNNgLYTQ8"}, {"t": "How to Listen So Colleagues Feel Heard at Work", "d": "3:36", "id": "EyDOCh53JQM"}, {"t": "Task vs Relationship Conflict: What's the Fight?", "d": "3:40", "id": "VxGVQDOfXx0"}, {"t": "Your Default Conflict Style (and When to Change It)", "d": "3:44", "id": "3uaXAmkfDhM"}, {"t": "Solve Team Deadline Clashes: Positions vs Interests", "d": "3:50", "id": "uJcfM5gH0v8"}, {"t": "Boss Taking Credit for Your Work? What to Say", "d": "5:05", "id": "UUXQwM8kC_E"}, {"t": "A Silent Colleague? How to Make It Safe to Speak", "d": "4:00", "id": "rHM7-nO0Ar8"}, {"t": "How to De-escalate an Angry Client or Colleague", "d": "4:05", "id": "XGJyxdvk4Vs"}, {"t": "Repair After Conflict: Apology + 90-Day Plan", "d": "4:46", "id": "DXLsUBeOQRw"}]}, {"slug": "communication-at-work", "theme": "lead", "label": "Communication at Work", "title": "Communication at Work", "sub": "Learn to be heard", "list": "PLO6asRKMnIvw", "color": "#3D8BD9", "ink": "#FFF7EC", "art": "bubbles", "story": ["Learn to be heard at work in ten short animated lessons of about three minutes each.", "Made for professionals in India: the meetings, emails, updates and conversations that fill a working day."], "count": 10, "minutes": 31, "cover": "<svg viewBox=\"0 0 320 180\" xmlns=\"http://www.w3.org/2000/svg\" preserveAspectRatio=\"xMidYMid slice\" aria-hidden=\"true\" focusable=\"false\"><rect width=\"320\" height=\"180\" fill=\"#3D8BD9\"/><g class=\"mv mv-bob\"><path d=\"M50 40 h120 a16 16 0 0 1 16 16 v44 a16 16 0 0 1 -16 16 h-74 l-24 20 v-20 h-22 a16 16 0 0 1 -16 -16 v-44 a16 16 0 0 1 16 -16 z\" fill=\"#FFF7EC\"/><circle class=\"mv mv-dot\" style=\"transform-origin:86px 78px;animation-delay:0.0s\" cx=\"86\" cy=\"78\" r=\"7\" fill=\"#3D8BD9\"/><circle class=\"mv mv-dot\" style=\"transform-origin:110px 78px;animation-delay:0.15s\" cx=\"110\" cy=\"78\" r=\"7\" fill=\"#3D8BD9\"/><circle class=\"mv mv-dot\" style=\"transform-origin:134px 78px;animation-delay:0.3s\" cx=\"134\" cy=\"78\" r=\"7\" fill=\"#3D8BD9\"/></g><g class=\"mv mv-bob2\"><path d=\"M150 76 h120 a16 16 0 0 1 16 16 v40 a16 16 0 0 1 -16 16 h-22 v20 l-24 -20 h-74 a16 16 0 0 1 -16 -16 v-40 a16 16 0 0 1 16 -16 z\" fill=\"#1F2A44\"/><rect x=\"174\" y=\"102\" width=\"88\" height=\"8\" rx=\"4\" fill=\"#F4A024\"/><rect x=\"174\" y=\"120\" width=\"56\" height=\"8\" rx=\"4\" fill=\"#FFF7EC\" opacity=\".6\"/></g></svg>", "playlist": "https://www.youtube.com/playlist?list=PLO6asRKMnIvw", "lessons": [{"t": "How to Give a Clear Update at Work", "d": "3:06", "id": "l6fw3scGZUY"}, {"t": "Why People Don't Get What You Mean", "d": "3:11", "id": "NVceUdv0vnI"}, {"t": "How to Ask Better Questions at Work", "d": "3:00", "id": "3Gc55xUnRtg"}, {"t": "How to Say No to Your Boss Politely", "d": "2:49", "id": "PF-hCzC_Eco"}, {"t": "How to Disagree With Your Boss", "d": "3:08", "id": "9J4Itnmq6wM"}, {"t": "When “Yes” Means “Maybe” at Work", "d": "2:51", "id": "tJ3jjl88ty4"}, {"t": "Why Your Work Messages Sound Cold", "d": "2:49", "id": "Bh7rNehZwv0"}, {"t": "Is 93% of Communication Body Language?", "d": "2:55", "id": "ZnLlxHOPMGg"}, {"t": "How to Be Heard in Meetings", "d": "2:50", "id": "GZ8Xt7K4awE"}, {"t": "How to Escalate and Persuade Upward", "d": "3:52", "id": "Bt6yK4Z7_hM"}]}, {"slug": "time-focus-prioritisation", "theme": "work", "label": "Time, Focus and Prioritisation at Work", "title": "Time, Focus and Prioritisation", "sub": "Plan the week, protect your focus", "list": "PLPQLXP8nwlVo", "color": "#E5533D", "ink": "#FFF7EC", "art": "clock", "story": ["A ten-lesson animated course on time, focus and prioritisation, built for working professionals and team leads in Indian companies.", "Each lesson is about three minutes, short enough to watch between meetings."], "count": 10, "minutes": 33, "cover": "<svg viewBox=\"0 0 320 180\" xmlns=\"http://www.w3.org/2000/svg\" preserveAspectRatio=\"xMidYMid slice\" aria-hidden=\"true\" focusable=\"false\"><rect width=\"320\" height=\"180\" fill=\"#E5533D\"/><circle cx=\"160\" cy=\"90\" r=\"64\" fill=\"#FFF7EC\"/><path d=\"M160 90 L160 26 A64 64 0 0 1 215.4 58 Z\" fill=\"#F4A024\"/><line x1=\"160.0\" y1=\"36.0\" x2=\"160.0\" y2=\"30.0\" stroke=\"#1F2A44\" stroke-width=\"4\" stroke-linecap=\"round\"/><line x1=\"187.0\" y1=\"43.2\" x2=\"190.0\" y2=\"38.0\" stroke=\"#1F2A44\" stroke-width=\"4\" stroke-linecap=\"round\"/><line x1=\"206.8\" y1=\"63.0\" x2=\"212.0\" y2=\"60.0\" stroke=\"#1F2A44\" stroke-width=\"4\" stroke-linecap=\"round\"/><line x1=\"214.0\" y1=\"90.0\" x2=\"220.0\" y2=\"90.0\" stroke=\"#1F2A44\" stroke-width=\"4\" stroke-linecap=\"round\"/><line x1=\"206.8\" y1=\"117.0\" x2=\"212.0\" y2=\"120.0\" stroke=\"#1F2A44\" stroke-width=\"4\" stroke-linecap=\"round\"/><line x1=\"187.0\" y1=\"136.8\" x2=\"190.0\" y2=\"142.0\" stroke=\"#1F2A44\" stroke-width=\"4\" stroke-linecap=\"round\"/><line x1=\"160.0\" y1=\"144.0\" x2=\"160.0\" y2=\"150.0\" stroke=\"#1F2A44\" stroke-width=\"4\" stroke-linecap=\"round\"/><line x1=\"133.0\" y1=\"136.8\" x2=\"130.0\" y2=\"142.0\" stroke=\"#1F2A44\" stroke-width=\"4\" stroke-linecap=\"round\"/><line x1=\"113.2\" y1=\"117.0\" x2=\"108.0\" y2=\"120.0\" stroke=\"#1F2A44\" stroke-width=\"4\" stroke-linecap=\"round\"/><line x1=\"106.0\" y1=\"90.0\" x2=\"100.0\" y2=\"90.0\" stroke=\"#1F2A44\" stroke-width=\"4\" stroke-linecap=\"round\"/><line x1=\"113.2\" y1=\"63.0\" x2=\"108.0\" y2=\"60.0\" stroke=\"#1F2A44\" stroke-width=\"4\" stroke-linecap=\"round\"/><line x1=\"133.0\" y1=\"43.2\" x2=\"130.0\" y2=\"38.0\" stroke=\"#1F2A44\" stroke-width=\"4\" stroke-linecap=\"round\"/><line class=\"mv mv-spin-fast\" style=\"transform-origin:160px 90px;animation-delay:0s\" x1=\"160\" y1=\"90\" x2=\"160\" y2=\"46\" stroke=\"#1F2A44\" stroke-width=\"6\" stroke-linecap=\"round\"/><line class=\"mv mv-spin-slow\" style=\"transform-origin:160px 90px;animation-delay:0s\" x1=\"160\" y1=\"90\" x2=\"192\" y2=\"104\" stroke=\"#1F2A44\" stroke-width=\"6\" stroke-linecap=\"round\"/><circle cx=\"160\" cy=\"90\" r=\"7\" fill=\"#1F2A44\"/><rect x=\"40\" y=\"40\" width=\"40\" height=\"10\" rx=\"5\" fill=\"#FFF7EC\" opacity=\".5\"/><rect x=\"40\" y=\"60\" width=\"26\" height=\"10\" rx=\"5\" fill=\"#FFF7EC\" opacity=\".35\"/><rect x=\"250\" y=\"120\" width=\"34\" height=\"10\" rx=\"5\" fill=\"#FFF7EC\" opacity=\".45\"/></svg>", "playlist": "https://www.youtube.com/playlist?list=PLPQLXP8nwlVo", "lessons": [{"t": "Busy Is Not the Same as Done", "d": "3:40", "id": "HuLcGxssrcM"}, {"t": "47 Unread Messages? How to Stop Replying Instantly", "d": "3:17", "id": "Nu-Xljea7ls"}, {"t": "Why Your Estimates Are Always Too Short", "d": "3:16", "id": "087uQ9_0GpQ"}, {"t": "The 6 PM “Urgent” Ask: 3 Questions Before You Reply", "d": "3:14", "id": "Qz3dPVPaKos"}, {"t": "Back-to-Back Meetings? Protect Your Focus Time", "d": "3:18", "id": "9QlX8lFmS2g"}, {"t": "The Report You Keep Delaying: Start in 5 Minutes", "d": "3:06", "id": "a_w0SrBVUy0"}, {"t": "Plans That Survive the Day: If-Then Planning and WOOP", "d": "3:04", "id": "xc7QeKVkJ0A"}, {"t": "Habits Take Longer Than 21 Days (What Research Says)", "d": "3:10", "id": "sPRf4z1Ugrk"}, {"t": "Working Late Isn't the Answer: Hours and Energy", "d": "3:18", "id": "vQz1WSd1jGo"}, {"t": "Back from Leave to a Full Inbox: The Friday Reset", "d": "3:17", "id": "2wkNCRAHwPM"}]}, {"slug": "ai-at-the-workplace", "theme": "work", "label": "AI at the Workplace", "title": "AI at the Workplace", "sub": "Working well with AI tools", "list": "PLSY57xLhu2jM", "color": "#2A3657", "ink": "#FFF7EC", "art": "network", "story": ["Ten short animated lessons on using AI at work.", "Learn to brief it like a smart colleague, check its answers in proportion, protect your data, and put it to work on meetings, long documents and spreadsheets. The later lessons cover agents, working with people, using AI in your own language and voice, and staying relevant."], "count": 10, "minutes": 32, "cover": "<svg viewBox=\"0 0 320 180\" xmlns=\"http://www.w3.org/2000/svg\" preserveAspectRatio=\"xMidYMid slice\" aria-hidden=\"true\" focusable=\"false\"><rect width=\"320\" height=\"180\" fill=\"#2A3657\"/><line class=\"mv mv-dash\" x1=\"60\" y1=\"50\" x2=\"160\" y2=\"70\" stroke=\"#FFF7EC\" stroke-width=\"2\" stroke-dasharray=\"6 5\" opacity=\".5\"/><line class=\"mv mv-dash\" x1=\"110\" y1=\"130\" x2=\"160\" y2=\"70\" stroke=\"#FFF7EC\" stroke-width=\"2\" stroke-dasharray=\"6 5\" opacity=\".5\"/><line class=\"mv mv-dash\" x1=\"160\" y1=\"70\" x2=\"215\" y2=\"125\" stroke=\"#FFF7EC\" stroke-width=\"2\" stroke-dasharray=\"6 5\" opacity=\".5\"/><line class=\"mv mv-dash\" x1=\"160\" y1=\"70\" x2=\"260\" y2=\"55\" stroke=\"#FFF7EC\" stroke-width=\"2\" stroke-dasharray=\"6 5\" opacity=\".5\"/><line class=\"mv mv-dash\" x1=\"90\" y1=\"90\" x2=\"160\" y2=\"70\" stroke=\"#FFF7EC\" stroke-width=\"2\" stroke-dasharray=\"6 5\" opacity=\".5\"/><line class=\"mv mv-dash\" x1=\"90\" y1=\"90\" x2=\"110\" y2=\"130\" stroke=\"#FFF7EC\" stroke-width=\"2\" stroke-dasharray=\"6 5\" opacity=\".5\"/><line class=\"mv mv-dash\" x1=\"160\" y1=\"70\" x2=\"200\" y2=\"30\" stroke=\"#FFF7EC\" stroke-width=\"2\" stroke-dasharray=\"6 5\" opacity=\".5\"/><line class=\"mv mv-dash\" x1=\"215\" y1=\"125\" x2=\"285\" y2=\"140\" stroke=\"#FFF7EC\" stroke-width=\"2\" stroke-dasharray=\"6 5\" opacity=\".5\"/><line class=\"mv mv-dash\" x1=\"260\" y1=\"55\" x2=\"285\" y2=\"140\" stroke=\"#FFF7EC\" stroke-width=\"2\" stroke-dasharray=\"6 5\" opacity=\".5\"/><line class=\"mv mv-dash\" x1=\"60\" y1=\"50\" x2=\"90\" y2=\"90\" stroke=\"#FFF7EC\" stroke-width=\"2\" stroke-dasharray=\"6 5\" opacity=\".5\"/><circle class=\"mv mv-blink\" style=\"transform-origin:60px 50px;animation-delay:0.0s\" cx=\"60\" cy=\"50\" r=\"6\" fill=\"#FFF7EC\"/><circle class=\"mv mv-blink\" style=\"transform-origin:110px 130px;animation-delay:0.2s\" cx=\"110\" cy=\"130\" r=\"6\" fill=\"#FFF7EC\"/><circle class=\"mv mv-blink\" style=\"transform-origin:215px 125px;animation-delay:0.6000000000000001s\" cx=\"215\" cy=\"125\" r=\"6\" fill=\"#FFF7EC\"/><circle class=\"mv mv-blink\" style=\"transform-origin:260px 55px;animation-delay:0.8s\" cx=\"260\" cy=\"55\" r=\"6\" fill=\"#FFF7EC\"/><circle class=\"mv mv-blink\" style=\"transform-origin:90px 90px;animation-delay:1.0s\" cx=\"90\" cy=\"90\" r=\"6\" fill=\"#FFF7EC\"/><circle class=\"mv mv-blink\" style=\"transform-origin:200px 30px;animation-delay:1.2000000000000002s\" cx=\"200\" cy=\"30\" r=\"6\" fill=\"#FFF7EC\"/><circle class=\"mv mv-blink\" style=\"transform-origin:285px 140px;animation-delay:1.4000000000000001s\" cx=\"285\" cy=\"140\" r=\"6\" fill=\"#FFF7EC\"/><circle class=\"mv mv-pulse\" style=\"transform-origin:160px 70px;animation-delay:0s\" cx=\"160\" cy=\"70\" r=\"26\" fill=\"#F4A024\" opacity=\".25\"/><circle cx=\"160\" cy=\"70\" r=\"15\" fill=\"#F4A024\"/><path class=\"mv mv-spin\" style=\"transform-origin:160px 70px;animation-delay:0s\" d=\"M160 58 l3 9 l9 3 l-9 3 l-3 9 l-3 -9 l-9 -3 l9 -3 z\" fill=\"#1F2A44\"/></svg>", "playlist": "https://www.youtube.com/playlist?list=PLSY57xLhu2jM", "lessons": [{"t": "Replaced? Start with the real question", "d": "3:51", "id": "qcMVN2UKXvc"}, {"t": "Brief it like a smart colleague", "d": "3:19", "id": "7suM_JLCFBU"}, {"t": "Trust but verify in proportion", "d": "2:58", "id": "mmOIoBAcgqQ"}, {"t": "Whose data is it?", "d": "3:12", "id": "kNbl2vxCMI4"}, {"t": "Meetings and long documents", "d": "2:49", "id": "1O0BSEDAilo"}, {"t": "Numbers and spreadsheets", "d": "2:59", "id": "2TKAuOyq1po"}, {"t": "Agents delegate the steps", "d": "3:06", "id": "nzfmej62NkI"}, {"t": "Working with people", "d": "2:55", "id": "2SuTu6XL3Os"}, {"t": "Your language, your voice", "d": "3:00", "id": "bcR5sDjWGgo"}, {"t": "Staying relevant", "d": "3:23", "id": "XZcl8vcefb4"}]}, {"slug": "money-basics", "theme": "money", "label": "Basics of Personal Finance", "title": "Money Basics with Arjun", "sub": "Personal finance for beginners", "list": "PLDUc9mnnQRFw", "color": "#2FA866", "ink": "#FFF7EC", "art": "coins", "who": "Arjun", "whoLine": "34, in sales in Bengaluru, broke by the 22nd", "story": ["Learn the basics of personal finance in ten short lessons, one money habit per video.", "Meet Arjun. He's 34, works in sales in Bengaluru and takes home ₹90,000 a month, yet he's broke by the 22nd. Follow him as he tracks every rupee, builds a budget, pays himself first, clears his credit card and starts investing for his goals."], "cover": "<svg viewBox=\"0 0 320 180\" xmlns=\"http://www.w3.org/2000/svg\" preserveAspectRatio=\"xMidYMid slice\" aria-hidden=\"true\" focusable=\"false\"><rect width=\"320\" height=\"180\" fill=\"#2FA866\"/><g class=\"mv mv-rise\" style=\"transform-origin:70px 150px;animation-delay:0s\"><ellipse cx=\"70\" cy=\"155\" rx=\"30\" ry=\"9\" fill=\"#1F7A49\"/><rect x=\"40\" y=\"145\" width=\"60\" height=\"10\" fill=\"#F4A024\"/><ellipse cx=\"70\" cy=\"145\" rx=\"30\" ry=\"9\" fill=\"#FFD27A\"/><ellipse cx=\"70\" cy=\"142\" rx=\"30\" ry=\"9\" fill=\"#1F7A49\"/><rect x=\"40\" y=\"132\" width=\"60\" height=\"10\" fill=\"#F4A024\"/><ellipse cx=\"70\" cy=\"132\" rx=\"30\" ry=\"9\" fill=\"#FFD27A\"/><ellipse cx=\"70\" cy=\"129\" rx=\"30\" ry=\"9\" fill=\"#1F7A49\"/><rect x=\"40\" y=\"119\" width=\"60\" height=\"10\" fill=\"#F4A024\"/><ellipse cx=\"70\" cy=\"119\" rx=\"30\" ry=\"9\" fill=\"#FFD27A\"/></g><g class=\"mv mv-rise\" style=\"transform-origin:140px 150px;animation-delay:-0.35s\"><ellipse cx=\"140\" cy=\"155\" rx=\"30\" ry=\"9\" fill=\"#1F7A49\"/><rect x=\"110\" y=\"145\" width=\"60\" height=\"10\" fill=\"#F4A024\"/><ellipse cx=\"140\" cy=\"145\" rx=\"30\" ry=\"9\" fill=\"#FFD27A\"/><ellipse cx=\"140\" cy=\"142\" rx=\"30\" ry=\"9\" fill=\"#1F7A49\"/><rect x=\"110\" y=\"132\" width=\"60\" height=\"10\" fill=\"#F4A024\"/><ellipse cx=\"140\" cy=\"132\" rx=\"30\" ry=\"9\" fill=\"#FFD27A\"/><ellipse cx=\"140\" cy=\"129\" rx=\"30\" ry=\"9\" fill=\"#1F7A49\"/><rect x=\"110\" y=\"119\" width=\"60\" height=\"10\" fill=\"#F4A024\"/><ellipse cx=\"140\" cy=\"119\" rx=\"30\" ry=\"9\" fill=\"#FFD27A\"/><ellipse cx=\"140\" cy=\"116\" rx=\"30\" ry=\"9\" fill=\"#1F7A49\"/><rect x=\"110\" y=\"106\" width=\"60\" height=\"10\" fill=\"#F4A024\"/><ellipse cx=\"140\" cy=\"106\" rx=\"30\" ry=\"9\" fill=\"#FFD27A\"/><ellipse cx=\"140\" cy=\"103\" rx=\"30\" ry=\"9\" fill=\"#1F7A49\"/><rect x=\"110\" y=\"93\" width=\"60\" height=\"10\" fill=\"#F4A024\"/><ellipse cx=\"140\" cy=\"93\" rx=\"30\" ry=\"9\" fill=\"#FFD27A\"/></g><g class=\"mv mv-rise\" style=\"transform-origin:210px 150px;animation-delay:-0.7s\"><ellipse cx=\"210\" cy=\"155\" rx=\"30\" ry=\"9\" fill=\"#1F7A49\"/><rect x=\"180\" y=\"145\" width=\"60\" height=\"10\" fill=\"#F4A024\"/><ellipse cx=\"210\" cy=\"145\" rx=\"30\" ry=\"9\" fill=\"#FFD27A\"/><ellipse cx=\"210\" cy=\"142\" rx=\"30\" ry=\"9\" fill=\"#1F7A49\"/><rect x=\"180\" y=\"132\" width=\"60\" height=\"10\" fill=\"#F4A024\"/><ellipse cx=\"210\" cy=\"132\" rx=\"30\" ry=\"9\" fill=\"#FFD27A\"/><ellipse cx=\"210\" cy=\"129\" rx=\"30\" ry=\"9\" fill=\"#1F7A49\"/><rect x=\"180\" y=\"119\" width=\"60\" height=\"10\" fill=\"#F4A024\"/><ellipse cx=\"210\" cy=\"119\" rx=\"30\" ry=\"9\" fill=\"#FFD27A\"/><ellipse cx=\"210\" cy=\"116\" rx=\"30\" ry=\"9\" fill=\"#1F7A49\"/><rect x=\"180\" y=\"106\" width=\"60\" height=\"10\" fill=\"#F4A024\"/><ellipse cx=\"210\" cy=\"106\" rx=\"30\" ry=\"9\" fill=\"#FFD27A\"/><ellipse cx=\"210\" cy=\"103\" rx=\"30\" ry=\"9\" fill=\"#1F7A49\"/><rect x=\"180\" y=\"93\" width=\"60\" height=\"10\" fill=\"#F4A024\"/><ellipse cx=\"210\" cy=\"93\" rx=\"30\" ry=\"9\" fill=\"#FFD27A\"/><ellipse cx=\"210\" cy=\"90\" rx=\"30\" ry=\"9\" fill=\"#1F7A49\"/><rect x=\"180\" y=\"80\" width=\"60\" height=\"10\" fill=\"#F4A024\"/><ellipse cx=\"210\" cy=\"80\" rx=\"30\" ry=\"9\" fill=\"#FFD27A\"/><ellipse cx=\"210\" cy=\"77\" rx=\"30\" ry=\"9\" fill=\"#1F7A49\"/><rect x=\"180\" y=\"67\" width=\"60\" height=\"10\" fill=\"#F4A024\"/><ellipse cx=\"210\" cy=\"67\" rx=\"30\" ry=\"9\" fill=\"#FFD27A\"/></g><g class=\"mv mv-bob\"><circle cx=\"272\" cy=\"52\" r=\"26\" fill=\"#FFF7EC\"/><text x=\"272\" y=\"63\" text-anchor=\"middle\" font-family=\"Mukta,Poppins,sans-serif\" font-weight=\"700\" font-size=\"32\" fill=\"#2FA866\">₹</text></g><path class=\"mv mv-dash\" d=\"M40 60 L120 40 L170 50 L230 22\" stroke=\"#FFF7EC\" stroke-width=\"4\" stroke-dasharray=\"10 6\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\" opacity=\".7\"/></svg>", "playlist": "https://www.youtube.com/playlist?list=PLDUc9mnnQRFw", "lessons": [{"t": "Personal Finance for Beginners in India", "d": "1:17", "id": "pJeDl1qXSlg", "w": 1}, {"t": "Meet Arjun", "d": "2:58", "id": "W3BTncwVoGg"}, {"t": "Track every rupee", "d": "3:18", "id": "hEeX3rhPmxA"}, {"t": "The 50-30-20 budget", "d": "3:23", "id": "8ann4DtuScE"}, {"t": "Pay yourself first", "d": "2:57", "id": "s_k5Y3Aw9MY"}, {"t": "Build an emergency fund", "d": "3:06", "id": "EHxRVqZz_gk"}, {"t": "Kill credit card debt", "d": "3:43", "id": "l9_flPzsMxo"}, {"t": "Insure before you invest", "d": "3:47", "id": "mchoyYJvP1o"}, {"t": "Invest for your goals", "d": "3:54", "id": "NA2UzBBLvjk"}, {"t": "Protect what you build", "d": "3:00", "id": "wTe6vAcTtNc"}, {"t": "18 months later, and your 30-day plan", "d": "2:26", "id": "PW4P4igXq2o"}], "count": 11, "minutes": 34, "hindi": [{"t": "मिलिए अर्जुन से", "d": "3:34", "id": "earJczw1-XU"}, {"t": "हर रुपये का हिसाब", "d": "3:41", "id": "XB8sGIdCDqM"}, {"t": "50-30-20 बजट", "d": "3:44", "id": "tQ1Oamlvlsw"}, {"t": "पहले ख़ुद को भुगतान", "d": "3:17", "id": "tHxJckz42ro"}, {"t": "इमरजेंसी फ़ंड बनाइए", "d": "3:24", "id": "DTryhZ4Z4bc"}, {"t": "क्रेडिट कार्ड का क़र्ज़ ख़त्म करें", "d": "4:06", "id": "ZKtDT9UzLv8"}, {"t": "निवेश से पहले बीमा", "d": "4:16", "id": "BM2zYun_Yd8"}, {"t": "लक्ष्यों के लिए निवेश", "d": "4:12", "id": "8RX4VVq48Fw"}, {"t": "जो बनाया, उसे बचाइए", "d": "3:30", "id": "NIb4phSCO9Y"}, {"t": "18 महीने बाद, और आपका 30 दिन का प्लान", "d": "2:40", "id": "5QddcKdeum4"}]}, {"slug": "rtl-to-gdsii", "theme": "eng", "label": "RTL to GDSII", "title": "RTL to GDSII", "sub": "The chip design flow, explained", "list": "PLaPLMF1_U8Wo", "color": "#151E35", "ink": "#FFF7EC", "art": "chip", "who": "Rohan", "whoLine": "A fresher taking an 8-bit counter from RTL to silicon", "story": ["How does an idea become a chip? Follow Rohan, a fresher, as he takes an 8-bit counter through the whole design flow.", "From RTL and verification through synthesis, design for test, floorplanning, placement, clock tree, routing and timing closure, to signoff and GDSII. A bonus lesson follows the design to the fab, from mask to packaged chip."], "cover": "<svg viewBox=\"0 0 320 180\" xmlns=\"http://www.w3.org/2000/svg\" preserveAspectRatio=\"xMidYMid slice\" aria-hidden=\"true\" focusable=\"false\"><rect width=\"320\" height=\"180\" fill=\"#151E35\"/><rect class=\"mv mv-blink\" style=\"transform-origin:0px 0px;animation-delay:0.0s\" x=\"102\" y=\"18\" width=\"8\" height=\"18\" rx=\"2\" fill=\"#F4A024\" opacity=\".85\"/><rect class=\"mv mv-blink\" style=\"transform-origin:0px 0px;animation-delay:0.6s\" x=\"102\" y=\"144\" width=\"8\" height=\"18\" rx=\"2\" fill=\"#F4A024\" opacity=\".85\"/><rect class=\"mv mv-blink\" style=\"transform-origin:0px 0px;animation-delay:0.12s\" x=\"122\" y=\"18\" width=\"8\" height=\"18\" rx=\"2\" fill=\"#F4A024\" opacity=\".85\"/><rect class=\"mv mv-blink\" style=\"transform-origin:0px 0px;animation-delay:0.72s\" x=\"122\" y=\"144\" width=\"8\" height=\"18\" rx=\"2\" fill=\"#F4A024\" opacity=\".85\"/><rect class=\"mv mv-blink\" style=\"transform-origin:0px 0px;animation-delay:0.24s\" x=\"142\" y=\"18\" width=\"8\" height=\"18\" rx=\"2\" fill=\"#F4A024\" opacity=\".85\"/><rect class=\"mv mv-blink\" style=\"transform-origin:0px 0px;animation-delay:0.84s\" x=\"142\" y=\"144\" width=\"8\" height=\"18\" rx=\"2\" fill=\"#F4A024\" opacity=\".85\"/><rect class=\"mv mv-blink\" style=\"transform-origin:0px 0px;animation-delay:0.36s\" x=\"162\" y=\"18\" width=\"8\" height=\"18\" rx=\"2\" fill=\"#F4A024\" opacity=\".85\"/><rect class=\"mv mv-blink\" style=\"transform-origin:0px 0px;animation-delay:0.96s\" x=\"162\" y=\"144\" width=\"8\" height=\"18\" rx=\"2\" fill=\"#F4A024\" opacity=\".85\"/><rect class=\"mv mv-blink\" style=\"transform-origin:0px 0px;animation-delay:0.48s\" x=\"182\" y=\"18\" width=\"8\" height=\"18\" rx=\"2\" fill=\"#F4A024\" opacity=\".85\"/><rect class=\"mv mv-blink\" style=\"transform-origin:0px 0px;animation-delay:1.08s\" x=\"182\" y=\"144\" width=\"8\" height=\"18\" rx=\"2\" fill=\"#F4A024\" opacity=\".85\"/><rect class=\"mv mv-blink\" style=\"transform-origin:0px 0px;animation-delay:0.6s\" x=\"202\" y=\"18\" width=\"8\" height=\"18\" rx=\"2\" fill=\"#F4A024\" opacity=\".85\"/><rect class=\"mv mv-blink\" style=\"transform-origin:0px 0px;animation-delay:1.2s\" x=\"202\" y=\"144\" width=\"8\" height=\"18\" rx=\"2\" fill=\"#F4A024\" opacity=\".85\"/><rect class=\"mv mv-blink\" style=\"transform-origin:0px 0px;animation-delay:0.3s\" x=\"74\" y=\"50\" width=\"18\" height=\"8\" rx=\"2\" fill=\"#F4A024\" opacity=\".85\"/><rect class=\"mv mv-blink\" style=\"transform-origin:0px 0px;animation-delay:0.9s\" x=\"228\" y=\"50\" width=\"18\" height=\"8\" rx=\"2\" fill=\"#F4A024\" opacity=\".85\"/><rect class=\"mv mv-blink\" style=\"transform-origin:0px 0px;animation-delay:0.42s\" x=\"74\" y=\"70\" width=\"18\" height=\"8\" rx=\"2\" fill=\"#F4A024\" opacity=\".85\"/><rect class=\"mv mv-blink\" style=\"transform-origin:0px 0px;animation-delay:1.02s\" x=\"228\" y=\"70\" width=\"18\" height=\"8\" rx=\"2\" fill=\"#F4A024\" opacity=\".85\"/><rect class=\"mv mv-blink\" style=\"transform-origin:0px 0px;animation-delay:0.54s\" x=\"74\" y=\"90\" width=\"18\" height=\"8\" rx=\"2\" fill=\"#F4A024\" opacity=\".85\"/><rect class=\"mv mv-blink\" style=\"transform-origin:0px 0px;animation-delay:1.1400000000000001s\" x=\"228\" y=\"90\" width=\"18\" height=\"8\" rx=\"2\" fill=\"#F4A024\" opacity=\".85\"/><rect class=\"mv mv-blink\" style=\"transform-origin:0px 0px;animation-delay:0.6599999999999999s\" x=\"74\" y=\"110\" width=\"18\" height=\"8\" rx=\"2\" fill=\"#F4A024\" opacity=\".85\"/><rect class=\"mv mv-blink\" style=\"transform-origin:0px 0px;animation-delay:1.26s\" x=\"228\" y=\"110\" width=\"18\" height=\"8\" rx=\"2\" fill=\"#F4A024\" opacity=\".85\"/><rect class=\"mv mv-blink\" style=\"transform-origin:0px 0px;animation-delay:0.78s\" x=\"74\" y=\"130\" width=\"18\" height=\"8\" rx=\"2\" fill=\"#F4A024\" opacity=\".85\"/><rect class=\"mv mv-blink\" style=\"transform-origin:0px 0px;animation-delay:1.38s\" x=\"228\" y=\"130\" width=\"18\" height=\"8\" rx=\"2\" fill=\"#F4A024\" opacity=\".85\"/><rect x=\"92\" y=\"36\" width=\"136\" height=\"108\" rx=\"12\" fill=\"#232E4D\" stroke=\"#F4A024\" stroke-width=\"2\"/><line x1=\"110\" y1=\"44\" x2=\"110\" y2=\"136\" stroke=\"#F4A024\" stroke-width=\"1\" opacity=\".35\"/><line x1=\"130\" y1=\"44\" x2=\"130\" y2=\"136\" stroke=\"#F4A024\" stroke-width=\"1\" opacity=\".35\"/><line x1=\"150\" y1=\"44\" x2=\"150\" y2=\"136\" stroke=\"#F4A024\" stroke-width=\"1\" opacity=\".35\"/><line x1=\"170\" y1=\"44\" x2=\"170\" y2=\"136\" stroke=\"#F4A024\" stroke-width=\"1\" opacity=\".35\"/><line x1=\"190\" y1=\"44\" x2=\"190\" y2=\"136\" stroke=\"#F4A024\" stroke-width=\"1\" opacity=\".35\"/><line x1=\"210\" y1=\"44\" x2=\"210\" y2=\"136\" stroke=\"#F4A024\" stroke-width=\"1\" opacity=\".35\"/><line x1=\"98\" y1=\"56\" x2=\"222\" y2=\"56\" stroke=\"#F4A024\" stroke-width=\"1\" opacity=\".35\"/><line x1=\"98\" y1=\"76\" x2=\"222\" y2=\"76\" stroke=\"#F4A024\" stroke-width=\"1\" opacity=\".35\"/><line x1=\"98\" y1=\"96\" x2=\"222\" y2=\"96\" stroke=\"#F4A024\" stroke-width=\"1\" opacity=\".35\"/><line x1=\"98\" y1=\"116\" x2=\"222\" y2=\"116\" stroke=\"#F4A024\" stroke-width=\"1\" opacity=\".35\"/><line x1=\"98\" y1=\"136\" x2=\"222\" y2=\"136\" stroke=\"#F4A024\" stroke-width=\"1\" opacity=\".35\"/><rect class=\"mv mv-pulse\" style=\"transform-origin:160px 90px;animation-delay:0s\" x=\"138\" y=\"68\" width=\"44\" height=\"44\" rx=\"6\" fill=\"#F4A024\" opacity=\".35\"/><rect x=\"138\" y=\"68\" width=\"44\" height=\"44\" rx=\"6\" fill=\"#F4A024\"/><path class=\"mv mv-dash\" d=\"M150 96 h8 v-12 h8 v12 h8\" stroke=\"#1F2A44\" stroke-width=\"3\" stroke-dasharray=\"4 3\" fill=\"none\"/></svg>", "playlist": "https://www.youtube.com/playlist?list=PLaPLMF1_U8Wo", "lessons": [{"t": "The Chip Design Flow in 10 Steps, Explained", "d": "4:04", "id": "Fy3Zw2cPpp4"}, {"t": "Verilog for Beginners: RTL Is Not a Program", "d": "3:27", "id": "9WMH1iE4ovI"}, {"t": "How Chip Verification Works (Testbench Basics)", "d": "3:26", "id": "46IyDiukMug"}, {"t": "Logic Synthesis Explained: From RTL to Gates", "d": "3:18", "id": "LyH7ALWEoHg"}, {"t": "Design for Test (DFT) and Scan Chains Explained", "d": "3:29", "id": "gBpLy_2ryWs"}, {"t": "Floorplanning and Power Planning Explained", "d": "3:30", "id": "dnll2BHmgJE"}, {"t": "Placement and Clock Tree Synthesis (CTS) Explained", "d": "3:27", "id": "7VysvW7edCo"}, {"t": "Chip Routing Explained: Metal Layers, Vias and DRC", "d": "3:44", "id": "_v8FIk5dveY"}, {"t": "Static Timing Analysis: Setup, Hold and Slack", "d": "3:29", "id": "wvFe0tZNmGw"}, {"t": "Signoff and Tapeout: DRC, LVS and GDSII Explained", "d": "3:57", "id": "vwL28kFFC9g"}, {"t": "After GDSII: Masks, Wafers and Chip Packaging", "d": "3:47", "id": "qAew66VIZOk", "b": 1}], "count": 11, "minutes": 40}], "themes": [["all", "All courses"], ["lead", "People skills"], ["well", "Wellbeing"], ["work", "Productivity"], ["money", "Money"], ["eng", "Chip design"]], "total": 93};
 const EMBED = true;
 const { courses, themes } = DATA;
 const BY = Object.fromEntries(courses.map(c => [c.slug, c]));
 const THEME = Object.fromEntries(themes);
-const app = document.getElementById('app');
+const RM = window.matchMedia('(prefers-reduced-motion: reduce)');
+const $ = (s, el = document) => el.querySelector(s);
+const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+const app = $('#app');
 const esc = s => String(s).replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
-const PLAY = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 1.8v12.4c0 .6.7 1 1.2.7l10-6.2a.8.8 0 0 0 0-1.4l-10-6.2C3.7.8 3 1.2 3 1.8z" fill="#1F2A44"/></svg>';
-const EXT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>';
-const ARROW_L = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>';
-const WORDS = ['Zero', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve'];
-const store = {
-  get() { try { return JSON.parse(localStorage.getItem('mm-last') || 'null'); } catch (e) { return null; } },
-  set(v) { try { localStorage.setItem('mm-last', JSON.stringify(v)); } catch (e) {} }
+const I = {
+  play: f => `<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 1.8v12.4c0 .6.7 1 1.2.7l10-6.2a.8.8 0 0 0 0-1.4l-10-6.2C3.7.8 3 1.2 3 1.8z" fill="${f || '#151C33'}"/></svg>`,
+  ext: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>',
+  back: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>',
+  prev: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>',
+  next: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>',
+  check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>',
+  link: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg>',
+  x: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>',
+  search: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>'
 };
-let filter = 'all';
+const WORDS = ['Zero', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve'];
+const thumb = (id, q) => 'https://i.ytimg.com/vi/' + id + '/' + (q || 'mqdefault') + '.jpg';
+function imgFail(el) {  // try the smaller thumbnail once, then show the course art
+  if (el.dataset.alt) { const a = el.dataset.alt; delete el.dataset.alt; el.src = a; return; }
+  const c = BY[el.dataset.slug]; if (c) el.replaceWith(document.createRange().createContextualFragment(c.cover)); else el.remove();
+}
 
+// Real situations from the lesson titles, each paired with the lesson that answers it (course slug, lesson position from 0).
+const SIT = [
+  ['Your boss took credit for your work?', 'emotional-intelligence', 6],
+  ['Now managing your old friends?', 'first-time-manager', 2],
+  ['47 unread messages and a deadline?', 'time-focus-prioritisation', 1],
+  ['Passed over for a promotion?', 'resilience-at-work', 3],
+  ['Earning well but broke by the 22nd?', 'money-basics', 1],
+  ['Worried AI will take your job?', 'ai-at-the-workplace', 0],
+  ["Can't say no to your boss?", 'communication-at-work', 3],
+  ['Feeling flat at work lately?', 'happiness-at-work', 0],
+  ['Harsh feedback in front of everyone?', 'resilience-at-work', 2],
+  ['A heated meeting coming up?', 'emotional-intelligence', 1],
+  ["Your team's work keeps coming back wrong?", 'first-time-manager', 3],
+  ['Curious how a chip gets designed?', 'rtl-to-gdsii', 0]
+].filter(([, s, i]) => BY[s] && BY[s].lessons && BY[s].lessons[i]);
+
+// ---------- lessons
 const lessonsOf = (c, lang) => lang === 'hi' ? c.hindi : c.lessons;
-const label = (l, i, list) => { if (l.w) return 'Intro'; if (l.b) return 'Bonus'; const off = list[0] && list[0].w ? 0 : 1; return String(i + off).padStart(2, '0'); };
-const rowText = l => `<span class="t">${esc(l.t)}${l.s ? `<small>${esc(l.s)}</small>` : ''}</span><span class="d">${l.d || ''}</span>`;
-const facts = c =>[c.count + ' lessons' + (c.soFar ? ' so far' : ''), c.minutes ? 'About ' + c.minutes + ' min' : null, c.hindi ? 'English and Hindi' : 'English', 'Free'].filter(Boolean);
+const numOf = (list, i) => i + (list[0] && list[0].w ? 0 : 1);
+const badge = (list, i) => { const l = list[i]; return l.w ? 'Intro' : l.b ? 'Bonus' : String(numOf(list, i)); };
+const numbered = list => list.filter(l => !l.w && !l.b).length;
+const lessonName = (list, i) => { const l = list[i]; return l.w ? 'Introduction' : l.b ? 'Bonus lesson' : 'Lesson ' + numOf(list, i) + ' of ' + numbered(list); };
+const lessonHash = (c, lang, i) => '#course-' + c.slug + '-' + (lang === 'hi' ? 'h' : 'l') + (i + 1);
 const ytUrl = (c, lang, i) => {
-  const l = lessonsOf(c, lang); const it = l && l[i];
-  if (it && it.id) return 'https://www.youtube.com/watch?v=' + it.id + (lang === 'hi' ? '' : '&list=' + c.list + '&index=' + (i + 1));
+  const l = lessonsOf(c, lang)[i];
+  if (l && l.id) return 'https://www.youtube.com/watch?v=' + l.id + (lang === 'hi' ? '' : '&list=' + c.list + '&index=' + (i + 1));
   return c.playlist;
 };
-const cardHTML = c => `
-  <a class="card" href="#course-${c.slug}" style="--c:${c.color}" data-theme="${c.theme}">
-    <div class="cv">${c.cover}</div>
-    <div class="bd">
-      <div class="tag eyebrow"><i></i>${esc(THEME[c.theme])}</div>
+const isDark = hex => { const n = parseInt(hex.slice(1), 16); return (0.299 * (n >> 16) + 0.587 * (n >> 8 & 255) + 0.114 * (n & 255)) < 90; };
+
+// ---------- progress, kept in this browser only
+const store = (() => {
+  let s = { w: {}, pos: {} };
+  try {
+    const raw = localStorage.getItem('mm-v2');
+    if (raw) s = Object.assign(s, JSON.parse(raw));
+    else { const old = JSON.parse(localStorage.getItem('mm-last') || 'null'); if (old && BY[old.slug]) s.pos[old.slug] = { i: old.i || 0, lang: old.lang || 'en', at: Date.now() }; }
+  } catch (e) {}
+  const save = () => { try { localStorage.setItem('mm-v2', JSON.stringify(s)); } catch (e) {} };
+  const k = (slug, lang, i) => slug + ':' + lang + ':' + i;
+  return {
+    done: (slug, lang, i) => !!s.w[k(slug, lang, i)],
+    setDone(slug, lang, i, v) { if (v) s.w[k(slug, lang, i)] = 1; else delete s.w[k(slug, lang, i)]; save(); },
+    visit(slug, lang, i) { s.pos[slug] = { i, lang, at: Date.now() }; save(); },
+    pos: slug => s.pos[slug] || null,
+    recent: () => Object.entries(s.pos).filter(([slug]) => BY[slug]).sort((a, b) => b[1].at - a[1].at)
+  };
+})();
+const progress = (c, lang) => { const list = lessonsOf(c, lang) || []; const done = list.filter((l, i) => store.done(c.slug, lang, i)).length; return { done, total: list.length }; };
+const bestProgress = c => { const a = progress(c, 'en'); if (!c.hindi) return a; const b = progress(c, 'hi'); return b.done / b.total > a.done / a.total ? b : a; };
+const nextFor = (c, prefer) => {
+  const p = store.pos(c.slug);
+  let lang = prefer || (p && p.lang) || 'en'; if (lang === 'hi' && !c.hindi) lang = 'en';
+  const list = lessonsOf(c, lang);
+  const from = p && p.lang === lang ? p.i : 0;
+  for (let j = 0; j < list.length; j++) { const i = (from + j) % list.length; if (!store.done(c.slug, lang, i)) return { lang, i }; }
+  return { lang, i: Math.min(from, list.length - 1) };
+};
+
+// ---------- search
+const norm = s => String(s).toLowerCase().normalize('NFKD').replace(/[̀-ͯ]/g, '').replace(/['’‘]/g, '').replace(/[^\p{L}\p{M}\p{N}]+/gu, ' ').trim();
+const STOP = new Set('a an the to of in on at for and or is are be my me i im your you with how what when why do does can should get it its this that from about work'.split(' '));
+const SYN = {
+  boss: ['boss', 'manager', 'upward', 'escalate', 'credit'], manager: ['manager', 'managing', 'boss', 'promoted', 'team', 'delegate'], promotion: ['promotion', 'promoted'],
+  stress: ['pressure', 'burnout', 'crunch', 'calm', 'spiralling', 'flat'], stressed: ['pressure', 'burnout', 'crunch', 'calm'], anxiety: ['pressure', 'spiralling', 'calm'], anxious: ['pressure', 'spiralling', 'calm'],
+  angry: ['angry', 'heated', 'calm', 'conflict', 'escalate'], anger: ['angry', 'heated', 'calm', 'conflict'], fight: ['fight', 'conflict', 'clashes', 'disagree'], conflict: ['conflict', 'clashes', 'repair', 'fight', 'disagree'],
+  email: ['messages', 'inbox', 'unread', 'update'], emails: ['messages', 'inbox', 'unread'], message: ['messages', 'unread', 'inbox'], whatsapp: ['unread', 'messages'], inbox: ['inbox', 'unread'],
+  meeting: ['meetings', 'meeting'], sad: ['flat', 'lonely', 'mistake'], tired: ['sleep', 'flat', 'burnout', 'energy'], sleep: ['sleep'], lonely: ['lonely', 'catch'],
+  procrastinate: ['delaying', 'start'], procrastination: ['delaying', 'start'], focus: ['focus', 'meetings', 'busy'], time: ['time', 'busy', 'estimates', 'late', 'focus'], deadline: ['deadline', 'crunch', 'estimates'],
+  ai: ['ai', 'agents', 'replaced', 'brief'], chatgpt: ['ai', 'brief', 'agents', 'verify'], job: ['job', 'replaced', 'relevant', 'layoff'], layoff: ['layoff'], layoffs: ['layoff'],
+  money: ['money', 'finance', 'rupee', 'budget', 'invest', 'debt', 'fund', 'insure'], salary: ['budget', 'rupee', 'broke', 'pay'], savings: ['emergency', 'invest', 'pay yourself'], debt: ['debt', 'credit'], invest: ['invest'], investing: ['invest'], insurance: ['insure'],
+  chip: ['chip', 'rtl', 'gdsii', 'verilog'], vlsi: ['chip', 'rtl', 'gdsii', 'verilog', 'synthesis', 'timing'], team: ['team', 'delegate', 'one'], feedback: ['feedback'], delegate: ['delegate'], delegation: ['delegate'],
+  listen: ['listen'], listening: ['listen'], present: ['update', 'heard'], speak: ['heard', 'speak', 'say'], no: ['no']
+};
+const INDEX = [];
+courses.forEach(c => ['en', 'hi'].forEach(lang => (lessonsOf(c, lang) || []).forEach((l, i) => {
+  const text = norm(l.t);
+  INDEX.push({ c, lang, i, l, text, words: text.split(' '), meta: norm([c.title, c.sub, c.label, c.who || '', THEME[c.theme]].join(' ')).split(' ') });
+})));
+function search(q) {
+  const raw = norm(q).split(' ').filter(Boolean);
+  if (!raw.length) return null;
+  let toks = raw.filter(t => !STOP.has(t)); if (!toks.length) toks = raw;
+  const cands = t => [t].concat(SYN[t] || []);
+  const scoreTok = (e, t) => {
+    let best = 0;
+    for (const w of cands(t)) {
+      const own = w === t;
+      if (e.words.some(x => x.startsWith(w))) best = Math.max(best, own ? 6 : 3);
+      else if (w.length > 2 && e.text.includes(w)) best = Math.max(best, own ? 3 : 2);
+      else if (e.lang === 'en' && e.meta.some(x => x.startsWith(w) && w.length > 1)) best = Math.max(best, 1);
+    }
+    return best;
+  };
+  const rank = all => INDEX.map(e => {
+    const s = toks.map(t => scoreTok(e, t));
+    const ok = all ? s.every(Boolean) : s.some(Boolean);
+    return ok ? { e, s: s.reduce((a, b) => a + b, 0) } : null;
+  }).filter(Boolean).sort((a, b) => b.s - a.s || courses.indexOf(a.e.c) - courses.indexOf(b.e.c) || a.e.i - b.e.i);
+  let hits = rank(true), loose = false;
+  if (!hits.length && toks.length > 1) { hits = rank(false); loose = true; }
+  const marks = [...new Set(toks.flatMap(t => cands(t)).filter(w => w.length > 1))];
+  return { hits: hits.slice(0, 40).map(h => h.e), loose, marks };
+}
+function hl(text, marks) {
+  if (!marks || !marks.length) return esc(text);
+  const re = new RegExp('(' + marks.sort((a, b) => b.length - a.length).map(m => m.replace(/[.*+?^$()|[\]\\{}]/g, '\\$&')).join('|') + ')', 'giu');
+  return text.split(re).map((p, k) => k % 2 ? '<mark>' + esc(p) + '</mark>' : esc(p)).join('');
+}
+const hitHTML = (e, k, pre, marks, title) => {
+  const list = lessonsOf(e.c, e.lang);
+  return `<a class="hit" id="${pre}-${k}" role="option" href="${lessonHash(e.c, e.lang, e.i)}" style="--c:${e.c.color};--ci:${e.c.ink}" ${e.lang === 'hi' ? 'lang="hi"' : ''}>
+    <span class="sw">${list[e.i].w || list[e.i].b ? I.play('currentColor') : esc(badge(list, e.i))}</span>
+    <span><b>${title ? esc(title) : hl(e.l.t, marks)}</b><small>${title ? esc(e.l.t) : esc(e.c.title) + ', ' + esc(lessonName(list, e.i).toLowerCase()) + (e.lang === 'hi' ? ', Hindi' : '')}</small></span>
+    <span class="d">${esc(e.l.d || '')}</span></a>`;
+};
+function finder(input, listEl, pre, opts) {
+  let items = [], act = -1;
+  const setAct = k => { items.forEach((el, j) => el.classList.toggle('act', j === k)); act = k; if (items[k]) { input.setAttribute('aria-activedescendant', items[k].id); items[k].scrollIntoView({ block: 'nearest' }); } else input.removeAttribute('aria-activedescendant'); };
+  const draw = () => {
+    const r = search(input.value);
+    if (!r) {
+      listEl.innerHTML = `<div class="res-h">Common situations</div>` + SIT.map(([q, slug, i], k) => hitHTML({ c: BY[slug], lang: 'en', i, l: BY[slug].lessons[i] }, k, pre, null, q)).join('');
+    } else if (!r.hits.length) {
+      listEl.innerHTML = `<div class="none">No lessons match <b>“${esc(input.value.trim())}”</b>. Try a simpler word, like “boss”, “meeting”, “stress” or “money”.</div>`;
+    } else {
+      listEl.innerHTML = `<div class="res-h">${r.loose ? 'Closest matches' : r.hits.length + (r.hits.length === 1 ? ' lesson' : ' lessons')}</div>` + r.hits.map((e, k) => hitHTML(e, k, pre, r.marks)).join('');
+    }
+    items = $$('.hit', listEl); act = -1; input.removeAttribute('aria-activedescendant');
+    if (opts && opts.onDraw) opts.onDraw();
+  };
+  input.addEventListener('input', draw);
+  input.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown') { e.preventDefault(); setAct(Math.min(items.length - 1, act + 1)); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); setAct(Math.max(0, act - 1)); }
+    else if (e.key === 'Enter') { const el = items[act >= 0 ? act : 0]; if (el) { e.preventDefault(); go(el.getAttribute('href')); if (opts && opts.onPick) opts.onPick(); } }
+    else if (e.key === 'Escape' && opts && opts.onEsc) { e.preventDefault(); opts.onEsc(); }
+  });
+  listEl.addEventListener('click', e => { if (e.target.closest('.hit') && opts && opts.onPick) opts.onPick(); });
+  return { draw };
+}
+let lastNav = 0;
+const go = h => { lastNav = Date.now(); if (location.hash === h) route(); else location.hash = h; };
+document.addEventListener('click', e => { const a = e.target.closest('a[href^="#course-"]'); if (a) lastNav = Date.now(); }, true);
+
+// search dialog
+const modal = $('#modal'), mq = $('#mq'), mlist = $('#mlist');
+let lastFocus = null;
+const mf = finder(mq, mlist, 'm', { onPick: () => closeSearch(true), onEsc: () => closeSearch() });
+function openSearch(text) {
+  lastFocus = document.activeElement; modal.hidden = false; document.body.style.overflow = 'hidden';
+  mq.value = text || ''; mf.draw(); mq.focus();
+}
+function closeSearch(picked) { modal.hidden = true; document.body.style.overflow = ''; if (!picked && lastFocus) lastFocus.focus(); }
+modal.addEventListener('click', e => { if (e.target === modal) closeSearch(); });
+$('#openSearch').addEventListener('click', () => openSearch());
+document.addEventListener('keydown', e => {
+  const typing = /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName) || document.activeElement.isContentEditable;
+  if ((e.key === '/' && !typing) || (e.key.toLowerCase() === 'k' && (e.metaKey || e.ctrlKey))) {
+    e.preventDefault();
+    const q = $('#q');
+    if (q && q.getBoundingClientRect().bottom > 0) q.focus(); else openSearch();
+  } else if (e.key === 'Escape' && !modal.hidden) closeSearch();
+});
+
+function toast(msg) { const t = $('#toast'); t.textContent = msg; t.hidden = false; clearTimeout(toast.t); toast.t = setTimeout(() => { t.hidden = true; }, 2200); }
+
+// ---------- home
+let filter = 'all';
+const tileHTML = c => {
+  const p = bestProgress(c);
+  return `<a class="tile" href="#course-${c.slug}" style="--c:${c.color};--ci:${c.ink}">
+    <div class="tile-art">${c.cover}</div>
+    <div class="tile-body">
+      <span class="tile-topic">${esc(THEME[c.theme])}</span>
       <h3>${esc(c.title)}</h3>
-      <p class="sub">${esc(c.sub)}</p>
-      <div class="meta"><span>${c.count} lessons${c.soFar ? ' so far' : ''}</span>${c.minutes ? `<span>About ${c.minutes} min</span>` : ''}${c.who ? `<span class="who">Follow ${esc(c.who)}</span>` : ''}</div>
+      <p>${esc(c.sub)}</p>
+      <div class="tile-meta"><span>${c.count} lessons</span>${c.minutes ? `<span>${c.minutes} min</span>` : ''}${p.done ? `<span>${p.done} watched</span>` : ''}${c.who ? `<span class="who"><i aria-hidden="true">${esc(c.who[0])}</i>${esc(c.who)}</span>` : ''}</div>
     </div>
+    ${p.done ? `<div class="tile-prog" aria-hidden="true"><i style="--p:${Math.round(100 * p.done / p.total)}%"></i></div>` : ''}
   </a>`;
+};
+const lcHTML = (k, pos) => {
+  const [q, slug, i] = SIT[k]; const c = BY[slug]; const list = c.lessons; const l = list[i];
+  const art = EMBED && l.id ? `<img src="${thumb(l.id, 'hqdefault')}" alt="" data-slug="${slug}" onerror="imgFail(this)">` : c.cover;
+  return `<a class="lc" data-k="${k}" data-pos="${pos}" href="${lessonHash(c, 'en', i)}" style="--c:${c.color};--ci:${c.ink}" ${pos === 0 ? '' : 'aria-hidden="true" tabindex="-1"'}>
+    <div class="lc-art">${art}<span class="lc-play">${I.play()}</span>${l.d ? `<span class="lc-dur">${esc(l.d)}</span>` : ''}</div>
+    <div class="lc-body"><span class="lc-course">${esc(c.title)}</span><span class="lc-title">${esc(l.t)}</span><span class="lc-meta">${esc(lessonName(list, i))}</span></div>
+  </a>`;
+};
+let sitK = 0, sitTimer = null, sitHold = 0;
+function drawSit(k, dir) {
+  const rot = $('#rot'), stack = $('#stack'), n = SIT.length;
+  if (!rot || !stack) return;
+  sitK = (k + n) % n;
+  const [q, slug] = SIT[sitK];
+  const words = q.split(' ');
+  const put = () => { rot.classList.remove('out'); rot.innerHTML = words.map((w, j) => `<span class="w"><span style="--k:${j}">${esc(w)}</span></span>`).join(' '); };
+  if (dir && !RM.matches) { rot.classList.add('out'); setTimeout(put, 330); } else put();
+  const c = BY[slug]; $('.hero').style.setProperty('--glow', isDark(c.color) ? '#F4A024' : c.color);
+  $('#sitn').textContent = (sitK + 1) + ' of ' + n;
+  const want = [0, 1, 2].map(j => (sitK + j) % n);
+  if (!dir) { stack.innerHTML = want.map((kk, j) => lcHTML(kk, j)).reverse().join(''); return; }
+  const have = new Map($$('.lc', stack).filter(el => el.dataset.pos !== 'out' && el.dataset.pos !== 'in').map(el => [+el.dataset.k, el]));
+  have.forEach((el, kk) => { if (!want.includes(kk)) { el.dataset.pos = dir > 0 ? 'out' : 'in'; el.setAttribute('aria-hidden', 'true'); el.tabIndex = -1; setTimeout(() => el.remove(), 800); } });
+  want.forEach((kk, j) => {
+    let el = have.get(kk);
+    if (!el) {
+      const t = document.createElement('template'); t.innerHTML = lcHTML(kk, dir > 0 ? 'in' : 'out').trim(); el = t.content.firstChild;
+      if (dir > 0) stack.prepend(el); else stack.append(el);
+      el.getBoundingClientRect();
+    }
+    requestAnimationFrame(() => { el.dataset.pos = j; if (j === 0) { el.removeAttribute('aria-hidden'); el.removeAttribute('tabindex'); } else { el.setAttribute('aria-hidden', 'true'); el.tabIndex = -1; } });
+  });
+}
+function startHero() {
+  drawSit(sitK, 0);
+  clearInterval(sitTimer);
+  if (!RM.matches) sitTimer = setInterval(() => { if (Date.now() > sitHold && !document.hidden) drawSit(sitK + 1, 1); }, 5200);
+  const hold = ms => { sitHold = Date.now() + ms; };
+  const st = $('#stack'), fd = $('.h-find');
+  st.addEventListener('pointerenter', () => hold(1e9));
+  st.addEventListener('pointerleave', () => hold(1500));
+  [st, fd].forEach(el => { el.addEventListener('focusin', () => hold(1e9)); el.addEventListener('focusout', () => hold(1500)); });
+  $('#sitPrev').addEventListener('click', () => { hold(8000); drawSit(sitK - 1, -1); });
+  $('#sitNext').addEventListener('click', () => { hold(8000); drawSit(sitK + 1, 1); });
+}
+function stopHero() { clearInterval(sitTimer); sitTimer = null; }
 
 function renderHome(anchor) {
-  stopPlayer();
+  leaveCourse(); stopHero();
   document.title = 'Mentor Moments with Amey';
-  const last = store.get(); const lc = last && BY[last.slug];
-  const lessonList = lc && lessonsOf(lc, last.lang);
-  const contTxt = lc ? esc(lc.title) + (lessonList && lessonList[last.i] ? ' · ' + esc(lessonList[last.i].t) : '') : '';
+  const recent = store.recent().slice(0, 4);
+  const themeCount = k => k === 'all' ? courses.length : courses.filter(c => c.theme === k).length;
   app.innerHTML = `
-  <div class="hero"><div class="wrap">
-    <div>
-      <div class="eyebrow">Free animated courses on YouTube</div>
-      <h1>Learn what work asks of you, <em>three minutes at a time.</em></h1>
-      <p class="lede">Short animated courses by Corporate Trainer Amey Hegde for working professionals in India. Each one follows a character through a real situation, at work or with money, one short lesson at a time.</p>
-      <div class="cta"><a class="btn primary" href="#courses">Browse the courses</a><a class="btn ghost" href="#how-it-works">How it works</a></div>
-      ${lc ? `<a class="continue" href="#course-${lc.slug}"><i>${PLAY}</i><span>Continue: ${contTxt}</span></a>` : ''}
-      <div class="stats">
-        <div><b>${courses.length}</b><span>courses</span></div>
-        <div><b>${DATA.total}</b><span>lessons</span></div>
-        <div><b>~3 min</b><span>per lesson</span></div>
-        <div><b>Free</b><span>on YouTube</span></div>
+  <section class="hero">
+    <div class="hero-bg" aria-hidden="true"><div class="glow"></div><div class="glow b"></div></div>
+    <div class="wrap">
+      <div class="h-copy">
+        <h1 class="sit"><span class="sr">Short animated lessons for real situations at work and with money</span><span class="rot" id="rot" aria-hidden="true"></span></h1>
+        <p class="answer">There's a three-minute lesson for that.</p>
       </div>
+      <div class="h-find" role="search">
+        <div class="field"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+          <input id="q" type="search" autocomplete="off" spellcheck="false" placeholder="Search ${DATA.total} lessons, like “feedback” or “say no”" aria-label="Search ${DATA.total} lessons" role="combobox" aria-expanded="false" aria-controls="qres" aria-autocomplete="list">
+          <button class="clear" type="button" id="qclear" aria-label="Clear search" hidden>${I.x}</button><kbd id="qkbd">/</kbd></div>
+        <div class="pop" id="qres" role="listbox" aria-label="Lessons" hidden></div>
+        <div class="try"><span>Try</span>${['say no', 'feedback', 'meetings', 'stress', 'money', 'AI'].map(t => `<button type="button" data-q="${esc(t)}">${esc(t)}</button>`).join('')}</div>
+      </div>
+      <div class="h-stack">
+        <div class="stack" id="stack"></div>
+        <div class="stack-ctl"><button type="button" id="sitPrev" aria-label="Previous situation">${I.prev}</button><span id="sitn"></span><button type="button" id="sitNext" aria-label="Next situation">${I.next}</button></div>
+      </div>
+      <div class="h-more"><p class="lede">Short animated courses by <b>Corporate Trainer Amey Hegde</b> for working professionals in India. Each one follows a character through a real situation, at work or with money, one short lesson at a time.</p></div>
     </div>
-    <div class="mosaic" aria-label="All courses">${courses.map(c => `<a href="#course-${c.slug}" aria-label="${esc(c.title)}">${c.cover}<span>${esc(c.title)}</span></a>`).join('')}</div>
-  </div></div>
+  </section>
 
-  <section id="courses"><div class="wrap">
+  ${recent.length ? `<section class="cont"><div class="wrap"><h2>Continue watching</h2><div class="rail">${recent.map(([slug]) => {
+    const c = BY[slug]; const nx = nextFor(c); const list = lessonsOf(c, nx.lang); const p = progress(c, nx.lang);
+    return `<a class="cc" href="${lessonHash(c, nx.lang, nx.i)}"><div class="ca">${c.cover}</div><div><small>${esc(c.title)}</small><b ${nx.lang === 'hi' ? 'lang="hi"' : ''}>${esc(list[nx.i].t)}</b><div class="bar" title="${p.done} of ${p.total} watched"><i style="--p:${Math.round(100 * p.done / p.total)}%"></i></div></div></a>`;
+  }).join('')}</div></div></section>` : ''}
+
+  <section class="sec" id="courses"><div class="wrap">
     <div class="sechead">
-      <div><h2>${WORDS[courses.length] || courses.length} courses, all free</h2><p>Pick a topic. Every course opens with a short welcome or a first lesson that sets up the story.</p></div>
-      <div class="chips" role="group" aria-label="Filter by topic">${themes.map(([k, v]) => `<button class="chip" type="button" data-f="${k}" aria-pressed="${k === filter}">${esc(v)}</button>`).join('')}</div>
+      <div><h2 class="big">${WORDS[courses.length] || courses.length} courses, all free</h2><p>Each course opens with a short first lesson that sets up the story. Pick one, or search for your situation above.</p></div>
+      <div class="chips" role="group" aria-label="Show courses about">${themes.map(([k, v]) => `<button type="button" data-f="${k}" aria-pressed="${k === filter}">${esc(v)}<span>${themeCount(k)}</span></button>`).join('')}</div>
     </div>
-    <div class="grid" id="grid"></div>
+    <div class="tiles" id="grid"></div>
   </div></section>
 
-  <section class="how" id="how-it-works"><div class="wrap">
-    <div class="sechead"><div><h2>How the courses work</h2></div></div>
+  <section class="sec how" id="how-it-works"><div class="wrap">
+    <div class="sechead"><h2 class="big">How the courses work</h2></div>
     <ul>
-      <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span><h3>Follow one person's story</h3><p>Most courses have a main character, like Nikhil, a new team lead in Pune, or Arjun, who earns well and is still broke by the 22nd. You learn by watching them work it out.</p></li>
-      <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2M9 2h6"/></svg></span><h3>Lessons of about three minutes</h3><p>Watch one lesson on a break, or a whole course in under an hour. Each lesson covers one idea.</p></li>
-      <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></span><h3>Set in Indian workplaces</h3><p>The offices, cities, salaries and situations are Indian, so the advice fits the work you actually do.</p></li>
+      <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span><h3>Follow one person's story</h3><p>Most courses have a main character, like Nikhil, a new team lead in Pune, or Arjun, who earns well and is still broke by the 22nd. You learn by watching them work it out.</p></li>
+      <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2M9 2h6"/></svg></span><h3>About three minutes a lesson</h3><p>Watch one lesson over a cup of chai, or a whole course in under an hour. Each lesson covers one idea you can use the same day.</p></li>
+      <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></span><h3>Set in Indian workplaces</h3><p>The offices, cities, salaries and situations are Indian, so the advice fits the work you actually do.</p></li>
     </ul>
   </div></section>
 
-  <section id="people"><div class="wrap">
-    <div class="sechead"><div><h2>Some of the people you'll follow</h2><p>Each story runs across a whole course, so you see the change happen.</p></div></div>
-    <div class="people">${courses.filter(c => c.who).map(c => `<a class="person" href="#course-${c.slug}" style="--c:${c.color};--ci:${c.ink}"><span class="av" aria-hidden="true">${esc(c.who[0])}</span><b>${esc(c.who)}</b><span>${esc(c.whoLine)}</span><small>${esc(c.title)} →</small></a>`).join('')}</div>
+  <section class="sec" id="stories"><div class="wrap">
+    <div class="sechead"><div><h2 class="big">The people you'll follow</h2><p>Each story runs across a whole course, so you see the change happen.</p></div></div>
+    <div class="cast">${courses.filter(c => c.who).map(c => `<a class="person" href="#course-${c.slug}" style="--c:${c.color};--ci:${c.ink}"><span class="av" aria-hidden="true">${esc(c.who[0])}</span><b>${esc(c.who)}</b><span>${esc(c.whoLine)}</span><small>${esc(c.title)}</small></a>`).join('')}</div>
   </div></section>
 
-  <section class="about" id="about"><div class="wrap">
-    <h2 style="font-size:clamp(28px,3.4vw,40px);font-weight:800">About Amey</h2>
+  <section class="sec about" id="about"><div class="wrap">
+    <h2 class="big">About Amey</h2>
     <div>
       <p>Amey Hegde is a corporate trainer based in Goa. Mentor Moments with Amey is his series of short animated courses for working professionals, free to watch on YouTube.</p>
       <p>The courses cover leading a team, emotional intelligence, communication, wellbeing and resilience, time and focus, working with AI, personal finance and, for engineers, the chip design flow.</p>
-      <a class="btn ghost" href="https://ameyhegde.in" target="_blank" rel="noopener">Visit ameyhegde.in ${EXT}</a>
+      <a class="btn line" href="https://ameyhegde.in" target="_blank" rel="noopener">Visit ameyhegde.in ${I.ext}</a>
     </div>
   </div></section>`;
+
   drawGrid();
-  app.querySelectorAll('.chip').forEach(b => b.addEventListener('click', () => { filter = b.dataset.f; app.querySelectorAll('.chip').forEach(x => x.setAttribute('aria-pressed', x === b)); drawGrid(); }));
+  $$('.chips button').forEach(b => b.addEventListener('click', () => { filter = b.dataset.f; $$('.chips button').forEach(x => x.setAttribute('aria-pressed', x === b)); drawGrid(); }));
+  // hero search
+  const q = $('#q'), pop = $('#qres'), clr = $('#qclear'), kb = $('#qkbd');
+  if (window.innerWidth < 560) q.placeholder = 'Search ' + DATA.total + ' lessons';
+  const show = v => { pop.hidden = !v; q.setAttribute('aria-expanded', v); };
+  const hf = finder(q, pop, 'q', { onPick: () => show(false), onEsc: () => { if (q.value) { q.value = ''; hf.draw(); sync(); } else { show(false); q.blur(); } } });
+  const sync = () => { clr.hidden = !q.value; kb.hidden = !!q.value || document.activeElement === q; };
+  q.addEventListener('focus', () => { hf.draw(); show(true); sync(); });
+  q.addEventListener('input', () => { show(true); sync(); });
+  q.addEventListener('blur', () => setTimeout(() => { if (!$('.h-find') || !$('.h-find').contains(document.activeElement)) { show(false); sync(); } }, 150));
+  clr.addEventListener('click', () => { q.value = ''; hf.draw(); q.focus(); sync(); });
+  $$('.try button').forEach(b => b.addEventListener('click', () => { q.value = b.dataset.q; q.focus(); hf.draw(); show(true); sync(); }));
+  startHero();
   if (anchor && document.getElementById(anchor)) requestAnimationFrame(() => document.getElementById(anchor).scrollIntoView());
   else window.scrollTo(0, 0);
 }
 function drawGrid() {
   const list = courses.filter(c => filter === 'all' || c.theme === filter);
-  document.getElementById('grid').innerHTML = list.map(cardHTML).join('') || '<p class="empty">No courses in this topic yet.</p>';
+  $('#grid').innerHTML = list.map(tileHTML).join('') || '<p class="empty">No courses in this topic yet.</p>';
 }
 
-function renderCourse(c) {
-  stopPlayer();
+// ---------- course page
+let cur = null;
+function renderCourse(c, r) {
+  leaveCourse(); stopHero();
   document.title = c.title + ' · Mentor Moments with Amey';
-  let lang = 'en';
-  const last = store.get();
-  const resume = last && last.slug === c.slug ? last : null;
-  if (resume && resume.lang === 'hi' && c.hindi) lang = 'hi';
-  const eyebrow = c.label !== c.title ? c.label : THEME[c.theme];
+  let lang = r.lang || nextFor(c).lang; if (lang === 'hi' && !c.hindi) lang = 'en';
+  let list = lessonsOf(c, lang);
+  let sel = r.i != null && r.i < list.length ? r.i : nextFor(c, lang).i;
+  const topic = c.label !== c.title ? c.label : THEME[c.theme];
   const others = courses.filter(o => o !== c).sort((a, b) => (b.theme === c.theme) - (a.theme === c.theme)).slice(0, 3);
+  const facts = [c.count + ' lessons', c.minutes ? 'About ' + c.minutes + ' min' : null, c.hindi ? 'English and Hindi' : 'English', 'Free on YouTube'].filter(Boolean);
   app.innerHTML = `
-  <div class="chero" style="--c:${c.color};--ci:${c.ink}"><div class="wrap">
-    <div>
-      <a class="back" href="#courses">${ARROW_L}All courses</a>
-      <div class="eyebrow">${esc(eyebrow)}</div>
-      <h1>${esc(c.title)}</h1>
-      <p class="sub">${esc(c.sub)}</p>
-      <div class="facts">${facts(c).map(f => `<span>${esc(f)}</span>`).join('')}</div>
-      <div class="cta">
-        ${EMBED ? `<button class="btn primary" type="button" id="start">${PLAY.replace('#1F2A44', 'currentColor')}${resume ? 'Continue the course' : 'Start the course'}</button>`
-                : `<a class="btn primary" href="${ytUrl(c, lang, 0)}" target="_blank" rel="noopener">${PLAY.replace('#1F2A44', 'currentColor')}Start the course</a>`}
-        <a class="btn ghost" href="${c.playlist}" target="_blank" rel="noopener">Open on YouTube ${EXT}</a>
+  <section class="theatre" style="--c:${c.color};--ci:${c.ink}"><div class="wrap">
+    <a class="back" href="#courses">${I.back}All courses</a>
+    <div class="th-head">
+      <div><div class="th-topic">${esc(topic)}</div><h1>${esc(c.title)}</h1><p class="sub">${esc(c.sub)}</p></div>
+      <div class="th-side">
+        <div class="facts">${facts.map(f => `<span>${esc(f)}</span>`).join('')}</div>
+        <div class="meter" aria-hidden="true"><i id="meter"></i></div>
+        <div class="meter-l" id="meterL"></div>
       </div>
     </div>
-    <div class="bigcv" aria-hidden="true">${c.cover}</div>
-  </div></div>
-
-  <section class="watch" id="watch"><div class="wrap">
-    <div class="stage">
-      <div>
-        <div class="player">${posterHTML(c, lang, resume ? resume.i : 0)}<div id="yt"></div></div>
-        ${EMBED ? '' : '<p class="note">Videos open on YouTube in a new tab.</p>'}
+    <div class="stage" id="stage">
+      <div class="stage-main">
+        <div class="player" id="player" style="--plc:${c.color.toUpperCase() === '#F4A024' ? '#FFF7EC' : '#F4A024'}"><div id="yt"></div></div>
+        <div class="nowbar">
+          <div class="now" id="now" aria-live="polite"></div>
+          <div class="nb">
+            <button class="nbtn" type="button" id="bPrev">${I.prev}Previous</button>
+            <button class="nbtn" type="button" id="bNext">Next${I.next}</button>
+            <button class="nbtn" type="button" id="bDone" aria-pressed="false">${I.check}<span>Watched</span></button>
+            ${EMBED ? `<button class="nbtn" type="button" id="bLink">${I.link}Copy link</button>` : ''}
+          </div>
+        </div>
       </div>
-      <aside class="panel" id="panel"></aside>
+      <aside class="panel" aria-label="Lessons"><div class="panel-in" id="panel"></div></aside>
     </div>
   </div></section>
 
-  <section class="story"><div class="wrap">
-    <h2 style="font-size:clamp(26px,3vw,34px);font-weight:800">About this course</h2>
-    <div>${c.story.map(p => `<p>${esc(p)}</p>`).join('')}</div>
+  <section class="sec cabout"><div class="wrap">
+    <div class="story"><h2 class="big">About this course</h2>${c.story.map(p => `<p>${esc(p)}</p>`).join('')}</div>
+    <div class="follow" style="--c:${c.color};--ci:${c.ink}">
+      ${c.who ? `<span class="av" aria-hidden="true">${esc(c.who[0])}</span><small>You'll follow</small><b>${esc(c.who)}</b><span>${esc(c.whoLine)}</span>`
+              : `<small>On YouTube</small><b>${esc(c.title)}</b><span>${c.count} lessons in one playlist${c.minutes ? ', about ' + c.minutes + ' minutes in all' : ''}.</span>`}
+      <a class="btn line" href="${c.playlist}" target="_blank" rel="noopener">Open the playlist ${I.ext}</a>
+    </div>
   </div></section>
 
-  <section class="more"><div class="wrap">
-    <div class="sechead"><div><h2>More courses</h2></div><a class="btn ghost" href="#courses">See all ${courses.length}</a></div>
-    <div class="grid">${others.map(cardHTML).join('')}</div>
+  <section class="sec more"><div class="wrap">
+    <div class="sechead"><h2 class="big">More courses</h2><a class="btn line" href="#courses">See all ${courses.length}</a></div>
+    <div class="tiles">${others.map(tileHTML).join('')}</div>
   </div></section>`;
 
-  const panel = document.getElementById('panel');
+  const panel = $('#panel'), now = $('#now'), bDone = $('#bDone');
   const drawPanel = () => {
-    const list = lessonsOf(c, lang);
-    if (!list) {
-      panel.innerHTML = `<div class="ph"><h2>What's inside</h2></div>
-        <dl class="inside">
-          <div><dt>Lessons</dt><dd>${c.count}${c.soFar ? ' so far' : ''}</dd></div>
-          <div><dt>Length</dt><dd>${c.minutes ? 'About ' + c.minutes + ' minutes' : 'About 3 minutes a lesson'}</dd></div>
-          <div><dt>Format</dt><dd>Animated, story-led</dd></div>
-          <div><dt>Language</dt><dd>English</dd></div>
-          <div><dt>Price</dt><dd>Free</dd></div>
-        </dl>
-        <p>${EMBED ? 'Use the playlist button at the top right of the player to jump to any lesson.' : 'The full lesson list is in the playlist on YouTube.'}</p>`;
-      return;
-    }
-    panel.innerHTML = `<div class="ph"><h2>Lessons</h2>${c.hindi ? `<div class="lang" role="group" aria-label="Language"><button type="button" data-l="en" aria-pressed="${lang === 'en'}">English</button><button type="button" data-l="hi" aria-pressed="${lang === 'hi'}" lang="hi">हिन्दी</button></div>` : `<span>${list.length} videos</span>`}</div>
-      <ol class="lessons" ${lang === 'hi' ? 'lang="hi"' : ''}>${list.map((l, i) => `<li data-i="${i}">${EMBED
-        ? `<button type="button"><span class="n">${label(l, i, list)}</span>${rowText(l)}</button>`
-        : `<a href="${ytUrl(c, lang, i)}" target="_blank" rel="noopener"><span class="n">${label(l, i, list)}</span>${rowText(l)}</a>`}</li>`).join('')}</ol>`;
-    panel.querySelectorAll('.lang button').forEach(b => b.addEventListener('click', () => { lang = b.dataset.l; drawPanel(); resetPoster(); }));
-    if (EMBED) panel.querySelectorAll('.lessons li').forEach(li => li.addEventListener('click', () => playIndex(c, lang, +li.dataset.i)));
-    else panel.querySelectorAll('.lessons a').forEach((a, i) => a.addEventListener('click', () => store.set({ slug: c.slug, i, lang })));
-    if (resume && resume.lang === lang) markActive(resume.i);
+    const thumbs = EMBED && list.every(l => l.id);
+    panel.innerHTML = `<div class="ph"><h2>Lessons<span id="phc"></span></h2>${c.hindi ? `<div class="lang" role="group" aria-label="Language"><button type="button" data-l="en" aria-pressed="${lang === 'en'}">English</button><button type="button" data-l="hi" lang="hi" aria-pressed="${lang === 'hi'}">हिन्दी</button></div>` : ''}</div>
+      <ol class="lessons${thumbs ? ' thumbs' : ''}" ${lang === 'hi' ? 'lang="hi"' : ''}>${list.map((l, i) => {
+        const inner = thumbs
+          ? `<span class="th"><img src="${thumb(l.id)}" alt="" loading="lazy" onerror="this.remove()">${l.d ? `<span class="d">${esc(l.d)}</span>` : ''}<span class="ck" hidden>${I.check}</span></span><span class="t"><small>${esc(lessonName(list, i))}</small>${esc(l.t)}</span>`
+          : `<span class="n">${esc(badge(list, i))}</span><span class="t">${esc(l.t)}</span><span class="d">${esc(l.d || '')}</span>`;
+        return `<li data-i="${i}">${EMBED ? `<button class="row" type="button">${inner}</button>` : `<a class="row" href="${ytUrl(c, lang, i)}" target="_blank" rel="noopener">${inner}</a>`}</li>`;
+      }).join('')}</ol>`;
+    $$('.lang button', panel).forEach(b => b.addEventListener('click', () => { if (b.dataset.l !== lang) select(b.dataset.l, 0); }));
+    $$('.lessons li', panel).forEach(li => li.firstElementChild.addEventListener('click', () => {
+      const i = +li.dataset.i;
+      if (EMBED) select(lang, i, { play: true });
+      else { store.setDone(c.slug, lang, i, true); select(lang, i); }
+    }));
   };
-  const resetPoster = () => { if (player) return; const p = app.querySelector('.player'); p.querySelector('.poster').outerHTML = posterHTML(c, lang, 0); wirePoster(); };
-  const wirePoster = () => {
-    const p = app.querySelector('.poster');
-    if (EMBED) p.addEventListener('click', () => playIndex(c, lang, +p.dataset.i));
-    else p.addEventListener('click', () => store.set({ slug: c.slug, i: +p.dataset.i, lang }));
+  const refresh = () => {
+    const p = progress(c, lang);
+    $('#meter').style.setProperty('--p', (100 * p.done / p.total) + '%');
+    $('#meterL').textContent = p.done ? (p.done === p.total ? 'You have watched every lesson' : p.done + ' of ' + p.total + ' lessons watched') : 'Your progress is saved in this browser';
+    $('#phc').textContent = p.done + ' of ' + p.total + ' watched';
+    $$('.lessons li', panel).forEach(li => {
+      const i = +li.dataset.i, d = store.done(c.slug, lang, i);
+      li.classList.toggle('on', i === sel); li.classList.toggle('done', d);
+      const n = $('.n', li); if (n) n.innerHTML = d ? I.check : esc(badge(list, i));
+      const ck = $('.ck', li); if (ck) ck.hidden = !d;
+      li.firstElementChild.setAttribute('aria-current', i === sel ? 'true' : 'false');
+    });
+    const d = store.done(c.slug, lang, sel);
+    bDone.setAttribute('aria-pressed', d); $('span', bDone).textContent = d ? 'Watched' : 'Mark as watched';
+    $('#bPrev').disabled = sel === 0; $('#bNext').disabled = sel === list.length - 1;
   };
-  drawPanel(); wirePoster();
-  const st = document.getElementById('start');
-  if (st) st.addEventListener('click', () => { document.getElementById('watch').scrollIntoView(); playIndex(c, lang, resume && resume.lang === lang ? resume.i : 0); });
+  const drawNow = () => {
+    const l = list[sel];
+    now.setAttribute('lang', lang === 'hi' ? 'hi' : 'en');
+    const nx = list[sel + 1];
+    now.innerHTML = nx ? `<small>Next up, ${esc(lessonName(list, sel + 1).replace(/ of \d+$/, '').toLowerCase())}${nx.d ? ', ' + esc(nx.d) : ''}</small><b>${esc(nx.t)}</b>`
+                       : `<small>${esc(lessonName(list, sel))}</small><b>${lang === 'hi' ? 'This is the last lesson in Hindi' : 'This is the last lesson of the course'}</b>`;
+  };
+  const drawPoster = () => {
+    if (player) return;
+    const l = list[sel]; const old = $('.poster', $('#player')); if (old) old.remove();
+    const img = EMBED && l.id ? `<img src="${thumb(l.id, 'maxresdefault')}" alt="" data-slug="${c.slug}" data-alt="${thumb(l.id, 'hqdefault')}" onerror="imgFail(this)">` : c.cover;
+    const cap = `<span class="cap"><small>${esc(lessonName(list, sel))}${l.d ? ', ' + esc(l.d) : ''}</small><b ${lang === 'hi' ? 'lang="hi"' : ''}>${esc(l.t)}</b>${EMBED ? '' : `<em>${I.ext}Opens on YouTube</em>`}</span>`;
+    const html = EMBED ? `<button class="poster" type="button" aria-label="Play ${esc(l.t)}">${img}<span class="pl">${I.play()}</span>${cap}</button>`
+                       : `<a class="poster" href="${ytUrl(c, lang, sel)}" target="_blank" rel="noopener" aria-label="Watch ${esc(l.t)} on YouTube">${img}<span class="pl">${I.play()}</span>${cap}</a>`;
+    $('#player').insertAdjacentHTML('afterbegin', html);
+    $('.poster').addEventListener('click', () => { if (EMBED) select(lang, sel, { play: true }); else { store.setDone(c.slug, lang, sel, true); store.visit(c.slug, lang, sel); refresh(); } });
+  };
+  function select(l2, i, o) {
+    o = o || {};
+    if (l2 !== lang) { if (player) stopPlayer(); lang = l2; list = lessonsOf(c, lang); drawPanel(); }
+    sel = Math.max(0, Math.min(i, list.length - 1));
+    store.visit(c.slug, lang, sel);
+    drawNow(); drawPoster(); refresh();
+    if (EMBED) { try { history.replaceState(null, '', lessonHash(c, lang, sel)); } catch (e) {} }
+    if (o.play && EMBED) playIndex(c, lang, sel);
+    if (o.reveal) { const li = $(`.lessons li[data-i="${sel}"]`, panel); if (li && panel.offsetParent) li.scrollIntoView({ block: 'nearest' }); }
+  }
+  $('#bPrev').addEventListener('click', () => select(lang, sel - 1, { play: EMBED && !!player, reveal: true }));
+  $('#bNext').addEventListener('click', () => select(lang, sel + 1, { play: EMBED && !!player, reveal: true }));
+  bDone.addEventListener('click', () => { store.setDone(c.slug, lang, sel, !store.done(c.slug, lang, sel)); refresh(); });
+  const bLink = $('#bLink');
+  if (bLink) bLink.addEventListener('click', () => {
+    const url = location.href.split('#')[0] + lessonHash(c, lang, sel);
+    if (navigator.clipboard) navigator.clipboard.writeText(url).then(() => toast('Link to this lesson copied'), () => toast('Copy the link from the address bar'));
+    else toast('Copy the link from the address bar');
+  });
+  cur = { c, select, refresh, get lang() { return lang; }, get sel() { return sel; } };
+  drawPanel(); drawNow(); drawPoster(); refresh();
+  const li = $(`.lessons li[data-i="${sel}"]`, panel);
+  if (li && window.innerWidth > 1000) $('.lessons', panel).scrollTop = Math.max(0, li.offsetTop - 80);
   window.scrollTo(0, 0);
+  if (r.i != null && window.innerWidth <= 1000) requestAnimationFrame(() => $('#player').scrollIntoView({ block: 'start' }));
+  if (r.i != null && EMBED && Date.now() - lastNav < 1500) playIndex(c, lang, sel);
 }
-function posterHTML(c, lang, i) {
-  const list = lessonsOf(c, lang); const it = list && list[i];
-  const cap = it ? `<small>${it.w ? 'Start here' : it.b ? 'Bonus lesson' : 'Lesson ' + label(it, i, list)}</small>${esc(it.t)}` : `<small>${c.count} lessons</small>Play the whole course`;
-  const art = c.cover.replace('<svg ', '<svg class="art" ');
-  return EMBED ? `<button class="poster" type="button" data-i="${i}" aria-label="Play ${esc(it ? it.t : c.title)}">${art}<span class="pl">${PLAY}</span><span class="cap">${cap}</span></button>`
-               : `<a class="poster" href="${ytUrl(c, lang, i)}" data-i="${i}" target="_blank" rel="noopener" aria-label="Watch ${esc(it ? it.t : c.title)} on YouTube">${art}<span class="pl">${PLAY}</span><span class="cap">${cap}<br><small style="margin:6px 0 0;text-transform:none;letter-spacing:0">Opens on YouTube</small></span></a>`;
-}
-function markActive(i) { app.querySelectorAll('.lessons li').forEach(li => li.classList.toggle('on', +li.dataset.i === i)); }
+function leaveCourse() { stopPlayer(); cur = null; }
 
 // ---------- YouTube player (hosted copy only)
-let player = null, ytReady = false, pending = null;
+let player = null, ytReady = false, pending = null, poll = null;
 if (EMBED) {
   window.onYouTubeIframeAPIReady = () => { ytReady = true; if (pending) { const p = pending; pending = null; startPlayer(...p); } };
   const s = document.createElement('script'); s.src = 'https://www.youtube.com/iframe_api'; s.async = true; document.head.appendChild(s);
 }
 function playIndex(c, lang, i) {
-  markActive(i); store.set({ slug: c.slug, i, lang });
   if (!ytReady) { pending = [c, lang, i]; return; }
   startPlayer(c, lang, i);
 }
 function startPlayer(c, lang, i) {
   const list = lessonsOf(c, lang);
-  const ids = list && list.every(l => l.id) ? list.map(l => l.id) : null;
+  const ids = list.every(l => l.id) ? list.map(l => l.id) : null;
   const load = p => ids ? p.loadPlaylist(ids, i) : p.loadPlaylist({ list: c.list, listType: 'playlist', index: i });
-  if (player && player.key === c.slug + lang) { load(player); return; }
+  if (player && player.key === c.slug + lang) { try { player.playVideoAt(i); } catch (e) { load(player); } return; }
   stopPlayer();
-  const poster = app.querySelector('.poster'); if (poster) poster.hidden = true;
-  document.getElementById('yt').innerHTML = '<div id="ytp"></div>';
+  const poster = $('.poster'); if (poster) poster.remove();
+  $('#yt').innerHTML = '<div id="ytp"></div>';
+  const markIdx = k => { if (k >= 0) { store.setDone(c.slug, lang, k, true); if (cur && cur.c === c) cur.refresh(); } };
   player = new YT.Player('ytp', {
     host: 'https://www.youtube-nocookie.com', width: '100%', height: '100%',
     playerVars: { rel: 0, playsinline: 1, modestbranding: 1, origin: location.origin },
     events: {
       onReady: e => load(e.target),
-      onStateChange: e => { if (e.data === 1) { const k = e.target.getPlaylistIndex(); if (k >= 0) { markActive(k); store.set({ slug: c.slug, i: k, lang }); } } }
+      onStateChange: e => {
+        const k = e.target.getPlaylistIndex ? e.target.getPlaylistIndex() : -1;
+        if (e.data === 1 && k >= 0 && cur && cur.c === c && (k !== cur.sel || cur.lang !== lang)) cur.select(lang, k, { reveal: true });
+        if (e.data === 0) markIdx(k);
+      }
     }
   });
   player.key = c.slug + lang;
+  clearInterval(poll);
+  poll = setInterval(() => {
+    try { const d = player.getDuration(), t = player.getCurrentTime(); if (d > 0 && t / d >= .9) { const k = player.getPlaylistIndex(); if (k >= 0 && !store.done(c.slug, lang, k)) markIdx(k); } } catch (e) {}
+  }, 2000);
 }
-function stopPlayer() { if (player) { try { player.destroy(); } catch (e) {} player = null; } }
+function stopPlayer() { clearInterval(poll); poll = null; if (player) { try { player.destroy(); } catch (e) {} player = null; } }
 
-function route() {
+// ---------- routing: #course-<slug>, #course-<slug>-l3 (lesson 3), -h2 (Hindi lesson 2), or a home section
+function parse() {
   const h = decodeURIComponent(location.hash.slice(1));
-  if (h.startsWith('course-') && BY[h.slice(7)]) renderCourse(BY[h.slice(7)]);
-  else renderHome(h);
+  const m = h.match(/^course-(.+?)(?:-([lh])(\d+))?$/);
+  if (m && BY[m[1]]) return { c: BY[m[1]], lang: m[2] === 'h' ? 'hi' : m[2] ? 'en' : null, i: m[3] ? +m[3] - 1 : null };
+  return { anchor: h };
+}
+function route() {
+  const r = parse();
+  if (!modal.hidden) closeSearch(true);
+  if (r.c && cur && cur.c === r.c) { if (r.i != null) { cur.select(r.lang || cur.lang, r.i, { play: EMBED && Date.now() - lastNav < 1500, reveal: true }); if (window.innerWidth <= 1000) $('#player').scrollIntoView({ block: 'start' }); } else window.scrollTo(0, 0); return; }
+  if (!r.c && !cur && $('.hero')) { const el = r.anchor && document.getElementById(r.anchor); if (el) el.scrollIntoView(); else window.scrollTo(0, 0); return; }
+  const draw = () => r.c ? renderCourse(r.c, r) : renderHome(r.anchor);
+  if (document.startViewTransition && !RM.matches) document.startViewTransition(draw); else draw();
 }
 window.addEventListener('hashchange', route);
 route();
